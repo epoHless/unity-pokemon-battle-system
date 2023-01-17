@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdee2a2563554df886b910c3e09f2270, type: 3}
+  m_Name: Statistic_Banette
+  m_EditorClassIdentifier: 
+  <PS>k__BackingField: 80
+  <ATK>k__BackingField: 30
+  <SPATK>k__BackingField: 120
+  <DEF>k__BackingField: 40
+  <SPDEF>k__BackingField: 12
+  <SPD>k__BackingField: 120

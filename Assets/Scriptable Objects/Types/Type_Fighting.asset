@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0592c16cc68e4c00a4144e05588323c6, type: 3}
+  m_Name: Type_Fighting
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Fighting
+  WeakAgainst:
+  - {fileID: 11400000, guid: 22d56f1c63079514199b1171d69e07c6, type: 2}
+  - {fileID: 11400000, guid: 3a72f88d16265fa40a91615265438c26, type: 2}
+  - {fileID: 11400000, guid: 82e6a2f210c046844b7a2b11e05bad1e, type: 2}
+  ResistAgainst:
+  - {fileID: 11400000, guid: e41c655612ed83642b7000e9ed0f3432, type: 2}
+  - {fileID: 11400000, guid: f606fa6d7e07dfb4bbab3cd08e96ae31, type: 2}
+  - {fileID: 11400000, guid: 81cedd4a7e82441439c377264679873d, type: 2}
+  NullAgainst: []
