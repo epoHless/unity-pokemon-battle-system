@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Type_", menuName = "New Type", order = 0)]
+[CreateAssetMenu(fileName = "Type_", menuName = "Pokemon/New Type", order = 0)]
 public class ElementType : ScriptableObject
 {
     [field: SerializeField] public string Name { get; private set; }

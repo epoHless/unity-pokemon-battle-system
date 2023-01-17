@@ -467,6 +467,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1660994982}
+  - component: {fileID: 1660994983}
   m_Layer: 0
   m_Name: Battle Manager
   m_TagString: Untagged
@@ -489,6 +490,21 @@ Transform:
   m_Father: {fileID: 2093028775}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1660994983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660994981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0c4c771f8514ad5b7ad80461c372b8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsPersistent: 0
+  playerPokemon: {fileID: 919132147781832751}
+  enemyPokemon: {fileID: 919132147928842644}
 --- !u!1 &1762466208
 GameObject:
   m_ObjectHideFlags: 0
@@ -1214,6 +1230,25 @@ MonoBehaviour:
   <Types>k__BackingField:
   - {fileID: 11400000, guid: 016b661148f57a045aec6a47f035d485, type: 2}
   <PermanentStatistic>k__BackingField: {fileID: 11400000, guid: bd2fa694d5cf0654ca0df027c8e4a92f, type: 2}
+  <Moves>k__BackingField:
+  - {fileID: 11400000, guid: fd39dc3ce1c0b55479596c4b9c43fc14, type: 2}
+  battleStats:
+    PS: 0
+    ATK:
+      Value: 0
+      Stage: 0
+    SPATK:
+      Value: 0
+      Stage: 0
+    DEF:
+      Value: 0
+      Stage: 0
+    SPDEF:
+      Value: 0
+      Stage: 0
+    SPD:
+      Value: 0
+      Stage: 0
 --- !u!1 &919132147928842643
 GameObject:
   m_ObjectHideFlags: 0
@@ -1249,6 +1284,25 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b8d0826a71995754bb8366d10bd8ed2e, type: 2}
   - {fileID: 11400000, guid: 2eb41e8a4398acf468f9ec6a55d6c553, type: 2}
   <PermanentStatistic>k__BackingField: {fileID: 11400000, guid: 958227515b07a674ea7cbca8c8dde3ca, type: 2}
+  <Moves>k__BackingField:
+  - {fileID: 11400000, guid: b46718d9943a28242bc5d64c2bcf6671, type: 2}
+  battleStats:
+    PS: 0
+    ATK:
+      Value: 0
+      Stage: -3
+    SPATK:
+      Value: 0
+      Stage: 0
+    DEF:
+      Value: 0
+      Stage: 0
+    SPDEF:
+      Value: 0
+      Stage: 0
+    SPD:
+      Value: 0
+      Stage: 0
 --- !u!1 &932458193395510899
 GameObject:
   m_ObjectHideFlags: 0
