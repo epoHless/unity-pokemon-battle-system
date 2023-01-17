@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Type_Fairy
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Fairy
+  <Icon>k__BackingField: {fileID: -1359999200, guid: dbcf60904ca3f024db19b5159851a3e9, type: 3}
+  <Color>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
   WeakAgainst:
   - {fileID: 11400000, guid: 06138f28cd28741449285e1ff62eb283, type: 2}
   - {fileID: 11400000, guid: 5ca98f990af22604196d4ca83d42aca3, type: 2}

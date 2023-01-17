@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Type_Bug
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Bug
+  <Icon>k__BackingField: {fileID: 436515525, guid: dbcf60904ca3f024db19b5159851a3e9, type: 3}
+  <Color>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
   WeakAgainst:
   - {fileID: 11400000, guid: 22d56f1c63079514199b1171d69e07c6, type: 2}
   - {fileID: 11400000, guid: 81cedd4a7e82441439c377264679873d, type: 2}

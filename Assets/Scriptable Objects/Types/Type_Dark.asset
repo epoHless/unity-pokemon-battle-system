@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Type_Dark
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Dark
+  <Icon>k__BackingField: {fileID: 1297953516, guid: dbcf60904ca3f024db19b5159851a3e9, type: 3}
+  <Color>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
   WeakAgainst:
   - {fileID: 11400000, guid: 4e2359fa47d74db4cbc6ac1f4304c183, type: 2}
   - {fileID: 11400000, guid: e41c655612ed83642b7000e9ed0f3432, type: 2}

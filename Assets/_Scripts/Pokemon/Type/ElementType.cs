@@ -5,6 +5,8 @@ using UnityEngine;
 public class ElementType : ScriptableObject
 {
     [field: SerializeField] public string Name { get; private set; }
+    [field: SerializeField] public Sprite Icon { get; private set; }
+    [field: SerializeField] public Color Color { get; private set; }
 
     [SerializeField] private List<ElementType> WeakAgainst;
     [SerializeField] private List<ElementType> ResistAgainst;

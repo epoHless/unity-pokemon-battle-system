@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: Type_Dragon
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Dragon
+  <Icon>k__BackingField: {fileID: -1613171142, guid: dbcf60904ca3f024db19b5159851a3e9, type: 3}
+  <Color>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
   WeakAgainst:
   - {fileID: 11400000}
   - {fileID: 11400000, guid: 80bfa88eafefbce4da5f431b9275f883, type: 2}
