@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Water
   <Icon>k__BackingField: {fileID: 1036508021, guid: dbcf60904ca3f024db19b5159851a3e9, type: 3}
-  <Color>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
+  <Color>k__BackingField: {r: 0.3019608, g: 0.5647059, b: 0.8352942, a: 1}
   WeakAgainst:
   - {fileID: 11400000, guid: ae1841d24b797b14cb6b419b17a2d278, type: 2}
   - {fileID: 11400000, guid: abf0b60229887334ba6536156ba2a017, type: 2}

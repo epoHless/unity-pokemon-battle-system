@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Fire
   <Icon>k__BackingField: {fileID: -531460772, guid: dbcf60904ca3f024db19b5159851a3e9, type: 3}
-  <Color>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
+  <Color>k__BackingField: {r: 1, g: 0.6117647, b: 0.32941177, a: 1}
   WeakAgainst:
   - {fileID: 11400000, guid: 2eb41e8a4398acf468f9ec6a55d6c553, type: 2}
   - {fileID: 11400000, guid: 81cedd4a7e82441439c377264679873d, type: 2}

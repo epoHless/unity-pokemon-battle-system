@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Psychic
   <Icon>k__BackingField: {fileID: 1175506296, guid: dbcf60904ca3f024db19b5159851a3e9, type: 3}
-  <Color>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
+  <Color>k__BackingField: {r: 0.97647065, g: 0.4431373, b: 0.46274513, a: 1}
   WeakAgainst:
   - {fileID: 11400000, guid: e41c655612ed83642b7000e9ed0f3432, type: 2}
   - {fileID: 11400000, guid: f606fa6d7e07dfb4bbab3cd08e96ae31, type: 2}
