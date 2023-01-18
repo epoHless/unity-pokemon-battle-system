@@ -28,7 +28,8 @@ public class MoveButton : MonoBehaviour
     {
         if (buttonMove)
         {
-            buttonMove.ExecuteMove();
+            buttonMove.ExecuteMove(BattleManager.Instance.pokemons[0]);
+            BattleManager.Instance.OnSelectionMade?.Invoke(buttonMove);
         }
     }
 
@@ -55,6 +56,6 @@ public class MoveButton : MonoBehaviour
     
     private void SetMove(Move move)
     {
-        buttonMove = move;
+        buttonMove = ScriptableObject.Instantiate(move);
     }
 }

@@ -17,7 +17,7 @@ public class ElementType : ScriptableObject
         if (IsNull(type)) return 0;
         if (IsResistant(type)) return 0.5f;
         if (IsWeak(type)) return 2f;
-
+        
         return 1;
     }
     

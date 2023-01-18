@@ -2,12 +2,10 @@
 
 public class DragonDance : MoveEffect
 {
-    public override bool Execute(Move move, Pokemon afflictedPokemon)
+    public override void Execute(Move move, Pokemon afflictedPokemon)
     {
-        MobileFramework.Analytics.Logging.Message($"Move {GetType()} has been used on {afflictedPokemon.name}", Color.green, true);
+        base.Execute(move,afflictedPokemon);
 
-        move.spawnedParticle.PlayParticle();
-        
         move.spawnedParticle.SetAction(() =>
         {
             afflictedPokemon.battleStats.ATK.IncreaseStat();
@@ -15,7 +13,5 @@ public class DragonDance : MoveEffect
             
             // ADD SCREEN NOTIFICATION
         });
-
-        return true;
     }
 }

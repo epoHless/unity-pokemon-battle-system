@@ -19,9 +19,12 @@ public class Pokemon : MonoBehaviour
 
     public BattleModifier battleStats;
 
+    public Pokemon opponent { get; private set; }
+    
     private void Awake()
     {
         battleStats = new BattleModifier(PermanentStatistic);
+        opponent = BattleManager.Instance.GetTarget(this);
     }
 
     public BattleModifier GetCurrentStats()

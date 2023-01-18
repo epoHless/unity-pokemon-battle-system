@@ -3,8 +3,9 @@
 [System.Serializable]
 public class MoveEffect
 {
-    public virtual bool Execute(Move move, Pokemon afflictedPokemon)
+    public virtual void Execute(Move move, Pokemon afflictedPokemon)
     {
-        return false;
+        MobileFramework.Analytics.Logging.Message($"Move {GetType()} has been used on {afflictedPokemon.name}", Color.green, true);
+        move.spawnedParticle.PlayParticle();
     }
 }

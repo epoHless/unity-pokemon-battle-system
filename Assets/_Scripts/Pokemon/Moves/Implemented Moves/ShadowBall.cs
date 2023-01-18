@@ -2,19 +2,15 @@
 
 public class ShadowBall : MoveEffect
 {
-    public override bool Execute(Move move, Pokemon afflictedPokemon)
+    public override void Execute(Move move, Pokemon afflictedPokemon)
     {
-        MobileFramework.Analytics.Logging.Message($"Move {GetType()} has been used on {afflictedPokemon.name}", Color.green, true);
-        
-        move.spawnedParticle.PlayParticle();
+        base.Execute(move,afflictedPokemon);
         
         move.spawnedParticle.SetAction(() =>
         {
-            afflictedPokemon.battleStats.PS -= move.Power;
+            BattleTween.DealDamage(move, afflictedPokemon);
 
             // ADD SCREEN NOTIFICATION
         });
-        
-        return true;
     }
 }

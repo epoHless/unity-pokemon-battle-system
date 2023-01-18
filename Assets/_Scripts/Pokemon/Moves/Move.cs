@@ -33,18 +33,20 @@ public class Move : ScriptableObject
     [SerializeField] public MoveParticle particlePrefab;
     public MoveParticle spawnedParticle { get; private set; }
     
-    public void ExecuteMove()
+    public void ExecuteMove(Pokemon owner)
     {
         Pokemon afflictedPokemon = null;
-        
+
         switch (moveTarget)
         {
             case MoveTarget.SELF:
-                afflictedPokemon = BattleManager.Instance.pokemons[0];
+                afflictedPokemon = owner;
                 break;
             case MoveTarget.ENEMY:
-                afflictedPokemon = BattleManager.Instance.pokemons[1];
+                afflictedPokemon = owner.opponent;
                 break;
+            default:
+                throw new ArgumentOutOfRangeException();
         }
         
         if(!spawnedParticle)
