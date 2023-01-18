@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [System.Serializable]
 public class BattleStat
@@ -9,7 +10,10 @@ public class BattleStat
     public int Stage;
     private float[] positiveModifier = { 0, .5f, 1f, 1.5f, 2f, 2.5f, 3f };
     private float[] negativeModifier = { 0, .333f, .5f, .6f, .666f, .715f, .75f };
-    
+
+    public static event Action OnBuff;
+    public static event Action OnDeBuff;
+
     public BattleStat(float value)
     {
         Value = value;
@@ -23,6 +27,7 @@ public class BattleStat
         {
             Stage++;
             AdjustStat();
+            OnBuff?.Invoke();
         }
     }
     
@@ -33,6 +38,7 @@ public class BattleStat
         {
             Stage++;
             AdjustStat();
+            OnDeBuff?.Invoke();
         }
     }
 
@@ -41,4 +47,3 @@ public class BattleStat
         Value = Stage > 0 ? _initialValue + (_initialValue * positiveModifier[Mathf.Abs(Stage)]) : _initialValue - (_initialValue * negativeModifier[Mathf.Abs(Stage)]);
     }
 }
-

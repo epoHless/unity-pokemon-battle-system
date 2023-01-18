@@ -12,23 +12,46 @@ public class Move : ScriptableObject
         STATUS
     }
     
+    public enum MoveTarget
+    {
+        SELF,
+        ENEMY
+    }
+    
     [field: SerializeField] public string Name { get; private set; }
     [field: SerializeField] public MoveType moveType { get; private set; }
+    [field: SerializeField] public MoveTarget moveTarget { get; private set; }
     [field: SerializeField] public ElementType Type { get; private set; }
     [field: SerializeField] public int PP { get; private set; }
     [field: SerializeField] public int Power { get; private set; }
     [field: SerializeField] public int Accuracy { get; private set; }
-
-    [SerializeField] private bool IsTargetSelf = false;
     
     [SubclassOf(typeof(MoveEffect))] [SerializeField]
     private int MoveEffect;
     private MoveEffect _MoveEffect;
 
-    public void ExecuteMove(Pokemon afflictedPokemon)
+    [SerializeField] public MoveParticle particlePrefab;
+    public MoveParticle spawnedParticle { get; private set; }
+    
+    public void ExecuteMove()
     {
-        // var afflictedPokemon = IsTargetSelf ? BattleManager.Instance.playerPokemon : BattleManager.Instance.enemyPokemon;
+        Pokemon afflictedPokemon = null;
         
+        switch (moveTarget)
+        {
+            case MoveTarget.SELF:
+                afflictedPokemon = BattleManager.Instance.pokemons[0];
+                break;
+            case MoveTarget.ENEMY:
+                afflictedPokemon = BattleManager.Instance.pokemons[1];
+                break;
+        }
+        
+        if(!spawnedParticle)
+        {
+            spawnedParticle = Instantiate(particlePrefab, afflictedPokemon.transform);
+        }
+
         _MoveEffect = SubclassUtility.GetSubclassFromIndex<MoveEffect>(MoveEffect);
         _MoveEffect.Execute(this, afflictedPokemon);
     }

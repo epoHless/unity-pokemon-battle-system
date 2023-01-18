@@ -8,4 +8,3 @@ public class MoveEffect
         return false;
     }
 }
-

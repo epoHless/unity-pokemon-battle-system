@@ -28,7 +28,7 @@ public class MoveButton : MonoBehaviour
     {
         if (buttonMove)
         {
-            buttonMove.ExecuteMove(BattleManager.Instance.enemyPokemon);
+            buttonMove.ExecuteMove();
         }
     }
 

@@ -6,9 +6,16 @@ public class DragonDance : MoveEffect
     {
         MobileFramework.Analytics.Logging.Message($"Move {GetType()} has been used on {afflictedPokemon.name}", Color.green, true);
 
-        afflictedPokemon.battleStats.ATK.IncreaseStat();
-        afflictedPokemon.battleStats.SPD.IncreaseStat();
+        move.spawnedParticle.PlayParticle();
         
+        move.spawnedParticle.SetAction(() =>
+        {
+            afflictedPokemon.battleStats.ATK.IncreaseStat();
+            afflictedPokemon.battleStats.SPD.IncreaseStat();
+            
+            // ADD SCREEN NOTIFICATION
+        });
+
         return true;
     }
 }

@@ -29,4 +29,3 @@ public class Pokemon : MonoBehaviour
         return battleStats;
     }
 }
-

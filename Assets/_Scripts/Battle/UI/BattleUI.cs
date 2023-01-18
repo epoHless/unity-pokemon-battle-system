@@ -8,7 +8,7 @@ public class BattleUI : MonoBehaviour
 
     private void Start()
     {
-        pokemon = BattleManager.Instance.playerPokemon;
+        pokemon = BattleManager.Instance.pokemons[0];
         
         for (int i = 0; i < pokemon.Moves.Count; i++)
         {

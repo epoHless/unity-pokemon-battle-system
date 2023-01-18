@@ -19,4 +19,3 @@ public class BattleModifier
         SPD = new BattleStat(statistic.SPD);
     }
 }
-
