@@ -68,11 +68,9 @@ public class BattleManager : Singleton<BattleManager>
 
     IEnumerator UseMoves()
     {
-        turnMoves[0].Move.ExecuteMove(turnMoves[0].pokemon);
-        yield return new WaitUntil(() => turnMoves[0].Move.moveSO.spawnedParticle.IsDone == true);
+        yield return turnMoves[0].Move.ExecuteMove(turnMoves[0].pokemon);
         turnMoves.RemoveAt(0);
-        turnMoves[0].Move.ExecuteMove(turnMoves[0].pokemon);
-        yield return new WaitUntil(() => turnMoves[0].Move.moveSO.spawnedParticle.IsDone == true);
+        yield return turnMoves[0].Move.ExecuteMove(turnMoves[0].pokemon);
         ChangeState(new TurnStart());
     }
 }

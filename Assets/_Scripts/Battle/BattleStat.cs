@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 
 [System.Serializable]
@@ -7,7 +8,7 @@ public class BattleStat
     public float Value;
     private float _initialValue;
     
-    public int Stage;
+    public int Stage = 0;
     private float[] positiveModifier = { 0, .5f, 1f, 1.5f, 2f, 2.5f, 3f };
     private float[] negativeModifier = { 0, .333f, .5f, .6f, .666f, .715f, .75f };
 
@@ -31,14 +32,15 @@ public class BattleStat
         }
     }
     
-    public void DecreaseStat()
+    public IEnumerator DecreaseStat(Pokemon pokemon)
     {
-        if (Stage <= 6) MobileFramework.Analytics.Logging.Warning($"Stat {ToString()} is minimized already!", Color.red);
+        if (Stage <= -6) MobileFramework.Analytics.Logging.Warning($"Stat {ToString()} is minimized already!", Color.red);
         else
         {
-            Stage++;
+            Stage--;
             AdjustStat();
-            OnDeBuff?.Invoke();
+            // OnDeBuff?.Invoke();
+            yield return GameObject.FindObjectOfType<DeBuffParticle>().ShowDecrease(pokemon);
         }
     }
 

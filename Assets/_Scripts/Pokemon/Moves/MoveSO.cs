@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using MobileFramework.Subclass;
 using UnityEngine;
 
@@ -33,7 +34,7 @@ public class MoveSO : ScriptableObject
     [SerializeField] public MoveParticle particlePrefab;
     public MoveParticle spawnedParticle { get; private set; }
     
-    public void ExecuteMove(Pokemon owner)
+    public IEnumerator ExecuteMove(Pokemon owner)
     {
         Pokemon afflictedPokemon = null;
 
@@ -57,6 +58,6 @@ public class MoveSO : ScriptableObject
         spawnedParticle.transform.position = afflictedPokemon.transform.position;
 
         _MoveEffect = SubclassUtility.GetSubclassFromIndex<MoveEffect>(MoveEffect);
-        _MoveEffect.Execute(this, afflictedPokemon);
+        return _MoveEffect.Execute(this, afflictedPokemon);
     }
 }

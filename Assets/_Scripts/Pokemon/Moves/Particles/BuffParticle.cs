@@ -7,7 +7,7 @@ public class BuffParticle : MoveParticle
     {
         base.OnEnable();
         
-        // BattleStat.OnBuff += () => gameObject.SetActive(true);
+        BattleStat.OnBuff += () => gameObject.SetActive(true);
     }
     
 }

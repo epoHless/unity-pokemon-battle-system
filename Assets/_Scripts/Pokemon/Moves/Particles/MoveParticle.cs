@@ -39,7 +39,7 @@ public class MoveParticle : MonoBehaviour
         gameObject.SetActive(true);
     }
 
-    public virtual void SetAction(Action action)
+    public void SetAction(Action action)
     {
         particleAction = action;
     }
