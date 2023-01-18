@@ -12,7 +12,7 @@ public class ElementType : ScriptableObject
     [SerializeField] private List<ElementType> ResistAgainst;
     [SerializeField] private List<ElementType> NullAgainst;
 
-    private float GetModifier(ElementType type)
+    public float GetModifier(ElementType type)
     {
         if (IsNull(type)) return 0;
         if (IsResistant(type)) return 0.5f;

@@ -24,16 +24,6 @@ public class Pokemon : MonoBehaviour
         battleStats = new BattleModifier(PermanentStatistic);
     }
 
-    private void Start()
-    {
-        SelectMove(0);
-    }
-
-    public void SelectMove(int i)
-    {
-        Moves[i].ExecuteMove(this);
-    }
-
     public BattleModifier GetCurrentStats()
     {
         return battleStats;

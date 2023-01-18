@@ -17,8 +17,6 @@ public class BattleModifier
         DEF = new BattleStat(statistic.DEF);
         SPDEF = new BattleStat(statistic.SPDEF);
         SPD = new BattleStat(statistic.SPD);
-
-        ATK.Stage = 3;
     }
 }
 
