@@ -3,7 +3,7 @@ using MobileFramework.Subclass;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Move_", menuName = "Pokemon/New Move", order = 0)]
-public class Move : ScriptableObject
+public class MoveSO : ScriptableObject
 {
     public enum MoveType
     {
@@ -53,6 +53,8 @@ public class Move : ScriptableObject
         {
             spawnedParticle = Instantiate(particlePrefab, afflictedPokemon.transform);
         }
+        
+        spawnedParticle.transform.position = afflictedPokemon.transform.position;
 
         _MoveEffect = SubclassUtility.GetSubclassFromIndex<MoveEffect>(MoveEffect);
         _MoveEffect.Execute(this, afflictedPokemon);

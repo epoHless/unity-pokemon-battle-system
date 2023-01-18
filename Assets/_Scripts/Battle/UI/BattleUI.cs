@@ -12,7 +12,7 @@ public class BattleUI : MonoBehaviour
         
         for (int i = 0; i < pokemon.Moves.Count; i++)
         {
-            if (pokemon.Moves[i])
+            if (pokemon.Moves[i].moveSO)
             {
                 moveButtons[i].gameObject.SetActive(true);
                 moveButtons[i].OnActivation?.Invoke(pokemon.Moves[i]);

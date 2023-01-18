@@ -2,7 +2,8 @@
 [System.Serializable]
 public class BattleModifier
 {
-    public float PS;
+    public float MaxPS;
+    public float CurrentPS;
     public BattleStat ATK;
     public BattleStat SPATK;
     public BattleStat DEF;
@@ -11,7 +12,8 @@ public class BattleModifier
 
     public BattleModifier(PermanentStatistic statistic)
     {
-        PS = statistic.PS;
+        MaxPS = statistic.PS;
+        CurrentPS = MaxPS;
         ATK = new BattleStat(statistic.ATK);
         SPATK = new BattleStat(statistic.SPATK);
         DEF = new BattleStat(statistic.DEF);

@@ -1,15 +1,15 @@
 ﻿
 public static class BattleTween
 {
-    public static void DealDamage(Move move, Pokemon pokemon)
+    public static void DealDamage(MoveSO moveSo, Pokemon pokemon)
     {
-        float newHp = pokemon.battleStats.PS - move.Power;
-        float startHp = pokemon.battleStats.PS;
+        float newHp = pokemon.battleStats.CurrentPS - moveSo.Power;
+        float startHp = pokemon.battleStats.CurrentPS;
         
         LeanTween.value(pokemon.gameObject, f =>
         {
-            pokemon.battleStats.PS = f;
-        }, startHp, newHp, .5f);
+            pokemon.battleStats.CurrentPS = f;
+        }, startHp, newHp, .35f);
     }
 }
 

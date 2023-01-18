@@ -7,6 +7,8 @@ public class MoveParticle : MonoBehaviour
     private ParticleSystem.MainModule main;
 
     private Action particleAction;
+
+    [field: SerializeField] public bool IsDone { get; private set; }
     
     protected virtual void Awake()
     {
@@ -16,6 +18,7 @@ public class MoveParticle : MonoBehaviour
 
     protected virtual void OnEnable()
     {
+        IsDone = false;
         main.stopAction = ParticleSystemStopAction.Callback;
     }
 
@@ -26,6 +29,7 @@ public class MoveParticle : MonoBehaviour
 
     private void OnParticleSystemStopped()
     {
+        IsDone = true;
         particleAction?.Invoke();
         gameObject.SetActive(false);
     }

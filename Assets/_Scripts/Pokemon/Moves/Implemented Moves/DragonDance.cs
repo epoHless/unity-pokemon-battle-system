@@ -2,11 +2,11 @@
 
 public class DragonDance : MoveEffect
 {
-    public override void Execute(Move move, Pokemon afflictedPokemon)
+    public override void Execute(MoveSO moveSo, Pokemon afflictedPokemon)
     {
-        base.Execute(move,afflictedPokemon);
+        base.Execute(moveSo,afflictedPokemon);
 
-        move.spawnedParticle.SetAction(() =>
+        moveSo.spawnedParticle.SetAction(() =>
         {
             afflictedPokemon.battleStats.ATK.IncreaseStat();
             afflictedPokemon.battleStats.SPD.IncreaseStat();

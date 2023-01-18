@@ -2,13 +2,13 @@
 
 public class ShadowBall : MoveEffect
 {
-    public override void Execute(Move move, Pokemon afflictedPokemon)
+    public override void Execute(MoveSO moveSo, Pokemon afflictedPokemon)
     {
-        base.Execute(move,afflictedPokemon);
+        base.Execute(moveSo,afflictedPokemon);
         
-        move.spawnedParticle.SetAction(() =>
+        moveSo.spawnedParticle.SetAction(() =>
         {
-            BattleTween.DealDamage(move, afflictedPokemon);
+            BattleTween.DealDamage(moveSo, afflictedPokemon);
 
             // ADD SCREEN NOTIFICATION
         });
