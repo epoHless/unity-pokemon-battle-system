@@ -7,7 +7,10 @@ public class BuffParticle : MoveParticle
     {
         base.OnEnable();
         
-        BattleStat.OnBuff += () => gameObject.SetActive(true);
+        BattleStat.OnBuff += pokemon =>
+        {
+            transform.position = pokemon.transform.position;
+            gameObject.SetActive(true);
+        };
     }
-    
 }

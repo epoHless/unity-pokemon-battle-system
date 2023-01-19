@@ -12,8 +12,8 @@ public class BattleStat
     private float[] positiveModifier = { 0, .5f, 1f, 1.5f, 2f, 2.5f, 3f };
     private float[] negativeModifier = { 0, .333f, .5f, .6f, .666f, .715f, .75f };
 
-    public static event Action OnBuff;
-    public static event Action OnDeBuff;
+    public static event Action<Pokemon> OnBuff;
+    public static event Action<Pokemon> OnDeBuff;
 
     public BattleStat(float value)
     {
@@ -21,31 +21,78 @@ public class BattleStat
         _initialValue = value;
     }
 
-    public void IncreaseStat()
+    public IEnumerator IncreaseStat(Pokemon pokemon)
     {
-        if (Stage >= 6) MobileFramework.Analytics.Logging.Warning($"Stat {ToString()} is maxed out already!", Color.red);
+        if (Stage >= 6)
+        {
+            Stage = 6;
+            yield return ShowPanel($"Stat is already maxed!");
+        }
         else
         {
             Stage++;
             AdjustStat();
-            OnBuff?.Invoke();
+            OnBuff?.Invoke(pokemon);
+            yield return ShowPanel($"{pokemon.Name}'s {ToString()} was increased!");
+        }
+    }
+    
+    public IEnumerator SharplyIncreaseStat(Pokemon pokemon)
+    {
+        if (Stage >= 6)
+        {
+            Stage = 6;
+            yield return ShowPanel($"Stat is already maxed!");
+        }
+        else
+        {
+            Stage+=2;
+            AdjustStat();
+            OnBuff?.Invoke(pokemon);
+            yield return ShowPanel($"{pokemon.Name}'s {ToString()} was sharply increased!");
         }
     }
     
     public IEnumerator DecreaseStat(Pokemon pokemon)
     {
-        if (Stage <= -6) MobileFramework.Analytics.Logging.Warning($"Stat {ToString()} is minimized already!", Color.red);
+        if (Stage <= -6)
+        {
+            Stage = -6;
+            yield return ShowPanel($"Stat is already down!");
+        }
         else
         {
             Stage--;
             AdjustStat();
-            // OnDeBuff?.Invoke();
-            yield return GameObject.FindObjectOfType<DeBuffParticle>().ShowDecrease(pokemon);
+            OnDeBuff?.Invoke(pokemon);
+            yield return ShowPanel($"{pokemon.Name}'s {ToString()} was lowered!");
+        }
+    }
+    
+    public IEnumerator HarshlyDecreaseStat(Pokemon pokemon)
+    {
+        if (Stage <= -6)
+        {
+            Stage = -6;
+            yield return ShowPanel($"Stat is already down!");
+        }
+        else
+        {
+            Stage-=2;
+            AdjustStat();
+            OnDeBuff?.Invoke(pokemon);
+            yield return ShowPanel($"{pokemon.Name}'s {ToString()} was harshly lowered!");
         }
     }
 
     private void AdjustStat()
     {
         Value = Stage > 0 ? _initialValue + (_initialValue * positiveModifier[Mathf.Abs(Stage)]) : _initialValue - (_initialValue * negativeModifier[Mathf.Abs(Stage)]);
+    }
+
+    IEnumerator ShowPanel(string message)
+    {
+        NotificationManager.Instance.ShowNotification(message);
+        yield return new WaitUntil(() => NotificationManager.IsDone);
     }
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdee2a2563554df886b910c3e09f2270, type: 3}
   m_Name: Statistic_Banette
   m_EditorClassIdentifier: 
-  <PS>k__BackingField: 80
+  <PS>k__BackingField: 340
   <ATK>k__BackingField: 30
   <SPATK>k__BackingField: 120
   <DEF>k__BackingField: 40
