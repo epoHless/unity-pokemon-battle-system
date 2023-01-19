@@ -71,7 +71,7 @@ public class BattleManager : Singleton<BattleManager>
         yield return turnMoves[0].Move.ExecuteMove(turnMoves[0].pokemon);
         turnMoves.RemoveAt(0);
         yield return turnMoves[0].Move.ExecuteMove(turnMoves[0].pokemon);
-        ChangeState(new TurnStart());
+        ChangeState(new TurnStartBS());
     }
 }
 

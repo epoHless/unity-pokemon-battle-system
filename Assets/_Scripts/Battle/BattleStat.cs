@@ -21,7 +21,7 @@ public class BattleStat
         _initialValue = value;
     }
 
-    public IEnumerator IncreaseStat(Pokemon pokemon)
+    public IEnumerator IncreaseStat(Pokemon pokemon, string stat)
     {
         if (Stage >= 6)
         {
@@ -33,11 +33,11 @@ public class BattleStat
             Stage++;
             AdjustStat();
             OnBuff?.Invoke(pokemon);
-            yield return ShowPanel($"{pokemon.Name}'s {ToString()} was increased!");
+            yield return ShowPanel($"{pokemon.Name}'s {stat} was increased!");
         }
     }
     
-    public IEnumerator SharplyIncreaseStat(Pokemon pokemon)
+    public IEnumerator SharplyIncreaseStat(Pokemon pokemon, string stat)
     {
         if (Stage >= 6)
         {
@@ -49,11 +49,11 @@ public class BattleStat
             Stage+=2;
             AdjustStat();
             OnBuff?.Invoke(pokemon);
-            yield return ShowPanel($"{pokemon.Name}'s {ToString()} was sharply increased!");
+            yield return ShowPanel($"{pokemon.Name}'s {stat} was sharply increased!");
         }
     }
     
-    public IEnumerator DecreaseStat(Pokemon pokemon)
+    public IEnumerator DecreaseStat(Pokemon pokemon, string stat)
     {
         if (Stage <= -6)
         {
@@ -65,11 +65,11 @@ public class BattleStat
             Stage--;
             AdjustStat();
             OnDeBuff?.Invoke(pokemon);
-            yield return ShowPanel($"{pokemon.Name}'s {ToString()} was lowered!");
+            yield return ShowPanel($"{pokemon.Name}'s {stat} was lowered!");
         }
     }
     
-    public IEnumerator HarshlyDecreaseStat(Pokemon pokemon)
+    public IEnumerator HarshlyDecreaseStat(Pokemon pokemon, string stat)
     {
         if (Stage <= -6)
         {
@@ -81,7 +81,7 @@ public class BattleStat
             Stage-=2;
             AdjustStat();
             OnDeBuff?.Invoke(pokemon);
-            yield return ShowPanel($"{pokemon.Name}'s {ToString()} was harshly lowered!");
+            yield return ShowPanel($"{pokemon.Name}'s {stat} was harshly lowered!");
         }
     }
 

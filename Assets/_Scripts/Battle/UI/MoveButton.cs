@@ -30,8 +30,8 @@ public class MoveButton : MonoBehaviour
         {
             // buttonMove.ExecuteMove(BattleManager.Instance.pokemons[0]);
             BattleManager.Instance.OnSelectionMade?.Invoke(new TurnMove(BattleManager.Instance.pokemons[0], buttonMove));
-            BattleManager.Instance.ChangeState(new ExecuteMoves());
-            PPs.text = $"{buttonMove.currentPP}-{buttonMove.moveSO.PP.ToString()}";
+            BattleManager.Instance.ChangeState(new ExecuteMovesBS());
+            PPs.text = $"{buttonMove.currentPP}/{buttonMove.moveSO.PP.ToString()}";
         }
     }
 
@@ -50,7 +50,7 @@ public class MoveButton : MonoBehaviour
     private void UpdateUI(Move move)
     {
         name.text = move.moveSO.Name;
-        PPs.text = $"{move.currentPP}-{move.moveSO.PP.ToString()}";
+        PPs.text = $"{move.currentPP}/{move.moveSO.PP.ToString()}";
         type.sprite = move.moveSO.Type.Icon;
         background.color = move.moveSO.Type.Color;
 

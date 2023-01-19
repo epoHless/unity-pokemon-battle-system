@@ -8,8 +8,8 @@ public class DragonDance : MoveEffect
         moveSo.spawnedParticle.PlayParticle();
 
         yield return new WaitUntil(() => moveSo.spawnedParticle.IsDone);
-        yield return afflictedPokemon.battleStats.ATK.IncreaseStat(afflictedPokemon);
+        yield return afflictedPokemon.battleStats.ATK.IncreaseStat(afflictedPokemon, "Atk");
         yield return new WaitUntil(() => NotificationManager.IsDone);
-        yield return afflictedPokemon.battleStats.SPD.IncreaseStat(afflictedPokemon);
+        yield return afflictedPokemon.battleStats.SPD.IncreaseStat(afflictedPokemon, "Spd");
     }
 }
