@@ -13,6 +13,7 @@ public class ShadowBall : MoveEffect
         });
         
         yield return new WaitUntil(() => moveSo.spawnedParticle.IsDone);
+        yield return StatusManager.Instance.ApplyFreeze(afflictedPokemon);
         yield return afflictedPokemon.battleStats.SPDEF.DecreaseStat(afflictedPokemon, "Sp.Def.");
     }
 }

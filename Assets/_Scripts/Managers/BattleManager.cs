@@ -93,13 +93,21 @@ public class BattleManager : Singleton<BattleManager>
 
     private IEnumerator ApplyPreTurnStatusesCOR(Pokemon pokemon)
     {
-        foreach (var status in pokemon.statuses)
+        for (int i = 0; i < pokemon.statuses.Count; i++)
         {
-            if (status is PreTurnNonVolatileStatus)
+            if (pokemon.statuses[i] is PreTurnNonVolatileStatus)
             {
-                yield return status.Execute(StatusManager.Instance, pokemon);
+                yield return pokemon.statuses[i].Execute(StatusManager.Instance, pokemon);
             }
         }
+        
+        // foreach (var status in pokemon.statuses)
+        // {
+        //     if (status is PreTurnNonVolatileStatus)
+        //     {
+        //         yield return status.Execute(StatusManager.Instance, pokemon);
+        //     }
+        // }
     }
     
     private IEnumerator ApplyPostTurnStatusesCOR()

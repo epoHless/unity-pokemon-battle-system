@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using MobileFramework.Subclass;
 using UnityEngine;
@@ -8,8 +9,7 @@ public class StatusManager : Singleton<StatusManager>
     [field: SerializeField] public StatusInfo BurnStatus;
     [field: SerializeField] public StatusInfo PoisonStatus;
     [field: SerializeField] public StatusInfo ParalyseStatus;
-
-    [SerializeField] private List<MoveParticle> statusParticles;
+    [field: SerializeField] public StatusInfo FrozenStatus;
     public MoveParticle currentParticle { get; private set; }
 
     public void AddNonVolatileStatus(Pokemon pokemon, StatusInfo statusInfo)
@@ -23,25 +23,41 @@ public class StatusManager : Singleton<StatusManager>
         }
     }
 
-    public void ApplyBurn(Pokemon pokemon)
+    public IEnumerator ApplyBurn(Pokemon pokemon)
     {
         AddNonVolatileStatus(pokemon, BurnStatus);
+        GetStatusParticle(BurnStatus).PlayParticle(pokemon.transform.position);
+        yield return new WaitUntil(() => BurnStatus.Particle.IsDone);
+        yield return NotificationManager.Instance.ShowNotification($"{pokemon.Name} was burned!");
     }
     
-    public void ApplyPoison(Pokemon pokemon)
+    public IEnumerator ApplyPoison(Pokemon pokemon)
     {
         AddNonVolatileStatus(pokemon, PoisonStatus);
+        GetStatusParticle(PoisonStatus).PlayParticle(pokemon.transform.position);
+        yield return new WaitUntil(() => PoisonStatus.Particle.IsDone);
+        yield return NotificationManager.Instance.ShowNotification($"{pokemon.Name} was poisoned!");
     }
     
-    public void ApplyParalyse(Pokemon pokemon)
+    public IEnumerator ApplyParalyse(Pokemon pokemon)
     {
         AddNonVolatileStatus(pokemon, ParalyseStatus);
+        GetStatusParticle(ParalyseStatus).PlayParticle(pokemon.transform.position);
+        yield return new WaitUntil(() => ParalyseStatus.Particle.IsDone);
+        yield return NotificationManager.Instance.ShowNotification($"{pokemon.Name} was paralysed!");
+    }
+    
+    public IEnumerator ApplyFreeze(Pokemon pokemon)
+    {
+        AddNonVolatileStatus(pokemon, FrozenStatus);
+        GetStatusParticle(FrozenStatus).PlayParticle(pokemon.transform.position);
+        yield return new WaitUntil(() => FrozenStatus.Particle.IsDone);
+        yield return NotificationManager.Instance.ShowNotification($"{pokemon.Name} was frozen solid!");
     }
 
     public MoveParticle GetStatusParticle(StatusInfo statusInfo)
     {
-        currentParticle = statusParticles.Find(particle => particle == statusInfo.Particle);
-        return currentParticle;
+        return statusInfo.Particle;
     }
 }
 

@@ -38,7 +38,7 @@ public class Pokemon : MonoBehaviour
             move.SetPP();
         }
 
-        StatusManager.Instance.ApplyParalyse(this);
+        // StatusManager.Instance.ApplyParalyse(this);
     }
 
     public BattleModifier GetCurrentStats()

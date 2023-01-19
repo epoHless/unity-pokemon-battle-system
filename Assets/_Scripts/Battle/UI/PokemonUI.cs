@@ -36,6 +36,12 @@ public class PokemonUI : MonoBehaviour
 
     public void SetStateIcon(Sprite icon)
     {
+        state.color = Color.white;
         state.sprite = icon;
+    }
+
+    public void RemoveStateIcon()
+    {
+        state.color = Color.clear;
     }
 }

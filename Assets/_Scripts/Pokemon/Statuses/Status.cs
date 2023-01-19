@@ -7,5 +7,10 @@ public class Status
     {
         yield return null;
     }
+
+    public virtual IEnumerator OnRemove(StatusManager manager, Pokemon pokemon)
+    {
+        yield return null;
+    }
 }
 
