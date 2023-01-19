@@ -35,8 +35,9 @@ public class MoveParticle : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void PlayParticle()
+    public void PlayParticle(Vector3 position)
     {
+        transform.position = position;
         gameObject.SetActive(true);
     }
 

@@ -14,12 +14,12 @@ public class Pokemon : MonoBehaviour
     [field: SerializeField] public int Level { get; private set; }
     [field: SerializeField] public Gender gender { get; private set; }
     [field: SerializeField] public List<ElementType> Types { get; private set; }
-    [field: SerializeField] public PermanentStatistic PermanentStatistic { get; private set; }
     [field: SerializeField] public List<Move> Moves { get; private set; }
+    [field: SerializeField] public PermanentStatistic PermanentStatistic { get; private set; }
 
     public BattleModifier battleStats;
 
-    [SerializeField] public List<Status> statuses;
+    [field: SerializeField] public List<Status> statuses;
 
     public Pokemon opponent { get; private set; }
     
@@ -32,6 +32,8 @@ public class Pokemon : MonoBehaviour
         {
             move.SetPP();
         }
+        
+        StatusManager.Instance.AddPostTurnNonVolatileStatus(this, new BurnStatus());
     }
 
     public BattleModifier GetCurrentStats()

@@ -58,6 +58,6 @@ public class MoveSO : ScriptableObject
         spawnedParticle.transform.position = afflictedPokemon.transform.position;
 
         _MoveEffect = SubclassUtility.GetSubclassFromIndex<MoveEffect>(MoveEffect);
-        return _MoveEffect.Execute(this, afflictedPokemon);
+        return _MoveEffect.Execute(this,owner, afflictedPokemon);
     }
 }

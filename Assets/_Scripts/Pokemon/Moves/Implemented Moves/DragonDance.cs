@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class DragonDance : MoveEffect
 {
-    public override IEnumerator Execute(MoveSO moveSo, Pokemon afflictedPokemon)
+    public override IEnumerator Execute(MoveSO moveSo, Pokemon caster, Pokemon afflictedPokemon)
     {
-        moveSo.spawnedParticle.PlayParticle();
+        moveSo.spawnedParticle.PlayParticle(afflictedPokemon.transform.position);
 
         yield return new WaitUntil(() => moveSo.spawnedParticle.IsDone);
         yield return afflictedPokemon.battleStats.ATK.IncreaseStat(afflictedPokemon, "Atk");

@@ -71,6 +71,27 @@ public class BattleManager : Singleton<BattleManager>
         yield return turnMoves[0].Move.ExecuteMove(turnMoves[0].pokemon);
         turnMoves.RemoveAt(0);
         yield return turnMoves[0].Move.ExecuteMove(turnMoves[0].pokemon);
+        ChangeState(new TurnEndBS());
+    }
+
+    public void ApplyPostTurnStatuses()
+    {
+        StartCoroutine(nameof(ApplyPostTurnStatusesCOR));
+    }
+    
+    private IEnumerator ApplyPostTurnStatusesCOR()
+    {
+        foreach (var pokemon in pokemons)
+        {
+            foreach (var status in pokemon.statuses)
+            {
+                if (status is PostTurnNonVolatileStatus)
+                {
+                    yield return status.Execute(StatusManager.Instance, pokemon);
+                }
+            }
+        }
+        
         ChangeState(new TurnStartBS());
     }
 }

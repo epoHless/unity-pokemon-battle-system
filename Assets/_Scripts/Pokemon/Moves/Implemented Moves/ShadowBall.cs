@@ -3,13 +3,13 @@ using UnityEngine;
 
 public class ShadowBall : MoveEffect
 {
-    public override IEnumerator Execute(MoveSO moveSo, Pokemon afflictedPokemon)
+    public override IEnumerator Execute(MoveSO moveSo,Pokemon caster, Pokemon afflictedPokemon)
     {
-        moveSo.spawnedParticle.PlayParticle();
+        moveSo.spawnedParticle.PlayParticle(afflictedPokemon.transform.position);
 
         moveSo.spawnedParticle.SetAction(() =>
         {
-            BattleTween.DealDamage(moveSo, afflictedPokemon);
+            BattleTween.DealDamage(moveSo, caster,afflictedPokemon);
         });
         
         yield return new WaitUntil(() => moveSo.spawnedParticle.IsDone);

@@ -1,11 +1,11 @@
-﻿[System.Serializable]
+﻿using System.Collections;
+
+[System.Serializable]
 public class Status
 {
-    public int TurnDuration;
-
-    public virtual void Execute(Pokemon pokemon)
+    public virtual IEnumerator Execute(StatusManager manager, Pokemon pokemon)
     {
-        
+        yield return null;
     }
 }
 

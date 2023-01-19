@@ -4,6 +4,8 @@ public class TurnEndBS : BattleState
     public override void OnEnter(BattleManager manager)
     {
         base.OnEnter(manager);
+        
+        BattleManager.Instance.ApplyPostTurnStatuses();
     }
 
     public override void OnUpdate(BattleManager manager)
