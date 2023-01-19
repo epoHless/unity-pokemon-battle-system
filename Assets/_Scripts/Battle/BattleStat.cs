@@ -92,7 +92,6 @@ public class BattleStat
 
     IEnumerator ShowPanel(string message)
     {
-        NotificationManager.Instance.ShowNotification(message);
-        yield return new WaitUntil(() => NotificationManager.IsDone);
+        yield return NotificationManager.Instance.ShowNotification(message);
     }
 }

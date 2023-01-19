@@ -11,6 +11,7 @@ public class Move
         if (currentPP <= 0) yield break;
         
         currentPP--;
+        yield return NotificationManager.Instance.ShowNotification($"{owner.Name} used {moveSO.Name}!");
         yield return moveSO.ExecuteMove(owner);
     }
 

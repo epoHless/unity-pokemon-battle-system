@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class NotificationManager : Singleton<NotificationManager>
@@ -15,7 +16,7 @@ public class NotificationManager : Singleton<NotificationManager>
         notificationPanel = GetComponent<CanvasHider>();
     }
 
-    public void ShowNotification(string message)
+    public IEnumerator ShowNotification(string message)
     {
         IsDone = false;
         this.message.text = message;
@@ -23,10 +24,14 @@ public class NotificationManager : Singleton<NotificationManager>
         {
             LeanTween.delayedCall(1f, () =>
             {
-                notificationPanel.ToggleCanvas(false);
-                IsDone = true;
+                notificationPanel.ToggleCanvas(false).setOnComplete((() =>
+                {
+                    IsDone = true;
+                }));
             });
         });
+
+        yield return new WaitUntil((() => IsDone));
     }
 }
 

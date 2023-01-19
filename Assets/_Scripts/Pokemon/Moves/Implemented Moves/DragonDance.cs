@@ -5,7 +5,6 @@ public class DragonDance : MoveEffect
 {
     public override IEnumerator Execute(MoveSO moveSo, Pokemon afflictedPokemon)
     {
-        MobileFramework.Analytics.Logging.Message($"Move {GetType()} has been used on {afflictedPokemon.name}", Color.green, true);
         moveSo.spawnedParticle.PlayParticle();
 
         yield return new WaitUntil(() => moveSo.spawnedParticle.IsDone);

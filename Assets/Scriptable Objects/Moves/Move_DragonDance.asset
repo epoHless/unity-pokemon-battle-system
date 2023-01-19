@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Dragon Dance
   <moveType>k__BackingField: 2
+  <moveTarget>k__BackingField: 0
   <Type>k__BackingField: {fileID: 11400000, guid: b8d0826a71995754bb8366d10bd8ed2e, type: 2}
   <PP>k__BackingField: 20
   <Power>k__BackingField: -1
   <Accuracy>k__BackingField: -1
   MoveEffect: 0
-  particlePrefab: {fileID: 2840099756183537478, guid: 2d45275395dc0e1468b10b0e15bd9048, type: 3}
+  particlePrefab: {fileID: 4505568826533239166, guid: 4c7663e4a640242448ebb10bf1c47203, type: 3}
