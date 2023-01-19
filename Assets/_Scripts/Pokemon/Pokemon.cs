@@ -21,19 +21,24 @@ public class Pokemon : MonoBehaviour
 
     [field: SerializeField] public List<Status> statuses;
 
+    public PokemonUI ui { get; private set; }
+    
     public Pokemon opponent { get; private set; }
+
+    public bool CanAttack = true;
     
     private void Awake()
     {
         battleStats = new BattleModifier(PermanentStatistic);
+        ui = GetComponentInChildren<PokemonUI>();
         opponent = BattleManager.Instance.GetTarget(this);
 
         foreach (var move in Moves)
         {
             move.SetPP();
         }
-        
-        StatusManager.Instance.AddPostTurnNonVolatileStatus(this, new BurnStatus());
+
+        StatusManager.Instance.ApplyParalyse(this);
     }
 
     public BattleModifier GetCurrentStats()

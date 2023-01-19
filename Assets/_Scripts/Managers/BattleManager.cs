@@ -68,15 +68,38 @@ public class BattleManager : Singleton<BattleManager>
 
     IEnumerator UseMoves()
     {
-        yield return turnMoves[0].Move.ExecuteMove(turnMoves[0].pokemon);
-        turnMoves.RemoveAt(0);
-        yield return turnMoves[0].Move.ExecuteMove(turnMoves[0].pokemon);
+        for (int i = 0; i < pokemons.Count; i++)
+        {
+            yield return ApplyPreTurnStatusesCOR(pokemons[i]);
+
+            if (pokemons[i].CanAttack)
+            {
+                yield return turnMoves[i].Move.ExecuteMove(pokemons[i]);
+            }
+        }
+
         ChangeState(new TurnEndBS());
     }
 
     public void ApplyPostTurnStatuses()
     {
         StartCoroutine(nameof(ApplyPostTurnStatusesCOR));
+    }
+    
+    public void ApplyPreTurnStatuses(Pokemon pokemon)
+    {
+        StartCoroutine(nameof(ApplyPreTurnStatusesCOR), pokemon);
+    }
+
+    private IEnumerator ApplyPreTurnStatusesCOR(Pokemon pokemon)
+    {
+        foreach (var status in pokemon.statuses)
+        {
+            if (status is PreTurnNonVolatileStatus)
+            {
+                yield return status.Execute(StatusManager.Instance, pokemon);
+            }
+        }
     }
     
     private IEnumerator ApplyPostTurnStatusesCOR()

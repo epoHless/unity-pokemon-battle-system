@@ -1028,7 +1028,7 @@ ParticleSystem:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-      cycleCount: 100
+      cycleCount: 40
       repeatInterval: 0.01
       probability: 1
   SizeModule:
@@ -1044,23 +1044,23 @@ ParticleSystem:
         - serializedVersion: 3
           time: 0
           value: 0
-          inSlope: 28.790325
-          outSlope: 28.790325
+          inSlope: -4.7110343
+          outSlope: -4.7110343
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.33333334
-          outWeight: 0.090895966
+          outWeight: 0.09912739
         - serializedVersion: 3
-          time: 0.09834415
-          value: 0.8897064
-          inSlope: -5.3716984
-          outSlope: -5.3716984
+          time: 0.3987363
+          value: 0.97247005
+          inSlope: 0.73069936
+          outSlope: 0.73069936
           tangentMode: 0
           weightedMode: 0
           inWeight: 0.6509707
-          outWeight: 0.04992094
+          outWeight: 1
         - serializedVersion: 3
-          time: 0.54744077
+          time: 0.6344085
           value: 1
           inSlope: 0
           outSlope: 0

@@ -33,4 +33,9 @@ public class PokemonUI : MonoBehaviour
     {
         hp.fillAmount = (pokemon.battleStats.CurrentPS / pokemon.battleStats.MaxPS);
     }
+
+    public void SetStateIcon(Sprite icon)
+    {
+        state.sprite = icon;
+    }
 }

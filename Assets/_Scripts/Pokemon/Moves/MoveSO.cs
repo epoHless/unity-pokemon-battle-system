@@ -36,6 +36,8 @@ public class MoveSO : ScriptableObject
     
     public IEnumerator ExecuteMove(Pokemon owner)
     {
+        //Control if a pokemon has a disabling status
+
         Pokemon afflictedPokemon = null;
 
         switch (moveTarget)
