@@ -10,6 +10,7 @@ public class StatusManager : Singleton<StatusManager>
     [field: SerializeField] public StatusInfo PoisonStatus;
     [field: SerializeField] public StatusInfo ParalyseStatus;
     [field: SerializeField] public StatusInfo FrozenStatus;
+    [field: SerializeField] public StatusInfo SeededStatus;
 
     public bool AddNonVolatileStatus(Pokemon pokemon, StatusInfo statusInfo)
     {
@@ -24,6 +25,29 @@ public class StatusManager : Singleton<StatusManager>
 
         return false;
     }
+    
+    public bool AddVolatileStatus(Pokemon pokemon, StatusInfo statusInfo)
+    {
+        statusInfo.status = SubclassUtility.GetSubclassFromIndex<Status>(statusInfo.Status);
+
+        if (statusInfo.status is VolatileStatus && !pokemon.statuses.Contains(statusInfo.status))
+        {
+            pokemon.statuses.Add(statusInfo.status);
+            return true;
+        }
+
+        return false;
+    }
+    
+    public IEnumerator ApplySeed(Pokemon pokemon)
+    {
+        if (AddVolatileStatus(pokemon, SeededStatus))
+        {
+            GetStatusParticle(SeededStatus).PlayParticle(pokemon.transform.position);
+            yield return new WaitUntil(() => SeededStatus.Particle.IsDone);
+            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.Name} was planted a seed on!");
+        }
+    }
 
     public IEnumerator ApplyBurn(Pokemon pokemon)
     {
@@ -31,7 +55,7 @@ public class StatusManager : Singleton<StatusManager>
         {
             GetStatusParticle(BurnStatus).PlayParticle(pokemon.transform.position);
             yield return new WaitUntil(() => BurnStatus.Particle.IsDone);
-            yield return NotificationManager.Instance.ShowNotification($"{pokemon.Name} was burned!");
+            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.Name} was burned!");
         }
     }
     
@@ -41,7 +65,7 @@ public class StatusManager : Singleton<StatusManager>
         {
             GetStatusParticle(PoisonStatus).PlayParticle(pokemon.transform.position);
             yield return new WaitUntil(() => PoisonStatus.Particle.IsDone);
-            yield return NotificationManager.Instance.ShowNotification($"{pokemon.Name} was poisoned!");
+            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.Name} was poisoned!");
         }
     }
     
@@ -51,7 +75,7 @@ public class StatusManager : Singleton<StatusManager>
         {
             GetStatusParticle(ParalyseStatus).PlayParticle(pokemon.transform.position);
             yield return new WaitUntil(() => ParalyseStatus.Particle.IsDone);
-            yield return NotificationManager.Instance.ShowNotification($"{pokemon.Name} was paralysed!");
+            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.Name} was paralysed!");
         }
     }
     
@@ -61,8 +85,28 @@ public class StatusManager : Singleton<StatusManager>
         {
             GetStatusParticle(FrozenStatus).PlayParticle(pokemon.transform.position);
             yield return new WaitUntil(() => FrozenStatus.Particle.IsDone);
-            yield return NotificationManager.Instance.ShowNotification($"{pokemon.Name} was frozen solid!");
+            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.Name} was frozen solid!");
         }
+    }
+
+    public bool IsParalysed(Pokemon pokemon)
+    {
+        return pokemon.statuses.Contains(ParalyseStatus.status);
+    }
+    
+    public bool IsBurned(Pokemon pokemon)
+    {
+        return pokemon.statuses.Contains(BurnStatus.status);
+    }
+    
+    public bool IsFrozen(Pokemon pokemon)
+    {
+        return pokemon.statuses.Contains(FrozenStatus.status);
+    }
+    
+    public bool IsPoisoned(Pokemon pokemon)
+    {
+        return pokemon.statuses.Contains(PoisonStatus.status);
     }
 
     public MoveParticle GetStatusParticle(StatusInfo statusInfo)

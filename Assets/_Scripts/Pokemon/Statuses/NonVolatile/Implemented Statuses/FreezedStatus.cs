@@ -9,7 +9,7 @@ public class FreezedStatus : PreTurnNonVolatileStatus
 
         if (!BreakeFree)
         {
-            yield return NotificationManager.Instance.ShowNotification($"{pokemon.Name} is frozen solid and unable to move!");
+            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.Name} is frozen solid and unable to move!");
             manager.GetStatusParticle(manager.FrozenStatus).PlayParticle(pokemon.transform.position);
             yield return new WaitUntil(() => manager.FrozenStatus.Particle.IsDone);
             pokemon.CanAttack = false;
@@ -25,6 +25,6 @@ public class FreezedStatus : PreTurnNonVolatileStatus
         pokemon.CanAttack = true;
         pokemon.statuses.Remove(this);
         pokemon.ui.RemoveStateIcon();
-        yield return NotificationManager.Instance.ShowNotification($"{pokemon.Name} broke trough the ice!");
+        yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.Name} broke trough the ice!");
     }
 }

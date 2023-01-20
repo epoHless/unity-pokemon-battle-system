@@ -25,7 +25,7 @@ public class MoveSO : ScriptableObject
     [field: SerializeField] public MoveTarget moveTarget { get; private set; }
     [field: SerializeField] public ElementType Type { get; private set; }
     [field: SerializeField] public int PP { get; private set; }
-    [field: SerializeField] public int Power { get; private set; }
+    [field: SerializeField] public float Power { get; private set; }
     [field: SerializeField] public int Accuracy { get; private set; }
     
     [SubclassOf(typeof(MoveEffect))] [SerializeField]
@@ -46,14 +46,14 @@ public class MoveSO : ScriptableObject
 
             if (!hit)
             {
-                return NotificationManager.Instance.ShowNotification($"{owner.opponent.Name} dodged the attack!");
+                return NotificationManager.Instance.ShowNotificationCOR($"{owner.opponent.Name} dodged the attack!");
             }
             
             foreach (var elementType in owner.opponent.Types)
             {
                 if (elementType.GetModifier(Type).Modifier == 0)
                 {
-                    return NotificationManager.Instance.ShowNotification($"{Name} doesn't affect {owner.opponent.Name}");
+                    return NotificationManager.Instance.ShowNotificationCOR($"{Name} doesn't affect {owner.opponent.Name}");
                 }
             }
         }
@@ -81,5 +81,10 @@ public class MoveSO : ScriptableObject
 
         _MoveEffect = SubclassUtility.GetSubclassFromIndex<MoveEffect>(MoveEffect);
         return _MoveEffect.Execute(this,owner, afflictedPokemon);
+    }
+
+    public void MultiplyPower(float multiplier)
+    {
+        Power *= multiplier;
     }
 }

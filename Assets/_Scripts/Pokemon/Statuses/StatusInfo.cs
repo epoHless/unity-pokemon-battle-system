@@ -7,7 +7,7 @@ public class StatusInfo
     public MoveParticle Particle;
     public Sprite Sprite;
 
-    [SubclassOf(typeof(NonVolatileStatus))]
+    [SubclassOf(typeof(Status))]
     public int Status;
 
     public Status status;

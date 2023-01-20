@@ -16,7 +16,12 @@ public class NotificationManager : Singleton<NotificationManager>
         notificationPanel = GetComponent<CanvasHider>();
     }
 
-    public IEnumerator ShowNotification(string message)
+    public void ShowNotification(string message)
+    {
+        StartCoroutine(nameof(ShowNotificationCOR), message);
+    }
+
+    public IEnumerator ShowNotificationCOR(string message)
     {
         IsDone = false;
         this.message.text = message;

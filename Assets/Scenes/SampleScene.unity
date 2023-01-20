@@ -478,6 +478,83 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7250419120148412374, guid: ad7fb32f3ffa652408c57095e9944639, type: 3}
   m_PrefabInstance: {fileID: 140394987}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &150361294
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 423799778}
+    m_Modifications:
+    - target: {fileID: 1527989670190036581, guid: 520d2ed8b9708cc4aabce235f31355dc, type: 3}
+      propertyPath: m_Name
+      value: Seeded
+      objectReference: {fileID: 0}
+    - target: {fileID: 1527989670190036581, guid: 520d2ed8b9708cc4aabce235f31355dc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1530113423951739671, guid: 520d2ed8b9708cc4aabce235f31355dc, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1530113423951739671, guid: 520d2ed8b9708cc4aabce235f31355dc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 253.3063
+      objectReference: {fileID: 0}
+    - target: {fileID: 1530113423951739671, guid: 520d2ed8b9708cc4aabce235f31355dc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 1530113423951739671, guid: 520d2ed8b9708cc4aabce235f31355dc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 409.18478
+      objectReference: {fileID: 0}
+    - target: {fileID: 1530113423951739671, guid: 520d2ed8b9708cc4aabce235f31355dc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1530113423951739671, guid: 520d2ed8b9708cc4aabce235f31355dc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1530113423951739671, guid: 520d2ed8b9708cc4aabce235f31355dc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1530113423951739671, guid: 520d2ed8b9708cc4aabce235f31355dc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1530113423951739671, guid: 520d2ed8b9708cc4aabce235f31355dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1530113423951739671, guid: 520d2ed8b9708cc4aabce235f31355dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1530113423951739671, guid: 520d2ed8b9708cc4aabce235f31355dc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 520d2ed8b9708cc4aabce235f31355dc, type: 3}
+--- !u!4 &150361295 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1530113423951739671, guid: 520d2ed8b9708cc4aabce235f31355dc, type: 3}
+  m_PrefabInstance: {fileID: 150361294}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &150361296 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4783159927391802336, guid: 520d2ed8b9708cc4aabce235f31355dc, type: 3}
+  m_PrefabInstance: {fileID: 150361294}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcf0824ae4982774086eac10be8bf7f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &172846587
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -758,6 +835,7 @@ Transform:
   - {fileID: 1152413384}
   - {fileID: 1519779500}
   - {fileID: 909788487}
+  - {fileID: 150361295}
   m_Father: {fileID: 2093028775}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -790,6 +868,10 @@ MonoBehaviour:
     Particle: {fileID: 909788488}
     Sprite: {fileID: 1851384379, guid: e18ceb52165f6094ca5e2bd8646d12fb, type: 3}
     Status: 1
+  SeededStatus:
+    Particle: {fileID: 150361296}
+    Sprite: {fileID: 0}
+    Status: 4
 --- !u!1 &454051575
 GameObject:
   m_ObjectHideFlags: 0
@@ -2598,7 +2680,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1523473294517555857, guid: 9aac6a23fee435942b7f0497a049fb2b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -0.000015258789
       objectReference: {fileID: 0}
     - target: {fileID: 1523473294517555857, guid: 9aac6a23fee435942b7f0497a049fb2b, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2622,7 +2704,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1523473294517555858, guid: 9aac6a23fee435942b7f0497a049fb2b, type: 3}
       propertyPath: m_Name
-      value: Pokemon Canvas
+      value: Opponent Pokemon Canvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9aac6a23fee435942b7f0497a049fb2b, type: 3}
@@ -3751,7 +3833,7 @@ MonoBehaviour:
     currentPP: 0
   - moveSO: {fileID: 11400000, guid: 8c0e9cd0957da30449f18efac8e49adb, type: 2}
     currentPP: 0
-  - moveSO: {fileID: 11400000, guid: dee31322f3ae2764bbdec7d15dfa72d0, type: 2}
+  - moveSO: {fileID: 11400000, guid: d86419d295a030c4b93f27e2987e507f, type: 2}
     currentPP: 0
   - moveSO: {fileID: 11400000, guid: 868960324c979294db2479a984a9dd3a, type: 2}
     currentPP: 0
@@ -3814,18 +3896,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Garchomp
   <Level>k__BackingField: 68
-  <gender>k__BackingField: 1
+  <gender>k__BackingField: 0
   <Types>k__BackingField:
   - {fileID: 11400000, guid: b8d0826a71995754bb8366d10bd8ed2e, type: 2}
   - {fileID: 11400000, guid: 2eb41e8a4398acf468f9ec6a55d6c553, type: 2}
   <Moves>k__BackingField:
   - moveSO: {fileID: 11400000, guid: b46718d9943a28242bc5d64c2bcf6671, type: 2}
     currentPP: 0
-  - moveSO: {fileID: 11400000, guid: fd39dc3ce1c0b55479596c4b9c43fc14, type: 2}
+  - moveSO: {fileID: 11400000, guid: 868960324c979294db2479a984a9dd3a, type: 2}
     currentPP: 0
   - moveSO: {fileID: 11400000, guid: 8c0e9cd0957da30449f18efac8e49adb, type: 2}
     currentPP: 0
-  - moveSO: {fileID: 11400000, guid: fd39dc3ce1c0b55479596c4b9c43fc14, type: 2}
+  - moveSO: {fileID: 11400000, guid: dee31322f3ae2764bbdec7d15dfa72d0, type: 2}
     currentPP: 0
   <PermanentStatistic>k__BackingField: {fileID: 11400000, guid: 958227515b07a674ea7cbca8c8dde3ca, type: 2}
   battleStats:
@@ -4374,7 +4456,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1523473294517555857, guid: 9aac6a23fee435942b7f0497a049fb2b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.0000020377338
+      value: -0.000030517578
       objectReference: {fileID: 0}
     - target: {fileID: 1523473294517555857, guid: 9aac6a23fee435942b7f0497a049fb2b, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4394,7 +4476,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1523473294517555858, guid: 9aac6a23fee435942b7f0497a049fb2b, type: 3}
       propertyPath: m_Name
-      value: Pokemon Canvas
+      value: Player Pokemon Canvas
       objectReference: {fileID: 0}
     - target: {fileID: 1523473294902520580, guid: 9aac6a23fee435942b7f0497a049fb2b, type: 3}
       propertyPath: m_fontAsset

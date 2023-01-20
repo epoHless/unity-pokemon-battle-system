@@ -92,7 +92,7 @@ public class BattleStat
 
     IEnumerator ShowPanel(string message)
     {
-        yield return NotificationManager.Instance.ShowNotification(message);
+        yield return NotificationManager.Instance.ShowNotificationCOR(message);
     }
 
     public float GetModifierValue()

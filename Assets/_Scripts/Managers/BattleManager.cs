@@ -37,6 +37,8 @@ public class BattleManager : Singleton<BattleManager>
         
         LeanTween.scale(pokemon.gameObject, Vector3.zero, 1f).setOnComplete((() =>
         {
+            NotificationManager.Instance.ShowNotification(IsPlayerPokemon(pokemon) ? "You lost!" : "You won!");
+
             ChangeState(new PokemonFaintedBS());
         }));
     }
@@ -125,7 +127,7 @@ public class BattleManager : Singleton<BattleManager>
     {
         StartCoroutine(nameof(ApplyPostTurnStatusesCOR));
     }
-
+    
     private IEnumerator ApplyPreTurnStatusesCOR(Pokemon pokemon)
     {
         for (int i = 0; i < pokemon.statuses.Count; i++)
@@ -144,6 +146,17 @@ public class BattleManager : Singleton<BattleManager>
             foreach (var status in pokemon.statuses)
             {
                 if (status is PostTurnNonVolatileStatus)
+                {
+                    yield return status.Execute(StatusManager.Instance, pokemon);
+                }
+            }
+        }
+        
+        foreach (var pokemon in ActivePokemons)
+        {
+            foreach (var status in pokemon.statuses)
+            {
+                if (status is PostTurnVolatileStatus)
                 {
                     yield return status.Execute(StatusManager.Instance, pokemon);
                 }

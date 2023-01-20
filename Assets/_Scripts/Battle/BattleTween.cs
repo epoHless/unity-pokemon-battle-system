@@ -55,13 +55,21 @@ public static class BattleTween
         });
 
         yield return new WaitUntil(() => IsDone);
-        if (modifierMessage != null) yield return NotificationManager.Instance.ShowNotification(modifierMessage);
+        if (modifierMessage != null) yield return NotificationManager.Instance.ShowNotificationCOR(modifierMessage);
         
         if (target.battleStats.CurrentPS <= 0)
         {
-            yield return NotificationManager.Instance.ShowNotification($"{target.Name} Fainted!");
+            yield return NotificationManager.Instance.ShowNotificationCOR($"{target.Name} Fainted!");
             BattleManager.Instance.OnPokemonFaint?.Invoke(target);
         }
+    }
+
+    public static IEnumerator DealDamageIncreased(MoveSO moveSo, Pokemon caster, Pokemon target, float percentageIncrease)
+    {
+        var move = moveSo;
+
+        move.MultiplyPower(percentageIncrease);
+        yield return DealDamage(move, caster, target);
     }
     
     public static IEnumerator DealDamagePercentage(Pokemon pokemon, float percentage)
@@ -82,6 +90,61 @@ public static class BattleTween
         });
 
         yield return new WaitUntil((() => IsDone));
+        
+        if (pokemon.battleStats.CurrentPS <= 0)
+        {
+            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.Name} Fainted!");
+            BattleManager.Instance.OnPokemonFaint?.Invoke(pokemon);
+        }
+    }
+    
+    public static IEnumerator DamageSeededPokemon(Pokemon pokemon, float percentage)
+    {
+        bool IsDone = false;
+        
+        float startHp = pokemon.battleStats.CurrentPS;
+        float percentageHp = pokemon.battleStats.MaxPS / percentage;
+
+        float newHp = pokemon.battleStats.CurrentPS - percentageHp;
+
+        LeanTween.value(pokemon.gameObject, f =>
+        {
+            pokemon.battleStats.CurrentPS = f;
+        }, startHp, newHp, .35f).setOnComplete(() =>
+        {
+            IsDone = true;
+        });
+
+        yield return new WaitUntil((() => IsDone));
+
+        IsDone = false;
+
+        var leecher = pokemon.opponent;
+
+        var newLeechHP = leecher.battleStats.CurrentPS + percentageHp;
+
+        if (newLeechHP >= leecher.battleStats.MaxPS)
+        {
+            newLeechHP = leecher.battleStats.MaxPS;
+        }
+        
+        LeanTween.value(pokemon.gameObject, f =>
+        {
+            leecher.battleStats.CurrentPS = f;
+        }, leecher.battleStats.CurrentPS, newLeechHP, .35f).setOnComplete(() =>
+        {
+            IsDone = true;
+        });
+        
+        yield return new WaitUntil((() => IsDone));
+        yield return NotificationManager.Instance.ShowNotificationCOR($"{leecher.Name} was cured!");
+
+        
+        if (pokemon.battleStats.CurrentPS <= 0)
+        {
+            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.Name} Fainted!");
+            BattleManager.Instance.OnPokemonFaint?.Invoke(pokemon);
+        }
     }
 }
 
