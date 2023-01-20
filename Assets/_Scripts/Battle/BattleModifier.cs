@@ -9,15 +9,20 @@ public class BattleModifier
     public BattleStat DEF;
     public BattleStat SPDEF;
     public BattleStat SPD;
+    public BattleStat ACC;
+    public BattleStat EVS;
 
     public BattleModifier(PermanentStatistic statistic)
     {
         MaxPS = statistic.PS;
         CurrentPS = MaxPS;
+        
         ATK = new BattleStat(statistic.ATK);
         SPATK = new BattleStat(statistic.SPATK);
         DEF = new BattleStat(statistic.DEF);
         SPDEF = new BattleStat(statistic.SPDEF);
         SPD = new BattleStat(statistic.SPD);
+        ACC = new BattleStat(statistic.ACC);
+        EVS = new BattleStat(statistic.EVS);
     }
 }

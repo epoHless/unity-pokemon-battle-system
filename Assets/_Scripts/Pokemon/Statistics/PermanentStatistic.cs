@@ -9,4 +9,6 @@ public class PermanentStatistic : ScriptableObject
     [field: SerializeField] public float DEF { get; private set; }
     [field: SerializeField] public float SPDEF { get; private set; }
     [field: SerializeField] public float SPD { get; private set; }
+    [field: SerializeField] public float ACC { get; private set; }
+    [field: SerializeField] public float EVS { get; private set; }
 }

@@ -9,8 +9,8 @@ public class BattleStat
     private float _initialValue;
     
     public int Stage = 0;
-    private float[] positiveModifier = { 0, .5f, 1f, 1.5f, 2f, 2.5f, 3f };
-    private float[] negativeModifier = { 0, .333f, .5f, .6f, .666f, .715f, .75f };
+    private float[] positiveModifier = { 1, 1.5f, 2f, 2.5f, 3f, 3.5f, 4f };
+    private float[] negativeModifier = { 1, 1.333f, 1.5f, 1.6f, 1.666f, 1.715f, 1.75f };
 
     public static event Action<Pokemon> OnBuff;
     public static event Action<Pokemon> OnDeBuff;
@@ -87,11 +87,16 @@ public class BattleStat
 
     private void AdjustStat()
     {
-        Value = Stage > 0 ? _initialValue + (_initialValue * positiveModifier[Mathf.Abs(Stage)]) : _initialValue - (_initialValue * negativeModifier[Mathf.Abs(Stage)]);
+        Value = Stage > 0 ? _initialValue + (_initialValue * (1 - positiveModifier[Mathf.Abs(Stage)])) : _initialValue - (_initialValue * (1 - negativeModifier[Mathf.Abs(Stage)]));
     }
 
     IEnumerator ShowPanel(string message)
     {
         yield return NotificationManager.Instance.ShowNotification(message);
+    }
+
+    public float GetModifierValue()
+    {
+        return Stage > 0 ? positiveModifier[Stage] : negativeModifier[Stage];
     }
 }

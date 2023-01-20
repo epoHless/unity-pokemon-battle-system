@@ -12,13 +12,13 @@ public class ElementType : ScriptableObject
     [SerializeField] private List<ElementType> ResistAgainst;
     [SerializeField] private List<ElementType> NullAgainst;
 
-    public float GetModifier(ElementType type)
+    public ModifierInfo GetModifier(ElementType type)
     {
-        if (IsNull(type)) return 0;
-        if (IsResistant(type)) return 0.5f;
-        if (IsWeak(type)) return 2f;
+        if (IsNull(type)) return new ModifierInfo(0, "It doesn't affect the pokemon...");
+        if (IsResistant(type)) return new ModifierInfo(0.5f, "Not very effective...");
+        if (IsWeak(type)) return new ModifierInfo(2, "Super effective");;
         
-        return 1;
+        return new ModifierInfo(1, null);;
     }
     
     private bool IsWeak(ElementType type)
@@ -34,5 +34,17 @@ public class ElementType : ScriptableObject
     private bool IsNull(ElementType type)
     {
         return NullAgainst.Contains(type);
+    }
+
+    public struct ModifierInfo
+    {
+        public float Modifier;
+        public string ModifierMessage;
+
+        public ModifierInfo(float modifier, string modifierMessage)
+        {
+            Modifier = modifier;
+            ModifierMessage = modifierMessage;
+        }
     }
 }

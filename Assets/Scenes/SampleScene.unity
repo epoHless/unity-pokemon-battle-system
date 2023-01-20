@@ -2411,6 +2411,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ba8d5a960ed5ba4a8fd058403cb9e5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsPersistent: 0
   moveButtons:
   - {fileID: 239406292}
   - {fileID: 1986252923}
@@ -2495,12 +2496,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsPersistent: 0
   battleState: 0
-  pokemons:
+  ActivePokemons: []
+  PlayerPokemons:
   - {fileID: 919132147781832751}
+  OpponentPokemons:
   - {fileID: 919132147928842644}
   round: 1
   turnMoves: []
   OnSelectionMade:
+    m_PersistentCalls:
+      m_Calls: []
+  OnPokemonFaint:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1001 &1747475298
@@ -3743,11 +3749,11 @@ MonoBehaviour:
   <Moves>k__BackingField:
   - moveSO: {fileID: 11400000, guid: fd39dc3ce1c0b55479596c4b9c43fc14, type: 2}
     currentPP: 0
-  - moveSO: {fileID: 11400000, guid: b46718d9943a28242bc5d64c2bcf6671, type: 2}
+  - moveSO: {fileID: 11400000, guid: 8c0e9cd0957da30449f18efac8e49adb, type: 2}
     currentPP: 0
-  - moveSO: {fileID: 11400000, guid: fd39dc3ce1c0b55479596c4b9c43fc14, type: 2}
+  - moveSO: {fileID: 11400000, guid: dee31322f3ae2764bbdec7d15dfa72d0, type: 2}
     currentPP: 0
-  - moveSO: {fileID: 11400000, guid: b46718d9943a28242bc5d64c2bcf6671, type: 2}
+  - moveSO: {fileID: 11400000, guid: 868960324c979294db2479a984a9dd3a, type: 2}
     currentPP: 0
   <PermanentStatistic>k__BackingField: {fileID: 11400000, guid: bd2fa694d5cf0654ca0df027c8e4a92f, type: 2}
   battleStats:
@@ -3768,8 +3774,15 @@ MonoBehaviour:
     SPD:
       Value: 0
       Stage: 0
+    ACC:
+      Value: 0
+      Stage: 0
+    EVS:
+      Value: 0
+      Stage: 0
   statuses: []
   CanAttack: 1
+  IsFainted: 0
 --- !u!1 &919132147928842643
 GameObject:
   m_ObjectHideFlags: 0
@@ -3810,7 +3823,7 @@ MonoBehaviour:
     currentPP: 0
   - moveSO: {fileID: 11400000, guid: fd39dc3ce1c0b55479596c4b9c43fc14, type: 2}
     currentPP: 0
-  - moveSO: {fileID: 11400000, guid: b46718d9943a28242bc5d64c2bcf6671, type: 2}
+  - moveSO: {fileID: 11400000, guid: 8c0e9cd0957da30449f18efac8e49adb, type: 2}
     currentPP: 0
   - moveSO: {fileID: 11400000, guid: fd39dc3ce1c0b55479596c4b9c43fc14, type: 2}
     currentPP: 0
@@ -3833,8 +3846,15 @@ MonoBehaviour:
     SPD:
       Value: 0
       Stage: 0
+    ACC:
+      Value: 0
+      Stage: 0
+    EVS:
+      Value: 0
+      Stage: 0
   statuses: []
   CanAttack: 1
+  IsFainted: 0
 --- !u!1 &932458193395510899
 GameObject:
   m_ObjectHideFlags: 0

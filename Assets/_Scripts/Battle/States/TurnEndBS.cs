@@ -16,5 +16,6 @@ public class TurnEndBS : BattleState
     public override void OnExit(BattleManager manager)
     {
         base.OnExit(manager);
+        BattleManager.Instance.round++;
     }
 }

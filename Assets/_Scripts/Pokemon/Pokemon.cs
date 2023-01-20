@@ -26,21 +26,30 @@ public class Pokemon : MonoBehaviour
     public Pokemon opponent { get; private set; }
 
     public bool CanAttack = true;
+    public bool IsFainted = false;
     
     private void Awake()
     {
         battleStats = new BattleModifier(PermanentStatistic);
+        
         ui = GetComponentInChildren<PokemonUI>();
-        opponent = BattleManager.Instance.GetTarget(this);
 
         foreach (var move in Moves)
         {
             move.SetPP();
         }
-
-        // StatusManager.Instance.ApplyParalyse(this);
     }
 
+    private void Start()
+    {
+        opponent = BattleManager.Instance.GetTarget(this);
+    }
+
+    // public void SetOpponent()
+    // {
+    //     BattleManager.Instance.GetTarget(this);
+    // }
+    
     public BattleModifier GetCurrentStats()
     {
         return battleStats;

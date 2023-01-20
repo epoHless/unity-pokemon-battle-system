@@ -28,8 +28,7 @@ public class MoveButton : MonoBehaviour
     {
         if (buttonMove.moveSO)
         {
-            // buttonMove.ExecuteMove(BattleManager.Instance.pokemons[0]);
-            BattleManager.Instance.OnSelectionMade?.Invoke(new TurnMove(BattleManager.Instance.pokemons[0], buttonMove));
+            BattleManager.Instance.OnSelectionMade?.Invoke(new TurnMove(BattleManager.Instance.ActivePokemons[0], buttonMove));
             BattleManager.Instance.ChangeState(new ExecuteMovesBS());
             PPs.text = $"{buttonMove.currentPP}/{buttonMove.moveSO.PP.ToString()}";
         }
@@ -37,37 +36,40 @@ public class MoveButton : MonoBehaviour
 
     private void OnEnable()
     {
-        OnActivation.AddListener(UpdateUI);
         OnActivation.AddListener(SetMove);
     }
 
     private void OnDisable()
     {
-        OnActivation.RemoveListener(UpdateUI);
         OnActivation.RemoveListener(SetMove);
     }
 
-    private void UpdateUI(Move move)
+    public void UpdateUI(Pokemon pokemon, Move move)
     {
         name.text = move.moveSO.Name;
         PPs.text = $"{move.currentPP}/{move.moveSO.PP.ToString()}";
         type.sprite = move.moveSO.Type.Icon;
         background.color = move.moveSO.Type.Color;
 
+        buttonMove = move;
+        
         if (move.moveSO.moveType != MoveSO.MoveType.STATUS)
         {
-            if (move.moveSO.Type.GetModifier(BattleManager.Instance.pokemons[1].Types[0]) == 0)
+            foreach (var elementType in pokemon.opponent.Types)
             {
-                effectiveness.text = "No effect";
-            }else if (move.moveSO.Type.GetModifier(BattleManager.Instance.pokemons[1].Types[0]) == 1)
-            {
-                effectiveness.text = "Effective";
-            } else if (move.moveSO.Type.GetModifier(BattleManager.Instance.pokemons[1].Types[0]) == .5f)
-            {
-                effectiveness.text = "Not very effective";
-            }else if (move.moveSO.Type.GetModifier(BattleManager.Instance.pokemons[1].Types[0]) == 2)
-            {
-                effectiveness.text = "Super effective";
+                if (elementType.GetModifier(move.moveSO.Type).Modifier == 0)
+                {
+                    effectiveness.text = "No effect";
+                }else if (elementType.GetModifier(move.moveSO.Type).Modifier == 1f)
+                {
+                    effectiveness.text = "Effective";
+                } else if (elementType.GetModifier(move.moveSO.Type).Modifier == .5f)
+                {
+                    effectiveness.text = "Not very effective";
+                }else if (elementType.GetModifier(move.moveSO.Type).Modifier == 2)
+                {
+                    effectiveness.text = "Super effective";
+                }
             }
         }
         else effectiveness.text = "";

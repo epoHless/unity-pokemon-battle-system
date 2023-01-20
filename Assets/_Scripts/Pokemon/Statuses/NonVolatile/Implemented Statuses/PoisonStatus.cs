@@ -7,7 +7,7 @@ public class PoisonStatus : PostTurnNonVolatileStatus
     {
         yield return NotificationManager.Instance.ShowNotification($"{pokemon.Name} was hurt by poison!");
         manager.GetStatusParticle(manager.PoisonStatus).PlayParticle(pokemon.transform.position);
-        yield return new WaitUntil(() => manager.currentParticle.IsDone);
+        yield return new WaitUntil(() => manager.PoisonStatus.Particle.IsDone);
         yield return BattleTween.DealDamagePercentage(pokemon, 12.5f);
     }
 }

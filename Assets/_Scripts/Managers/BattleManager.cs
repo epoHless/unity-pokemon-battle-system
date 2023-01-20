@@ -13,17 +13,56 @@ public class BattleManager : Singleton<BattleManager>
     public int battleState;
     private BattleState currentState;
     
-    public List<Pokemon> pokemons;
+    public List<Pokemon> ActivePokemons;
+    public List<Pokemon> PlayerPokemons;
+    public List<Pokemon> OpponentPokemons;
 
     public int round = 1;
     public List<TurnMove> turnMoves;
     
     public UnityEvent<TurnMove> OnSelectionMade;
+    public UnityEvent<Pokemon> OnPokemonFaint; 
 
     protected override void OnEnable()
     {
         base.OnEnable();
         OnSelectionMade.AddListener(AddMoveToTurn);
+        OnPokemonFaint.AddListener(FaintPokemon);
+    }
+
+    private void FaintPokemon(Pokemon pokemon)
+    {
+        pokemon.IsFainted = true;
+        StopCoroutine(nameof(UseMoves));
+        
+        LeanTween.scale(pokemon.gameObject, Vector3.zero, 1f).setOnComplete((() =>
+        {
+            ChangeState(new PokemonFaintedBS());
+        }));
+    }
+
+    public Pokemon GetActivePlayerPokemon()
+    {
+        foreach (var pokemon in PlayerPokemons)
+        {
+            if (ActivePokemons.Contains(pokemon))
+            {
+                return pokemon;
+            }
+        }
+
+        return null;
+    }
+    
+    private bool IsPlayerPokemon(Pokemon pokemon) { return PlayerPokemons.Contains(pokemon); }
+    private bool IsOpponentPokemon(Pokemon pokemon) { return OpponentPokemons.Contains(pokemon); }
+
+    protected override void Awake()
+    {
+        base.Awake();
+        
+        ActivePokemons.Add(PlayerPokemons[0]);
+        ActivePokemons.Add(OpponentPokemons[0]);
     }
 
     private void Start()
@@ -40,12 +79,12 @@ public class BattleManager : Singleton<BattleManager>
     private void AddMoveToTurn(TurnMove move)
     {
         turnMoves.Add(move);
-        turnMoves.Add(new TurnMove(pokemons[1], pokemons[1].Moves[Random.Range(0, pokemons[1].Moves.Count)]));
+        turnMoves.Add(new TurnMove(ActivePokemons[1], ActivePokemons[1].Moves[Random.Range(0, ActivePokemons[1].Moves.Count)]));
     }
 
     public Pokemon GetTarget(Pokemon self)
     {
-        return pokemons.Find(pokemon => pokemon != self);
+        return ActivePokemons.Find(pokemon => pokemon != self);
     }
 
     public void ChangeState(BattleState newState)
@@ -62,19 +101,20 @@ public class BattleManager : Singleton<BattleManager>
 
     public void ExecuteMoves()
     {
-        // turnMoves = turnMoves.OrderBy(move => move.pokemon.battleStats.SPD).ToList();
         StartCoroutine(nameof(UseMoves));
     }
 
     IEnumerator UseMoves()
     {
-        for (int i = 0; i < pokemons.Count; i++)
-        {
-            yield return ApplyPreTurnStatusesCOR(pokemons[i]);
+        var order = turnMoves.OrderByDescending(move => move.pokemon.battleStats.SPD.Value).ToList();
 
-            if (pokemons[i].CanAttack)
+        for (int i = 0; i < order.Count; i++)
+        {
+            yield return ApplyPreTurnStatusesCOR(order[i].pokemon);
+
+            if (order[i].pokemon.CanAttack && !order[i].pokemon.IsFainted)
             {
-                yield return turnMoves[i].Move.ExecuteMove(pokemons[i]);
+                yield return order[i].Move.ExecuteMove(order[i].pokemon);
             }
         }
 
@@ -84,11 +124,6 @@ public class BattleManager : Singleton<BattleManager>
     public void ApplyPostTurnStatuses()
     {
         StartCoroutine(nameof(ApplyPostTurnStatusesCOR));
-    }
-    
-    public void ApplyPreTurnStatuses(Pokemon pokemon)
-    {
-        StartCoroutine(nameof(ApplyPreTurnStatusesCOR), pokemon);
     }
 
     private IEnumerator ApplyPreTurnStatusesCOR(Pokemon pokemon)
@@ -100,19 +135,11 @@ public class BattleManager : Singleton<BattleManager>
                 yield return pokemon.statuses[i].Execute(StatusManager.Instance, pokemon);
             }
         }
-        
-        // foreach (var status in pokemon.statuses)
-        // {
-        //     if (status is PreTurnNonVolatileStatus)
-        //     {
-        //         yield return status.Execute(StatusManager.Instance, pokemon);
-        //     }
-        // }
     }
     
     private IEnumerator ApplyPostTurnStatusesCOR()
     {
-        foreach (var pokemon in pokemons)
+        foreach (var pokemon in ActivePokemons)
         {
             foreach (var status in pokemon.statuses)
             {

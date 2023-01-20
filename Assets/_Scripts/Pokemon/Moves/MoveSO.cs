@@ -2,6 +2,7 @@
 using System.Collections;
 using MobileFramework.Subclass;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 [CreateAssetMenu(fileName = "Move_", menuName = "Pokemon/New Move", order = 0)]
 public class MoveSO : ScriptableObject
@@ -36,7 +37,26 @@ public class MoveSO : ScriptableObject
     
     public IEnumerator ExecuteMove(Pokemon owner)
     {
-        //Control if a pokemon has a disabling status
+        if (owner.IsFainted) return null;
+
+        if (moveTarget == MoveTarget.ENEMY)
+        {
+            float modifiedLevel = owner.battleStats.ACC.GetModifierValue() - owner.opponent.battleStats.EVS.GetModifierValue();
+            bool hit = Accuracy * 1 > Random.Range(1, 101);
+
+            if (!hit)
+            {
+                return NotificationManager.Instance.ShowNotification($"{owner.opponent.Name} dodged the attack!");
+            }
+            
+            foreach (var elementType in owner.opponent.Types)
+            {
+                if (elementType.GetModifier(Type).Modifier == 0)
+                {
+                    return NotificationManager.Instance.ShowNotification($"{Name} doesn't affect {owner.opponent.Name}");
+                }
+            }
+        }
 
         Pokemon afflictedPokemon = null;
 

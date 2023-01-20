@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class ShadowBall : MoveEffect
+public class Ember : MoveEffect
 {
     public override IEnumerator Execute(MoveSO moveSo,Pokemon caster, Pokemon afflictedPokemon)
     {
-        moveSo.spawnedParticle.PlayParticle(afflictedPokemon.transform.position);
+        moveSo.spawnedParticle.PlayParticle(afflictedPokemon.transform.position + Vector3.up * 0.5f);
 
         moveSo.spawnedParticle.SetAction(() =>
         {
@@ -13,11 +13,11 @@ public class ShadowBall : MoveEffect
 
         yield return new WaitUntil(() => moveSo.spawnedParticle.IsDone);
         yield return BattleTween.DealDamage(moveSo, caster,afflictedPokemon);
-        
+
         if (!afflictedPokemon.IsFainted)
         {
-            yield return StatusManager.Instance.ApplyFreeze(afflictedPokemon);
-            yield return afflictedPokemon.battleStats.SPDEF.DecreaseStat(afflictedPokemon, "Sp.Def.");
+            bool burn = Random.Range(0, 100) < 10;
+            if (burn) yield return StatusManager.Instance.ApplyBurn(afflictedPokemon);
         }
     }
 }

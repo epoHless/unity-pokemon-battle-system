@@ -1,15 +1,9 @@
 ﻿[System.Serializable]
-public class BattleStartBS : BattleState
+public class PokemonFaintedBS : BattleState
 {
     public override void OnEnter(BattleManager manager)
     {
         base.OnEnter(manager);
-        
-        LeanTween.delayedCall(2f, () =>
-        {
-            BattleUI.Instance.SetUI();
-            manager.ChangeState(new TurnStartBS());
-        });
     }
 
     public override void OnUpdate(BattleManager manager)
@@ -22,4 +16,3 @@ public class BattleStartBS : BattleState
         base.OnExit(manager);
     }
 }
-

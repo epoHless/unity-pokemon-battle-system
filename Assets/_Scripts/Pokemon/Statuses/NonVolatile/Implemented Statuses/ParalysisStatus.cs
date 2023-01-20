@@ -11,7 +11,7 @@ public class ParalysisStatus : PreTurnNonVolatileStatus
         {
             yield return NotificationManager.Instance.ShowNotification($"{pokemon.Name} is paralysed and unable to move!");
             manager.GetStatusParticle(manager.ParalyseStatus).PlayParticle(pokemon.transform.position);
-            yield return new WaitUntil(() => manager.currentParticle.IsDone);
+            yield return new WaitUntil(() => manager.ParalyseStatus.Particle.IsDone);
             pokemon.CanAttack = false;
         }
         else pokemon.CanAttack = true;

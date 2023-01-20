@@ -4,17 +4,22 @@ using UnityEngine;
 
 public static class BattleTween
 {
-    public static void DealDamage(MoveSO moveSo,Pokemon caster, Pokemon target)
+    public static IEnumerator DealDamage(MoveSO moveSo,Pokemon caster, Pokemon target)
     {
+        bool IsDone = false;
+        
         float startHp = target.battleStats.CurrentPS;
 
         float crit = Random.Range(1, 13) > 6 ? 1.5f : 1f;
         
         float typeEffectiveness = 0;
 
+        string modifierMessage = null;
+        
         foreach (var elementType in target.Types)
         {
-            typeEffectiveness += moveSo.Type.GetModifier(elementType);
+            typeEffectiveness += elementType.GetModifier(moveSo.Type).Modifier;
+            modifierMessage = elementType.GetModifier(moveSo.Type).ModifierMessage;
         }
 
         float rng = Random.Range(0.85f, 1f);
@@ -31,6 +36,7 @@ public static class BattleTween
         }
 
         float ad = 1;
+        
         if (moveSo.moveType == MoveSO.MoveType.SPECIAL) ad = caster.battleStats.SPATK.Value / target.battleStats.SPDEF.Value;
         else if (moveSo.moveType == MoveSO.MoveType.PHYSICAL) ad = caster.battleStats.ATK.Value / target.battleStats.DEF.Value;
         
@@ -43,7 +49,19 @@ public static class BattleTween
         LeanTween.value(target.gameObject, f =>
         {
             target.battleStats.CurrentPS = f;
-        }, startHp, newHp, .35f);
+        }, startHp, newHp, .35f).setOnComplete(() =>
+        {
+            IsDone = true;
+        });
+
+        yield return new WaitUntil(() => IsDone);
+        if (modifierMessage != null) yield return NotificationManager.Instance.ShowNotification(modifierMessage);
+        
+        if (target.battleStats.CurrentPS <= 0)
+        {
+            yield return NotificationManager.Instance.ShowNotification($"{target.Name} Fainted!");
+            BattleManager.Instance.OnPokemonFaint?.Invoke(target);
+        }
     }
     
     public static IEnumerator DealDamagePercentage(Pokemon pokemon, float percentage)
