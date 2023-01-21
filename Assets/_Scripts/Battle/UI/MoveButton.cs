@@ -16,7 +16,7 @@ public class MoveButton : MonoBehaviour
     private Button button;
 
     public UnityEvent<Move> OnActivation;
-    private Move buttonMove;
+    private Move move;
     
     private void Awake()
     {
@@ -26,11 +26,11 @@ public class MoveButton : MonoBehaviour
 
     private void CallMove()
     {
-        if (buttonMove.moveSO)
+        if (move.moveSO)
         {
-            BattleManager.Instance.OnSelectionMade?.Invoke(new TurnMove(BattleManager.Instance.ActivePokemons[0], buttonMove));
+            BattleManager.Instance.OnSelectionMade?.Invoke(new TurnMove(BattleManager.Instance.ActivePokemons[0], move));
             BattleManager.Instance.ChangeState(new ExecuteMovesBS());
-            PPs.text = $"{buttonMove.currentPP}/{buttonMove.moveSO.PP.ToString()}";
+            PPs.text = $"{move.currentPP}/{move.moveSO.PP.ToString()}";
         }
     }
 
@@ -51,7 +51,7 @@ public class MoveButton : MonoBehaviour
         type.sprite = move.moveSO.Type.Icon;
         background.color = move.moveSO.Type.Color;
 
-        buttonMove = move;
+        this.move = move;
         
         if (move.moveSO.moveType != MoveSO.MoveType.STATUS)
         {
@@ -77,6 +77,6 @@ public class MoveButton : MonoBehaviour
     
     private void SetMove(Move move)
     {
-        buttonMove = move;
+        this.move = move;
     }
 }

@@ -69,6 +69,34 @@ public class BattleManager : Singleton<BattleManager>
         }
     }
 
+    public IEnumerator ChangePokemon(Pokemon pokemon, Team team, bool player = true)
+    {
+        Pokemon calledOutPokemon = player ? GetActivePlayerPokemon() : GetActiveOpponentPokemon();
+        
+        yield return NotificationManager.Instance.ShowNotificationCOR($"{calledOutPokemon.PokemonData.Name} was called out!");
+
+        bool IsDone = false;
+        LeanTween.scale(calledOutPokemon.gameObject, Vector3.zero, .25f).setOnComplete((() => IsDone = true));
+        yield return new WaitUntil((() => IsDone));
+
+        ActivePokemons.Remove(calledOutPokemon);
+        ActivePokemons.Add(pokemon);
+        
+        pokemon.ui.UpdateUI();
+        BattleUI.Instance.SetUI();
+        
+        yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.PokemonData.Name} was sent in!");
+        
+        IsDone = false;
+        LeanTween.scale(pokemon.gameObject, Vector3.zero, .25f).setOnComplete((() => IsDone = true));
+        yield return new WaitUntil((() => IsDone));
+
+        foreach (var activePokemon in ActivePokemons)
+        {
+            pokemon.SetOpponent();
+        }
+    }
+
     #endregion
     
     #region GET POKEMONS

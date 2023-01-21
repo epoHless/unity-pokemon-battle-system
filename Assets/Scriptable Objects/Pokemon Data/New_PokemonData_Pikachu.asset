@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: New_PokemonData_Pikachu
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Pikachu
+  <Sprite>k__BackingField: {fileID: 21300000, guid: e0b64adaeca969845983bb55b2a0f6a0, type: 3}
   <Level>k__BackingField: 50
   <gender>k__BackingField: 1
   <Types>k__BackingField:

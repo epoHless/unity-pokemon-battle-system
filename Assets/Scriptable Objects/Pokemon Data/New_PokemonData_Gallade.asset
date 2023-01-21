@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: New_PokemonData_Gallade
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Gallade
+  <Sprite>k__BackingField: {fileID: 21300000, guid: fd9efe2e1e874d44690d542f331bcfa1, type: 3}
   <Level>k__BackingField: 50
   <gender>k__BackingField: 0
   <Types>k__BackingField:

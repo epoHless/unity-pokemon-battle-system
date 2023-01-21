@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: New_PokemonData_Zoroark
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Zoroark
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 1ceeca19fa8456c4dae8caa669d66fa2, type: 3}
   <Level>k__BackingField: 50
   <gender>k__BackingField: 0
   <Types>k__BackingField:

@@ -175,7 +175,10 @@ MonoBehaviour:
   - {fileID: 1942463930}
   - {fileID: 177287944}
   - {fileID: 235655157}
-  team: {fileID: 1087563619}
+  <team>k__BackingField: {fileID: 1087563619}
+  genders:
+  - {fileID: 21300000, guid: 5aa500e9ff6db22479a7248dd46992cb, type: 3}
+  - {fileID: 21300000, guid: 5a403e1e4c650594d8715f5514bc257b, type: 3}
 --- !u!1001 &7898654
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8277,14 +8280,6 @@ PrefabInstance:
     - target: {fileID: 8943819132830970270, guid: b0b5136484cf2ee41a2cde507907c5a1, type: 3}
       propertyPath: m_Name
       value: BTN_Selection_Pokemon_1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8943819132830970272, guid: b0b5136484cf2ee41a2cde507907c5a1, type: 3}
-      propertyPath: m_Navigation.m_SelectOnUp
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8943819132830970272, guid: b0b5136484cf2ee41a2cde507907c5a1, type: 3}
-      propertyPath: m_Navigation.m_SelectOnDown
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8943819132830970273, guid: b0b5136484cf2ee41a2cde507907c5a1, type: 3}
       propertyPath: m_Pivot.x

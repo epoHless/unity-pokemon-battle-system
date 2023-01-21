@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: New_PokemonData_Feraligatr
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Feraligatr
+  <Sprite>k__BackingField: {fileID: 21300000, guid: a9b4363776d422d4c86b6abec441d38e, type: 3}
   <Level>k__BackingField: 50
   <gender>k__BackingField: 0
   <Types>k__BackingField:

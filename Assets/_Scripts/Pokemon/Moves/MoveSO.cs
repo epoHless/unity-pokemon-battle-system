@@ -86,6 +86,11 @@ public class MoveSO : ScriptableObject
         yield return _MoveEffect.Execute(this,owner, afflictedPokemon);
     }
 
+    public IEnumerator ExecuteMove(Pokemon owner, bool value = true)
+    {
+        yield return _MoveEffect.Execute(this, owner, owner);
+    }
+
     public void MultiplyPower(float multiplier)
     {
         Power *= multiplier;

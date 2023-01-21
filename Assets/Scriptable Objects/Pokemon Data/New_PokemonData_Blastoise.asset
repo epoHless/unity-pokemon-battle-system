@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: New_PokemonData_Blastoise
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Blastoise
+  <Sprite>k__BackingField: {fileID: 21300000, guid: e8537b1f00574df459ecfc9180a8c06e, type: 3}
   <Level>k__BackingField: 50
   <gender>k__BackingField: 0
   <Types>k__BackingField:

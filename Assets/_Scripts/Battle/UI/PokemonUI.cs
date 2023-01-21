@@ -22,7 +22,7 @@ public class PokemonUI : MonoBehaviour
         UpdateUI();
     }
 
-    private void UpdateUI()
+    public void UpdateUI()
     {
         Name.text = pokemon.PokemonData.Name;
         level.text = $"LV.{pokemon.PokemonData.Level}";

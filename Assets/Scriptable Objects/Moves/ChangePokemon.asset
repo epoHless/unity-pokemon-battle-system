@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13866fa4c66d4db8aa9d9a0cf0323812, type: 3}
-  m_Name: Move_ThunderPunch
+  m_Name: ChangePokemon
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Thunder Punch
+  <Name>k__BackingField: 
   <moveType>k__BackingField: 0
-  <moveTarget>k__BackingField: 1
-  <Type>k__BackingField: {fileID: 11400000, guid: abf0b60229887334ba6536156ba2a017, type: 2}
-  <PP>k__BackingField: 15
-  <Power>k__BackingField: 75
-  <Accuracy>k__BackingField: 100
-  MoveEffect: 7
-  particlePrefab: {fileID: 5293994420126422562, guid: 39764f27446aee74585c3fe19b18121e, type: 3}
+  <moveTarget>k__BackingField: 0
+  <Type>k__BackingField: {fileID: 0}
+  <PP>k__BackingField: 0
+  <Power>k__BackingField: 0
+  <Accuracy>k__BackingField: 0
+  MoveEffect: 0
+  particlePrefab: {fileID: 0}

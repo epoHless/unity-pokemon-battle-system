@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: New_PokemonData_Dragonite
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Dragonite
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 005949894c56f9b428807ecb7aba35e4, type: 3}
   <Level>k__BackingField: 50
   <gender>k__BackingField: 0
   <Types>k__BackingField:

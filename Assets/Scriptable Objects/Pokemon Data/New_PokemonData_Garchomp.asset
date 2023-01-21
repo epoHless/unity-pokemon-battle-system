@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: New_PokemonData_Garchomp
   m_EditorClassIdentifier: 
   <Name>k__BackingField: Garchomp
+  <Sprite>k__BackingField: {fileID: 21300000, guid: 6df8438e26ae1a64589087188ad84a08, type: 3}
   <Level>k__BackingField: 50
   <gender>k__BackingField: 0
   <Types>k__BackingField:
