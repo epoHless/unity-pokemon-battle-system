@@ -33,7 +33,7 @@ public class BattleStat
             Stage++;
             AdjustStat();
             OnBuff?.Invoke(pokemon);
-            yield return ShowPanel($"{pokemon.Name}'s {stat} was increased!");
+            yield return ShowPanel($"{pokemon.PokemonData.Name}'s {stat} was increased!");
         }
     }
     
@@ -49,7 +49,7 @@ public class BattleStat
             Stage+=2;
             AdjustStat();
             OnBuff?.Invoke(pokemon);
-            yield return ShowPanel($"{pokemon.Name}'s {stat} was sharply increased!");
+            yield return ShowPanel($"{pokemon.PokemonData.Name}'s {stat} was sharply increased!");
         }
     }
     
@@ -65,7 +65,7 @@ public class BattleStat
             Stage--;
             AdjustStat();
             OnDeBuff?.Invoke(pokemon);
-            yield return ShowPanel($"{pokemon.Name}'s {stat} was lowered!");
+            yield return ShowPanel($"{pokemon.PokemonData.Name}'s {stat} was lowered!");
         }
     }
     
@@ -81,7 +81,7 @@ public class BattleStat
             Stage-=2;
             AdjustStat();
             OnDeBuff?.Invoke(pokemon);
-            yield return ShowPanel($"{pokemon.Name}'s {stat} was harshly lowered!");
+            yield return ShowPanel($"{pokemon.PokemonData.Name}'s {stat} was harshly lowered!");
         }
     }
 

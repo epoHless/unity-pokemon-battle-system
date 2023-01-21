@@ -45,15 +45,15 @@ public class MoveSO : ScriptableObject
 
             if (!hit)
             {
-                yield return NotificationManager.Instance.ShowNotificationCOR($"{owner.opponent.Name} dodged the attack!",1.5f);
+                yield return NotificationManager.Instance.ShowNotificationCOR($"{owner.opponent.PokemonData.Name} dodged the attack!",1.5f);
                 yield break;
             }
             
-            foreach (var elementType in owner.opponent.Types)
+            foreach (var elementType in owner.opponent.PokemonData.Types)
             {
                 if (elementType.GetModifier(Type).Modifier == 0)
                 {
-                    yield return NotificationManager.Instance.ShowNotificationCOR($"{Name} doesn't affect {owner.opponent.Name}",1);
+                    yield return NotificationManager.Instance.ShowNotificationCOR($"{Name} doesn't affect {owner.opponent.PokemonData.Name}",1);
                     yield break;
                 }
             }

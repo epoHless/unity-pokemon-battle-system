@@ -1762,12 +1762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d03186d68374cddb0f3fd5b44df7aa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Garchomp
-  <Level>k__BackingField: 68
-  <gender>k__BackingField: 0
-  <Types>k__BackingField:
-  - {fileID: 11400000, guid: b8d0826a71995754bb8366d10bd8ed2e, type: 2}
-  - {fileID: 11400000, guid: 2eb41e8a4398acf468f9ec6a55d6c553, type: 2}
+  <PokemonData>k__BackingField: {fileID: 11400000, guid: acd36329c8e2bc245b484993c0fd041b, type: 2}
   <Moves>k__BackingField:
   - moveSO: {fileID: 11400000, guid: 8c0e9cd0957da30449f18efac8e49adb, type: 2}
     currentPP: 0
@@ -1803,6 +1798,7 @@ MonoBehaviour:
       Value: 0
       Stage: 0
   statuses: []
+  <opponent>k__BackingField: {fileID: 0}
   CanAttack: 1
   IsFainted: 0
 --- !u!1 &7170302612225650608

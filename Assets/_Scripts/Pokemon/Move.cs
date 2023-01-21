@@ -15,7 +15,7 @@ public class Move
         }
 
         currentPP--;
-        yield return NotificationManager.Instance.ShowNotificationCOR($"{owner.Name} used {moveSO.Name}!",1);
+        yield return NotificationManager.Instance.ShowNotificationCOR($"{owner.PokemonData.Name} used {moveSO.Name}!",1);
         yield return moveSO.ExecuteMove(owner);
     }
 

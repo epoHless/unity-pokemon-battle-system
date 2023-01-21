@@ -10,6 +10,7 @@ public class BattleStartBS : BattleState
         LeanTween.delayedCall(2f, () =>
         {
             BattleUI.Instance.SetUI();
+            UIManager.Instance.ToggleHUD(true);
             manager.ChangeState(new TurnStartBS());
         });
     }

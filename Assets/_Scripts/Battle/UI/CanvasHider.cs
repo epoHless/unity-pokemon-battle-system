@@ -1,9 +1,12 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 [RequireComponent(typeof(CanvasGroup))]
 public class CanvasHider : MonoBehaviour
 {
     private CanvasGroup canvasGroup;
+
+    [field: SerializeField] public CanvasHider previousPanel { get; private set; }
 
     private void Awake()
     {

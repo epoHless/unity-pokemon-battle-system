@@ -4,16 +4,7 @@ using UnityEngine;
 
 public class Pokemon : MonoBehaviour
 {
-    public enum Gender
-    {
-        MALE,
-        FEMALE
-    }
-    
-    [field: SerializeField] public string Name { get; private set; }
-    [field: SerializeField] public int Level { get; private set; }
-    [field: SerializeField] public Gender gender { get; private set; }
-    [field: SerializeField] public List<ElementType> Types { get; private set; }
+    [field: SerializeField] public PokemonData PokemonData { get; private set; }
     [field: SerializeField] public List<Move> Moves { get; private set; }
     [field: SerializeField] public PermanentStatistic PermanentStatistic { get; private set; }
 

@@ -18,7 +18,7 @@ public class NotificationManager : Singleton<NotificationManager>
 
     public void ShowNotification(string message)
     {
-        StartCoroutine(nameof(ShowNotificationCOR), message);
+        StartCoroutine(ShowNotificationCOR(message, 1));
     }
 
     public IEnumerator ShowNotificationCOR(string message, float duration = 1f)

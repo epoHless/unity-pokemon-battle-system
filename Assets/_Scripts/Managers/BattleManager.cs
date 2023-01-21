@@ -62,7 +62,7 @@ public class BattleManager : Singleton<BattleManager>
         {
             pokemon.SetOpponent();
             CameraManager.Instance.UseMoveCamera(pokemon.transform);
-            yield return NotificationManager.Instance.ShowNotificationCOR($"Trainer sent out {pokemon.Name}!", 1f);
+            yield return NotificationManager.Instance.ShowNotificationCOR($"Trainer sent out {pokemon.PokemonData.Name}!", 1f);
             LeanTween.scale(pokemon.gameObject, Vector3.one, .3f).setOnComplete((() => IsDone = true));
             yield return new WaitUntil((() => IsDone));
             IsDone = false;

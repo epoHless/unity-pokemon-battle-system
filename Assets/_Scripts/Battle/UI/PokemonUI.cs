@@ -24,9 +24,9 @@ public class PokemonUI : MonoBehaviour
 
     private void UpdateUI()
     {
-        Name.text = pokemon.Name;
-        level.text = $"LV.{pokemon.Level}";
-        sex.sprite = pokemon.gender == Pokemon.Gender.MALE ? genders[1] : genders[0];
+        Name.text = pokemon.PokemonData.Name;
+        level.text = $"LV.{pokemon.PokemonData.Level}";
+        sex.sprite = pokemon.PokemonData.gender == PokemonData.Gender.MALE ? genders[1] : genders[0];
     }
 
     private void Update()

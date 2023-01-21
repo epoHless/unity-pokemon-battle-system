@@ -16,7 +16,7 @@ public static class BattleTween
 
         string modifierMessage = null;
         
-        foreach (var elementType in target.Types)
+        foreach (var elementType in target.PokemonData.Types)
         {
             typeEffectiveness += elementType.GetModifier(moveSo.Type).Modifier;
             modifierMessage = elementType.GetModifier(moveSo.Type).ModifierMessage;
@@ -26,7 +26,7 @@ public static class BattleTween
 
         float stab = 1;
 
-        foreach (var elementType in caster.Types)
+        foreach (var elementType in caster.PokemonData.Types)
         {
             if (elementType == moveSo.Type)
             {
@@ -42,7 +42,7 @@ public static class BattleTween
         
         float modifier = crit * typeEffectiveness * stab * rng;
 
-        float damage = (((((2 * caster.Level) / 5) + 2) * moveSo.Power * ad) / 50 + 2) * modifier;
+        float damage = (((((2 * caster.PokemonData.Level) / 5) + 2) * moveSo.Power * ad) / 50 + 2) * modifier;
         
         float newHp = target.battleStats.CurrentPS - damage;
 
@@ -59,7 +59,7 @@ public static class BattleTween
         
         if (target.battleStats.CurrentPS <= 0)
         {
-            yield return NotificationManager.Instance.ShowNotificationCOR($"{target.Name} Fainted!", 2);
+            yield return NotificationManager.Instance.ShowNotificationCOR($"{target.PokemonData.Name} Fainted!", 2);
             BattleManager.Instance.OnPokemonFaint?.Invoke(target);
         }
     }
@@ -93,7 +93,7 @@ public static class BattleTween
         
         if (pokemon.battleStats.CurrentPS <= 0)
         {
-            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.Name} Fainted!",2);
+            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.PokemonData.Name} Fainted!",2);
             BattleManager.Instance.OnPokemonFaint?.Invoke(pokemon);
         }
     }
@@ -137,12 +137,12 @@ public static class BattleTween
         });
         
         yield return new WaitUntil((() => IsDone));
-        yield return NotificationManager.Instance.ShowNotificationCOR($"{leecher.Name} was cured!", 1.5f);
+        yield return NotificationManager.Instance.ShowNotificationCOR($"{leecher.PokemonData.Name} was cured!", 1.5f);
 
         
         if (pokemon.battleStats.CurrentPS <= 0)
         {
-            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.Name} Fainted!", 2);
+            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.PokemonData.Name} Fainted!", 2);
             BattleManager.Instance.OnPokemonFaint?.Invoke(pokemon);
         }
     }

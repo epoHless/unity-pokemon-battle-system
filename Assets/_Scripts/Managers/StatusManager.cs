@@ -46,7 +46,7 @@ public class StatusManager : Singleton<StatusManager>
         if (AddNonVolatileStatus(pokemon, BurnStatus))
         {
             yield return GetStatusParticle(BurnStatus).PlayParticle(pokemon.transform.position);
-            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.Name} was burned!", 1.5f);
+            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.PokemonData.Name} was burned!", 1.5f);
         }
     }
     
@@ -55,7 +55,7 @@ public class StatusManager : Singleton<StatusManager>
         if (AddNonVolatileStatus(pokemon, PoisonStatus))
         {
             yield return GetStatusParticle(PoisonStatus).PlayParticle(pokemon.transform.position);
-            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.Name} was poisoned!",1.5f);
+            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.PokemonData.Name} was poisoned!",1.5f);
         }
     }
     
@@ -64,7 +64,7 @@ public class StatusManager : Singleton<StatusManager>
         if (AddNonVolatileStatus(pokemon, ParalyseStatus))
         {
             yield return GetStatusParticle(ParalyseStatus).PlayParticle(pokemon.transform.position);
-            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.Name} was paralysed!",1.5f);
+            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.PokemonData.Name} was paralysed!",1.5f);
         }
     }
     
@@ -73,7 +73,7 @@ public class StatusManager : Singleton<StatusManager>
         if (AddNonVolatileStatus(pokemon, FrozenStatus))
         {
             yield return GetStatusParticle(FrozenStatus).PlayParticle(pokemon.transform.position);
-            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.Name} was frozen solid!",1.5f);
+            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.PokemonData.Name} was frozen solid!",1.5f);
         }
     }
 
@@ -110,7 +110,7 @@ public class StatusManager : Singleton<StatusManager>
         if (AddVolatileStatus(pokemon, SeededStatus))
         {
             yield return GetStatusParticle(SeededStatus).PlayParticle(pokemon.transform.position);
-            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.Name} was planted a seed on!",1.5f);
+            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.PokemonData.Name} was planted a seed on!",1.5f);
         }
     }
     

@@ -3,22 +3,31 @@ using UnityEngine;
 
 public class UIManager : Singleton<UIManager>
 {
-    private CanvasHider ActivePanel;
+    public CanvasHider ActivePanel { get; private set; }
 
     [field: SerializeField] public CanvasHider HUDPanel { get; private set; }
     [field: SerializeField] public CanvasHider MovesPanel { get; private set; }
     [field: SerializeField] public CanvasHider ActionsPanel { get; private set; }
+    [field: SerializeField] public CanvasHider PokemonsPanel { get; private set; }
 
     protected override void Awake()
     {
         base.Awake();
 
-        ActivePanel = ActionsPanel;
+        ActivePanel = HUDPanel;
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Delete) && ActivePanel.previousPanel)
+        {
+            TogglePanel(true, ActivePanel.previousPanel);
+        }
+    }
+    
     public void TogglePanel(bool toggle, CanvasHider Panel)
     {
-        ActivePanel.ToggleCanvas(toggle).setOnComplete(() =>
+        ActivePanel.ToggleCanvas(!toggle).setOnComplete(() =>
         {
             ActivePanel = Panel;
             ActivePanel.ToggleCanvas(toggle);
@@ -43,5 +52,10 @@ public class UIManager : Singleton<UIManager>
     public void ToggleHUD(bool toggle)
     {
         TogglePanel(toggle, HUDPanel);
+    }
+    
+    public void TogglePokemons(bool toggle)
+    {
+        TogglePanel(toggle, PokemonsPanel);
     }
 }

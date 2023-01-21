@@ -55,7 +55,7 @@ public class MoveButton : MonoBehaviour
         
         if (move.moveSO.moveType != MoveSO.MoveType.STATUS)
         {
-            foreach (var elementType in pokemon.opponent.Types)
+            foreach (var elementType in pokemon.opponent.PokemonData.Types)
             {
                 if (elementType.GetModifier(move.moveSO.Type).Modifier == 0)
                 {

@@ -1498,11 +1498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d03186d68374cddb0f3fd5b44df7aa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Banette
-  <Level>k__BackingField: 75
-  <gender>k__BackingField: 1
-  <Types>k__BackingField:
-  - {fileID: 11400000, guid: 016b661148f57a045aec6a47f035d485, type: 2}
+  <PokemonData>k__BackingField: {fileID: 11400000, guid: 211f706461c6ab8439ea12fadbfd54f8, type: 2}
   <Moves>k__BackingField:
   - moveSO: {fileID: 11400000, guid: a2767e8e5b7761f4b86ab81a86fac016, type: 2}
     currentPP: 0
@@ -1538,6 +1534,7 @@ MonoBehaviour:
       Value: 0
       Stage: 0
   statuses: []
+  <opponent>k__BackingField: {fileID: 0}
   CanAttack: 1
   IsFainted: 0
 --- !u!1 &4348731172385302551
