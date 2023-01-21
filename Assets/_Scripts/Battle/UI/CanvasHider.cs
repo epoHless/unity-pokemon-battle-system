@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(CanvasGroup))]
 public class CanvasHider : MonoBehaviour
 {
     private CanvasGroup canvasGroup;

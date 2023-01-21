@@ -3,10 +3,11 @@ using UnityEngine;
 
 public class UIManager : Singleton<UIManager>
 {
-    [field: SerializeField] public CanvasHider PlayerPanel { get; private set; }
+    [field: SerializeField] public CanvasHider MovesPanel { get; private set; }
+    [field: SerializeField] public CanvasHider ActionsPanel { get; private set; }
 
     public void ToggleMoves(bool toggle)
     {
-        PlayerPanel.ToggleCanvas(toggle);
+        MovesPanel.ToggleCanvas(toggle);
     }
 }
