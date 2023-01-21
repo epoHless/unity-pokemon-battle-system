@@ -5,7 +5,8 @@ public class TurnStartBS : BattleState
     {
         base.OnEnter(manager);
         
-        UIManager.Instance.ToggleMoves(true);
+        UIManager.Instance.ToggleHUD(true);
+        UIManager.Instance.ToggleActions(true);
     }
 
     public override void OnUpdate(BattleManager manager)
@@ -17,6 +18,6 @@ public class TurnStartBS : BattleState
     {
         base.OnExit(manager);
         
-        UIManager.Instance.ToggleMoves(false);
+        UIManager.Instance.ToggleHUD(false);
     }
 }
