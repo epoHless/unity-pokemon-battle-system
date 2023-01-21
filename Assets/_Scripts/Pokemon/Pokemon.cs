@@ -23,7 +23,7 @@ public class Pokemon : MonoBehaviour
 
     public PokemonUI ui { get; private set; }
     
-    public Pokemon opponent { get; private set; }
+    [field: SerializeField] public Pokemon opponent { get; private set; }
 
     public bool CanAttack = true;
     public bool IsFainted = false;
@@ -40,15 +40,10 @@ public class Pokemon : MonoBehaviour
         }
     }
 
-    private void Start()
+    public void SetOpponent()
     {
-        opponent = BattleManager.Instance.GetTarget(this);
+        opponent = BattleManager.Instance.GetOpponent(this);
     }
-
-    // public void SetOpponent()
-    // {
-    //     BattleManager.Instance.GetTarget(this);
-    // }
     
     public BattleModifier GetCurrentStats()
     {

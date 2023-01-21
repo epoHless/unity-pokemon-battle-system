@@ -15,8 +15,8 @@ public class BattleManager : Singleton<BattleManager>
     
     public List<Pokemon> ActivePokemons;
     
-    public List<Pokemon> PlayerPokemons;
-    public List<Pokemon> OpponentPokemons;
+    public Team PlayerTeam;
+    public Team OpponentTeam;
 
     public int round = 1;
     public List<TurnMove> turnMoves;
@@ -25,18 +25,11 @@ public class BattleManager : Singleton<BattleManager>
     public UnityEvent<Pokemon> OnPokemonFaint; 
     
     #region UNITY FUNCTIONS
-
-    protected override void Awake()
-    {
-        base.Awake();
-        
-        ActivePokemons.Add(PlayerPokemons[0]);
-        ActivePokemons.Add(OpponentPokemons[0]);
-    }
     
     protected override void OnEnable()
     {
         base.OnEnable();
+        
         OnSelectionMade.AddListener(AddMoveToTurn);
         OnPokemonFaint.AddListener(FaintPokemon);
     }
@@ -61,14 +54,13 @@ public class BattleManager : Singleton<BattleManager>
     private IEnumerator InitialisePokemons()
     {
         bool IsDone = false;
+        
+        ActivePokemons.Add(PlayerTeam.activePokemon);
+        ActivePokemons.Add(OpponentTeam.activePokemon);
 
         foreach (var pokemon in ActivePokemons)
         {
-            pokemon.transform.LeanScale(Vector3.zero, 0f);
-        }
-        
-        foreach (var pokemon in ActivePokemons)
-        {
+            pokemon.SetOpponent();
             CameraManager.Instance.UseMoveCamera(pokemon.transform);
             yield return NotificationManager.Instance.ShowNotificationCOR($"Trainer sent out {pokemon.Name}!", 1f);
             LeanTween.scale(pokemon.gameObject, Vector3.one, .3f).setOnComplete((() => IsDone = true));
@@ -83,7 +75,7 @@ public class BattleManager : Singleton<BattleManager>
 
     public Pokemon GetActivePlayerPokemon()
     {
-        foreach (var pokemon in PlayerPokemons)
+        foreach (var pokemon in PlayerTeam.pokemons)
         {
             if (ActivePokemons.Contains(pokemon))
             {
@@ -94,8 +86,21 @@ public class BattleManager : Singleton<BattleManager>
         return null;
     }
     
-    private bool IsPlayerPokemon(Pokemon pokemon) { return PlayerPokemons.Contains(pokemon); }
-    private bool IsOpponentPokemon(Pokemon pokemon) { return OpponentPokemons.Contains(pokemon); }
+    public Pokemon GetActiveOpponentPokemon()
+    {
+        foreach (var pokemon in OpponentTeam.pokemons)
+        {
+            if (ActivePokemons.Contains(pokemon))
+            {
+                return pokemon;
+            }
+        }
+
+        return null;
+    }
+    
+    private bool IsPlayerPokemon(Pokemon pokemon) { return PlayerTeam.pokemons.Contains(pokemon); }
+    private bool IsOpponentPokemon(Pokemon pokemon) { return OpponentTeam.pokemons.Contains(pokemon); }
 
     private void FaintPokemon(Pokemon pokemon)
     {
@@ -110,6 +115,11 @@ public class BattleManager : Singleton<BattleManager>
         }));
     }
     
+    public Pokemon GetOpponent(Pokemon self)
+    {
+        return ActivePokemons.Find(pokemon => pokemon != self);
+    }
+    
     #endregion
 
     #region TURNS
@@ -117,14 +127,9 @@ public class BattleManager : Singleton<BattleManager>
     private void AddMoveToTurn(TurnMove move)
     {
         turnMoves.Add(move);
-        turnMoves.Add(new TurnMove(ActivePokemons[1], ActivePokemons[1].Moves[Random.Range(0, ActivePokemons[1].Moves.Count)]));
+        turnMoves.Add(new TurnMove(GetActiveOpponentPokemon(), GetActiveOpponentPokemon().Moves[Random.Range(0, ActivePokemons[1].Moves.Count)]));
     }
 
-    public Pokemon GetTarget(Pokemon self)
-    {
-        return ActivePokemons.Find(pokemon => pokemon != self);
-    }
-    
     public void ResetTurnMoves()
     {
         turnMoves.Clear();
