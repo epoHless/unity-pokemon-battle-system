@@ -18,5 +18,7 @@ public class TurnEndBS : BattleState
     {
         base.OnExit(manager);
         BattleManager.Instance.round++;
+        
+        UIManager.Instance.ToggleMoves(false);
     }
 }
