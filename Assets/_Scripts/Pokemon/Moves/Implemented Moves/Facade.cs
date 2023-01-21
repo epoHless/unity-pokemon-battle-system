@@ -6,8 +6,7 @@
     {
         public override IEnumerator Execute(MoveSO moveSo,Pokemon caster, Pokemon afflictedPokemon)
         {
-            moveSo.spawnedParticle.PlayParticle(afflictedPokemon.transform.position + Vector3.up * 0.5f);
-            yield return new WaitUntil(() => moveSo.spawnedParticle.IsDone);
+            yield return moveSo.spawnedParticle.PlayParticle(afflictedPokemon.transform.position + Vector3.up * 0.5f);
 
             if (StatusManager.Instance.IsBurned(afflictedPokemon) || StatusManager.Instance.IsPoisoned(afflictedPokemon) || StatusManager.Instance.IsParalysed(afflictedPokemon) )
             {

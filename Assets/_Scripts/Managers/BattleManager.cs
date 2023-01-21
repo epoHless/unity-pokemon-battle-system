@@ -14,6 +14,7 @@ public class BattleManager : Singleton<BattleManager>
     private BattleState currentState;
     
     public List<Pokemon> ActivePokemons;
+    
     public List<Pokemon> PlayerPokemons;
     public List<Pokemon> OpponentPokemons;
 
@@ -22,7 +23,17 @@ public class BattleManager : Singleton<BattleManager>
     
     public UnityEvent<TurnMove> OnSelectionMade;
     public UnityEvent<Pokemon> OnPokemonFaint; 
+    
+    #region UNITY FUNCTIONS
 
+    protected override void Awake()
+    {
+        base.Awake();
+        
+        ActivePokemons.Add(PlayerPokemons[0]);
+        ActivePokemons.Add(OpponentPokemons[0]);
+    }
+    
     protected override void OnEnable()
     {
         base.OnEnable();
@@ -30,18 +41,45 @@ public class BattleManager : Singleton<BattleManager>
         OnPokemonFaint.AddListener(FaintPokemon);
     }
 
-    private void FaintPokemon(Pokemon pokemon)
+    private IEnumerator Start()
     {
-        pokemon.IsFainted = true;
-        StopCoroutine(nameof(UseMoves));
+        yield return InitialisePokemons();
         
-        LeanTween.scale(pokemon.gameObject, Vector3.zero, 1f).setOnComplete((() =>
-        {
-            NotificationManager.Instance.ShowNotification(IsPlayerPokemon(pokemon) ? "You lost!" : "You won!");
-
-            ChangeState(new PokemonFaintedBS());
-        }));
+        currentState = SubclassUtility.GetSubclassFromIndex<BattleState>(battleState);
+        currentState.OnEnter(this);
     }
+
+    private void Update()
+    {
+        currentState?.OnUpdate(this);
+    }
+
+    #endregion
+
+    #region INITIALISATION
+
+    private IEnumerator InitialisePokemons()
+    {
+        bool IsDone = false;
+
+        foreach (var pokemon in ActivePokemons)
+        {
+            pokemon.transform.LeanScale(Vector3.zero, 0f);
+        }
+        
+        foreach (var pokemon in ActivePokemons)
+        {
+            CameraManager.Instance.UseMoveCamera(pokemon.transform);
+            yield return NotificationManager.Instance.ShowNotificationCOR($"Trainer sent out {pokemon.Name}!", 1f);
+            LeanTween.scale(pokemon.gameObject, Vector3.one, .3f).setOnComplete((() => IsDone = true));
+            yield return new WaitUntil((() => IsDone));
+            IsDone = false;
+        }
+    }
+
+    #endregion
+    
+    #region GET POKEMONS
 
     public Pokemon GetActivePlayerPokemon()
     {
@@ -59,24 +97,22 @@ public class BattleManager : Singleton<BattleManager>
     private bool IsPlayerPokemon(Pokemon pokemon) { return PlayerPokemons.Contains(pokemon); }
     private bool IsOpponentPokemon(Pokemon pokemon) { return OpponentPokemons.Contains(pokemon); }
 
-    protected override void Awake()
+    private void FaintPokemon(Pokemon pokemon)
     {
-        base.Awake();
+        pokemon.IsFainted = true;
+        StopCoroutine(nameof(UseMoves));
         
-        ActivePokemons.Add(PlayerPokemons[0]);
-        ActivePokemons.Add(OpponentPokemons[0]);
-    }
+        LeanTween.scale(pokemon.gameObject, Vector3.zero, 1f).setOnComplete((() =>
+        {
+            NotificationManager.Instance.ShowNotification(IsPlayerPokemon(pokemon) ? "You lost!" : "You won!");
 
-    private void Start()
-    {
-        currentState = SubclassUtility.GetSubclassFromIndex<BattleState>(battleState);
-        currentState.OnEnter(this);
+            ChangeState(new PokemonFaintedBS());
+        }));
     }
+    
+    #endregion
 
-    private void Update()
-    {
-        currentState.OnUpdate(this);
-    }
+    #region TURNS
 
     private void AddMoveToTurn(TurnMove move)
     {
@@ -88,14 +124,7 @@ public class BattleManager : Singleton<BattleManager>
     {
         return ActivePokemons.Find(pokemon => pokemon != self);
     }
-
-    public void ChangeState(BattleState newState)
-    {
-        currentState.OnExit(this);
-        currentState = newState;
-        currentState.OnEnter(this);
-    }
-
+    
     public void ResetTurnMoves()
     {
         turnMoves.Clear();
@@ -105,11 +134,11 @@ public class BattleManager : Singleton<BattleManager>
     {
         StartCoroutine(nameof(UseMoves));
     }
-
+    
     IEnumerator UseMoves()
     {
         var order = turnMoves.OrderByDescending(move => move.pokemon.battleStats.SPD.Value).ToList();
-
+        
         for (int i = 0; i < order.Count; i++)
         {
             yield return ApplyPreTurnStatusesCOR(order[i].pokemon);
@@ -122,6 +151,21 @@ public class BattleManager : Singleton<BattleManager>
 
         ChangeState(new TurnEndBS());
     }
+
+    #endregion
+
+    #region STATE MANAGEMENT
+
+    public void ChangeState(BattleState newState)
+    {
+        currentState.OnExit(this);
+        currentState = newState;
+        currentState.OnEnter(this);
+    }
+
+    #endregion
+
+    #region STATUS APPLY
 
     public void ApplyPostTurnStatuses()
     {
@@ -141,6 +185,8 @@ public class BattleManager : Singleton<BattleManager>
     
     private IEnumerator ApplyPostTurnStatusesCOR()
     {
+        // yield return CheckForCameraBlending.Instance.WaitForBlend();
+        
         foreach (var pokemon in ActivePokemons)
         {
             foreach (var status in pokemon.statuses)
@@ -165,5 +211,6 @@ public class BattleManager : Singleton<BattleManager>
         
         ChangeState(new TurnStartBS());
     }
-}
 
+    #endregion
+}

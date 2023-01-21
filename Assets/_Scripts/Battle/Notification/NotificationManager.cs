@@ -21,13 +21,13 @@ public class NotificationManager : Singleton<NotificationManager>
         StartCoroutine(nameof(ShowNotificationCOR), message);
     }
 
-    public IEnumerator ShowNotificationCOR(string message)
+    public IEnumerator ShowNotificationCOR(string message, float duration = 1f)
     {
         IsDone = false;
         this.message.text = message;
         notificationPanel.ToggleCanvas(true).setOnComplete(() =>
         {
-            LeanTween.delayedCall(1f, () =>
+            LeanTween.delayedCall(duration, () =>
             {
                 notificationPanel.ToggleCanvas(false).setOnComplete((() =>
                 {

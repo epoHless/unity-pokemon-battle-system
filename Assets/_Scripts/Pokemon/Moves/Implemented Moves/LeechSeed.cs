@@ -5,9 +5,15 @@ public class LeechSeed : MoveEffect
 {
     public override IEnumerator Execute(MoveSO moveSo,Pokemon caster, Pokemon afflictedPokemon)
     {
-        moveSo.spawnedParticle.PlayParticle(afflictedPokemon.transform.position + Vector3.up * 0.5f);
-        yield return new WaitUntil(() => moveSo.spawnedParticle.IsDone);
+        if (StatusManager.Instance.IsSeeded(afflictedPokemon))
+        {
+            yield return NotificationManager.Instance.ShowNotificationCOR("But the move failed.", 1);
+        }
+        else
+        {
+            yield return moveSo.spawnedParticle.PlayParticle(afflictedPokemon.transform.position + Vector3.up * 0.5f);
         
-        yield return StatusManager.Instance.ApplySeed(afflictedPokemon);
+            yield return StatusManager.Instance.ApplySeed(afflictedPokemon);
+        }
     }
 }

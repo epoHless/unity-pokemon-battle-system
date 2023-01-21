@@ -16,6 +16,7 @@ public class TurnStartBS : BattleState
     public override void OnExit(BattleManager manager)
     {
         base.OnExit(manager);
+        
         UIManager.Instance.ToggleMoves(false);
     }
 }

@@ -5,6 +5,7 @@ public class TurnEndBS : BattleState
     {
         base.OnEnter(manager);
         
+        CameraManager.Instance.UseSelectionCamera();
         BattleManager.Instance.ApplyPostTurnStatuses();
     }
 

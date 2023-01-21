@@ -245,6 +245,7 @@ GameObject:
   - component: {fileID: 1523473294517555870}
   - component: {fileID: 1523473294517555871}
   - component: {fileID: 1523473294517555856}
+  - component: {fileID: 6952168074685300971}
   m_Layer: 0
   m_Name: Pokemon Canvas
   m_TagString: Untagged
@@ -355,6 +356,18 @@ MonoBehaviour:
   genders:
   - {fileID: 21300000, guid: 5a403e1e4c650594d8715f5514bc257b, type: 3}
   - {fileID: 21300000, guid: 5aa500e9ff6db22479a7248dd46992cb, type: 3}
+--- !u!114 &6952168074685300971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1523473294517555858}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c01f7ba1546042faaac14ae72c990e5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1523473294902520582
 GameObject:
   m_ObjectHideFlags: 0

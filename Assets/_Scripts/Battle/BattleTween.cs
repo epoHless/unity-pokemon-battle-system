@@ -55,11 +55,11 @@ public static class BattleTween
         });
 
         yield return new WaitUntil(() => IsDone);
-        if (modifierMessage != null) yield return NotificationManager.Instance.ShowNotificationCOR(modifierMessage);
+        if (modifierMessage != null) yield return NotificationManager.Instance.ShowNotificationCOR(modifierMessage, 1);
         
         if (target.battleStats.CurrentPS <= 0)
         {
-            yield return NotificationManager.Instance.ShowNotificationCOR($"{target.Name} Fainted!");
+            yield return NotificationManager.Instance.ShowNotificationCOR($"{target.Name} Fainted!", 2);
             BattleManager.Instance.OnPokemonFaint?.Invoke(target);
         }
     }
@@ -93,7 +93,7 @@ public static class BattleTween
         
         if (pokemon.battleStats.CurrentPS <= 0)
         {
-            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.Name} Fainted!");
+            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.Name} Fainted!",2);
             BattleManager.Instance.OnPokemonFaint?.Invoke(pokemon);
         }
     }
@@ -137,14 +137,13 @@ public static class BattleTween
         });
         
         yield return new WaitUntil((() => IsDone));
-        yield return NotificationManager.Instance.ShowNotificationCOR($"{leecher.Name} was cured!");
+        yield return NotificationManager.Instance.ShowNotificationCOR($"{leecher.Name} was cured!", 1.5f);
 
         
         if (pokemon.battleStats.CurrentPS <= 0)
         {
-            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.Name} Fainted!");
+            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.Name} Fainted!", 2);
             BattleManager.Instance.OnPokemonFaint?.Invoke(pokemon);
         }
     }
 }
-

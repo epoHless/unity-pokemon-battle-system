@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using MobileFramework.Subclass;
 using UnityEngine;
@@ -39,23 +38,15 @@ public class StatusManager : Singleton<StatusManager>
         return false;
     }
     
-    public IEnumerator ApplySeed(Pokemon pokemon)
-    {
-        if (AddVolatileStatus(pokemon, SeededStatus))
-        {
-            GetStatusParticle(SeededStatus).PlayParticle(pokemon.transform.position);
-            yield return new WaitUntil(() => SeededStatus.Particle.IsDone);
-            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.Name} was planted a seed on!");
-        }
-    }
+
+    #region NON VOLATILE STATUSES
 
     public IEnumerator ApplyBurn(Pokemon pokemon)
     {
         if (AddNonVolatileStatus(pokemon, BurnStatus))
         {
-            GetStatusParticle(BurnStatus).PlayParticle(pokemon.transform.position);
-            yield return new WaitUntil(() => BurnStatus.Particle.IsDone);
-            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.Name} was burned!");
+            yield return GetStatusParticle(BurnStatus).PlayParticle(pokemon.transform.position);
+            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.Name} was burned!", 1.5f);
         }
     }
     
@@ -63,9 +54,8 @@ public class StatusManager : Singleton<StatusManager>
     {
         if (AddNonVolatileStatus(pokemon, PoisonStatus))
         {
-            GetStatusParticle(PoisonStatus).PlayParticle(pokemon.transform.position);
-            yield return new WaitUntil(() => PoisonStatus.Particle.IsDone);
-            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.Name} was poisoned!");
+            yield return GetStatusParticle(PoisonStatus).PlayParticle(pokemon.transform.position);
+            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.Name} was poisoned!",1.5f);
         }
     }
     
@@ -73,9 +63,8 @@ public class StatusManager : Singleton<StatusManager>
     {
         if (AddNonVolatileStatus(pokemon, ParalyseStatus))
         {
-            GetStatusParticle(ParalyseStatus).PlayParticle(pokemon.transform.position);
-            yield return new WaitUntil(() => ParalyseStatus.Particle.IsDone);
-            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.Name} was paralysed!");
+            yield return GetStatusParticle(ParalyseStatus).PlayParticle(pokemon.transform.position);
+            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.Name} was paralysed!",1.5f);
         }
     }
     
@@ -83,11 +72,14 @@ public class StatusManager : Singleton<StatusManager>
     {
         if (AddNonVolatileStatus(pokemon, FrozenStatus))
         {
-            GetStatusParticle(FrozenStatus).PlayParticle(pokemon.transform.position);
-            yield return new WaitUntil(() => FrozenStatus.Particle.IsDone);
-            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.Name} was frozen solid!");
+            yield return GetStatusParticle(FrozenStatus).PlayParticle(pokemon.transform.position);
+            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.Name} was frozen solid!",1.5f);
         }
     }
+
+    #endregion
+    
+    #region NON VOLATILE STATUS CHECK
 
     public bool IsParalysed(Pokemon pokemon)
     {
@@ -108,6 +100,26 @@ public class StatusManager : Singleton<StatusManager>
     {
         return pokemon.statuses.Contains(PoisonStatus.status);
     }
+
+    #endregion
+
+    #region VOLATILE STATUSES
+
+    public IEnumerator ApplySeed(Pokemon pokemon)
+    {
+        if (AddVolatileStatus(pokemon, SeededStatus))
+        {
+            yield return GetStatusParticle(SeededStatus).PlayParticle(pokemon.transform.position);
+            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.Name} was planted a seed on!",1.5f);
+        }
+    }
+    
+    public bool IsSeeded(Pokemon pokemon)
+    {
+        return pokemon.statuses.Contains(SeededStatus.status);
+    }
+
+    #endregion
 
     public MoveParticle GetStatusParticle(StatusInfo statusInfo)
     {

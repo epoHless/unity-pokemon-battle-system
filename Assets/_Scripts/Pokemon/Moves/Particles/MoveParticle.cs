@@ -19,7 +19,6 @@ public class MoveParticle : MonoBehaviour
 
     protected virtual void OnEnable()
     {
-        IsDone = false;
         main.stopAction = ParticleSystemStopAction.Callback;
     }
 
@@ -35,10 +34,14 @@ public class MoveParticle : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    public void PlayParticle(Vector3 position)
+    public IEnumerator PlayParticle(Vector3 position)
     {
+        IsDone = false;
+
         transform.position = position;
         gameObject.SetActive(true);
+
+        yield return new WaitUntil((() => IsDone));
     }
 
     public void SetAction(Action action)

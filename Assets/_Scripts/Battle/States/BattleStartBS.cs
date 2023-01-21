@@ -5,6 +5,8 @@ public class BattleStartBS : BattleState
     {
         base.OnEnter(manager);
         
+        CameraManager.Instance.UseSelectionCamera();
+        
         LeanTween.delayedCall(2f, () =>
         {
             BattleUI.Instance.SetUI();

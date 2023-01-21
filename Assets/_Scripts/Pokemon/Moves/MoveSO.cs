@@ -37,23 +37,24 @@ public class MoveSO : ScriptableObject
     
     public IEnumerator ExecuteMove(Pokemon owner)
     {
-        if (owner.IsFainted) return null;
+        if (owner.IsFainted) yield return null;
 
         if (moveTarget == MoveTarget.ENEMY)
         {
-            float modifiedLevel = owner.battleStats.ACC.GetModifierValue() - owner.opponent.battleStats.EVS.GetModifierValue();
             bool hit = Accuracy * 1 > Random.Range(1, 101);
 
             if (!hit)
             {
-                return NotificationManager.Instance.ShowNotificationCOR($"{owner.opponent.Name} dodged the attack!");
+                yield return NotificationManager.Instance.ShowNotificationCOR($"{owner.opponent.Name} dodged the attack!",1.5f);
+                yield break;
             }
             
             foreach (var elementType in owner.opponent.Types)
             {
                 if (elementType.GetModifier(Type).Modifier == 0)
                 {
-                    return NotificationManager.Instance.ShowNotificationCOR($"{Name} doesn't affect {owner.opponent.Name}");
+                    yield return NotificationManager.Instance.ShowNotificationCOR($"{Name} doesn't affect {owner.opponent.Name}",1);
+                    yield break;
                 }
             }
         }
@@ -76,11 +77,13 @@ public class MoveSO : ScriptableObject
         {
             spawnedParticle = Instantiate(particlePrefab, afflictedPokemon.transform);
         }
-        
-        spawnedParticle.transform.position = afflictedPokemon.transform.position;
 
+        spawnedParticle.transform.position = afflictedPokemon.transform.position;
+        
+        CameraManager.Instance.UseMoveCamera(afflictedPokemon.transform);
+        
         _MoveEffect = SubclassUtility.GetSubclassFromIndex<MoveEffect>(MoveEffect);
-        return _MoveEffect.Execute(this,owner, afflictedPokemon);
+        yield return _MoveEffect.Execute(this,owner, afflictedPokemon);
     }
 
     public void MultiplyPower(float multiplier)
