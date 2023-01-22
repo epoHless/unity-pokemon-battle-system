@@ -82,21 +82,27 @@ public class BattleManager : Singleton<BattleManager>
         ActivePokemons.Remove(calledOutPokemon);
         ActivePokemons.Add(pokemon);
         
+        foreach (var activePokemon in ActivePokemons)
+        {
+            activePokemon.SetOpponent();
+        }
+        
         pokemon.ui.UpdateUI();
         BattleUI.Instance.SetUI();
         
         yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.PokemonData.Name} was sent in!");
         
         IsDone = false;
-        LeanTween.scale(pokemon.gameObject, Vector3.zero, .25f).setOnComplete((() => IsDone = true));
+        LeanTween.scale(pokemon.gameObject, Vector3.one, .25f).setOnComplete((() => IsDone = true));
         yield return new WaitUntil((() => IsDone));
-
-        foreach (var activePokemon in ActivePokemons)
-        {
-            pokemon.SetOpponent();
-        }
     }
 
+    public IEnumerator ChangeFaintedPokemon(Pokemon pokemon, Team team, bool player = true)
+    {
+        yield return ChangePokemon(pokemon, team, player);
+        ChangeState(new TurnEndBS());
+    }
+    
     #endregion
     
     #region GET POKEMONS
@@ -134,13 +140,16 @@ public class BattleManager : Singleton<BattleManager>
     {
         pokemon.IsFainted = true;
         StopCoroutine(nameof(UseMoves));
-        
-        LeanTween.scale(pokemon.gameObject, Vector3.zero, 1f).setOnComplete((() =>
-        {
-            NotificationManager.Instance.ShowNotification(IsPlayerPokemon(pokemon) ? "You lost!" : "You won!");
 
+        LeanTween.scale(pokemon.gameObject, Vector3.zero, .25f);
+        
+        if (pokemon == GetActiveOpponentPokemon() && OpponentTeam.pokemons.Exists(pokemon1 => pokemon1.IsFainted == false))
+        {
+           StartCoroutine(ChangeFaintedPokemon(OpponentTeam.pokemons.Find(pokemon1 => pokemon1.IsFainted == false), OpponentTeam, false));
+        }else if (pokemon == GetActivePlayerPokemon() && PlayerTeam.pokemons.Exists(pokemon1 => pokemon1.IsFainted == false))
+        {
             ChangeState(new PokemonFaintedBS());
-        }));
+        }
     }
     
     public Pokemon GetOpponent(Pokemon self)
@@ -155,7 +164,17 @@ public class BattleManager : Singleton<BattleManager>
     private void AddMoveToTurn(TurnMove move)
     {
         turnMoves.Add(move);
-        turnMoves.Add(new TurnMove(GetActiveOpponentPokemon(), GetActiveOpponentPokemon().Moves[Random.Range(0, ActivePokemons[1].Moves.Count)]));
+        
+        if (currentState.GetType() == new PokemonFaintedBS().GetType())
+        {
+            ChangeState(new ExecuteMovesBS());
+            return;
+        }
+        else
+        {
+            turnMoves.Add(new TurnMove(GetActiveOpponentPokemon(), GetActiveOpponentPokemon().Moves[Random.Range(0, GetActiveOpponentPokemon().Moves.Count)]));
+            ChangeState(new ExecuteMovesBS());
+        }
     }
 
     public void ResetTurnMoves()
@@ -178,7 +197,10 @@ public class BattleManager : Singleton<BattleManager>
 
             if (order[i].pokemon.CanAttack && !order[i].pokemon.IsFainted)
             {
-                yield return order[i].Move.ExecuteMove(order[i].pokemon);
+                if (order[i].Move.currentPP == -1)
+                {
+                    yield return order[i].Move.ExecuteMove(order[i].pokemon, true);
+                }else yield return order[i].Move.ExecuteMove(order[i].pokemon);
             }
         }
 
@@ -194,6 +216,11 @@ public class BattleManager : Singleton<BattleManager>
         currentState.OnExit(this);
         currentState = newState;
         currentState.OnEnter(this);
+    }
+
+    public BattleState GetCurrentState()
+    {
+        return currentState;
     }
 
     #endregion

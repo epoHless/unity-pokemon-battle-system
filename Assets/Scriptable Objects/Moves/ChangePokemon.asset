@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: ChangePokemon
   m_EditorClassIdentifier: 
   <Name>k__BackingField: 
-  <moveType>k__BackingField: 0
+  <moveType>k__BackingField: 2
   <moveTarget>k__BackingField: 0
-  <Type>k__BackingField: {fileID: 0}
-  <PP>k__BackingField: 0
+  <Type>k__BackingField: {fileID: 11400000, guid: 06138f28cd28741449285e1ff62eb283, type: 2}
+  <PP>k__BackingField: -1
   <Power>k__BackingField: 0
-  <Accuracy>k__BackingField: 0
+  <Accuracy>k__BackingField: 100
   MoveEffect: 0
   particlePrefab: {fileID: 0}

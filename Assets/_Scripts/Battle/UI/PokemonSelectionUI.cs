@@ -2,9 +2,10 @@
 using MobileFramework.Subclass;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PokemonSelectionUI : MonoBehaviour
+public class PokemonSelectionUI : MonoBehaviour, ISelectHandler
 {
     [SerializeField] private TMP_Text name;
     [SerializeField] private TMP_Text level;
@@ -16,15 +17,14 @@ public class PokemonSelectionUI : MonoBehaviour
     private Button button;
 
     private Pokemon pokemon;
-    
-    public MoveEffect moveEffect;
 
     public TurnMove turnMove;
-    
+
+    public static event Action<SelectionData> OnSelection; 
+
     private void Awake()
     {
         button = GetComponent<Button>();
-        moveEffect = new ChangePokemon();
 
         turnMove.pokemon = pokemon;
     }
@@ -36,32 +36,50 @@ public class PokemonSelectionUI : MonoBehaviour
 
     private void ChangePokemon()
     {
+        if (pokemon == BattleManager.Instance.GetActivePlayerPokemon()) return;
+        
         BattleManager.Instance.OnSelectionMade?.Invoke(turnMove);
+        UIManager.Instance.TogglePanel(false, UIManager.Instance.PokemonsPanel);
     }
 
     public void SetData(Pokemon pokemon)
     {
+        name.text = pokemon.PokemonData.Name;
+        level.text = $"Lv.{ pokemon.PokemonData.Level}";
+        sprite.sprite = pokemon.PokemonData.Sprite;
+        health.fillAmount = pokemon.battleStats.CurrentPS / pokemon.battleStats.MaxPS;
+        gender.sprite = pokemon.PokemonData.gender == PokemonData.Gender.MALE ? PokemonBagManager.Instance.genders[0] : PokemonBagManager.Instance.genders[1];
+        
         if (pokemon.IsFainted)
         {
             fainted.gameObject.SetActive(true);
-        }
-        else
-        {
-            name.text = pokemon.PokemonData.Name;
-            level.text = $"Lv.{ pokemon.PokemonData.Level}";
-            sprite.sprite = pokemon.PokemonData.Sprite;
-            health.fillAmount = pokemon.battleStats.CurrentPS / pokemon.battleStats.MaxPS;
-            gender.sprite = pokemon.PokemonData.gender == PokemonData.Gender.MALE ? PokemonBagManager.Instance.genders[0] : PokemonBagManager.Instance.genders[1];
+            button.enabled = false;
         }
     }
 
     public void SetPokemon(Pokemon pokemon)
     {
         this.pokemon = pokemon;
+        turnMove.pokemon = pokemon;
     }
 
     public void Deactivate()
     {
         gameObject.SetActive(false);
+    }
+
+    public void OnSelect(BaseEventData eventData)
+    {
+        if (OnSelection != null) OnSelection(new SelectionData(pokemon));
+    }
+    
+    public struct SelectionData
+    {
+        public Pokemon pokemon;
+
+        public SelectionData(Pokemon pokemon)
+        {
+            this.pokemon = pokemon;
+        }
     }
 }

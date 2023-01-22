@@ -19,7 +19,7 @@ public class UIManager : Singleton<UIManager>
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Delete) && ActivePanel.previousPanel)
+        if (Input.GetKeyDown(KeyCode.Delete) && ActivePanel.previousPanel && BattleManager.Instance.GetCurrentState().GetType() != new PokemonFaintedBS().GetType())
         {
             TogglePanel(true, ActivePanel.previousPanel);
         }

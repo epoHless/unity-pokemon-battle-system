@@ -9,6 +9,8 @@ public class ExecuteMovesBS : BattleState
         base.OnEnter(manager);
 
         BattleManager.Instance.ExecuteMoves();
+        
+        UIManager.Instance.ToggleMoves(false);
     }
 
     public override void OnUpdate(BattleManager manager)

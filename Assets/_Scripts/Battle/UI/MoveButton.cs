@@ -28,8 +28,7 @@ public class MoveButton : MonoBehaviour
     {
         if (move.moveSO)
         {
-            BattleManager.Instance.OnSelectionMade?.Invoke(new TurnMove(BattleManager.Instance.ActivePokemons[0], move));
-            BattleManager.Instance.ChangeState(new ExecuteMovesBS());
+            BattleManager.Instance.OnSelectionMade?.Invoke(new TurnMove(BattleManager.Instance.GetActivePlayerPokemon(), move));
             PPs.text = $"{move.currentPP}/{move.moveSO.PP.ToString()}";
         }
     }

@@ -75,10 +75,10 @@ public class MoveSO : ScriptableObject
         
         if(!spawnedParticle)
         {
-            spawnedParticle = Instantiate(particlePrefab, afflictedPokemon.transform);
+            if(particlePrefab) spawnedParticle = Instantiate(particlePrefab, afflictedPokemon.transform.position, Quaternion.identity);
         }
 
-        spawnedParticle.transform.position = afflictedPokemon.transform.position;
+        if(particlePrefab) spawnedParticle.transform.position = afflictedPokemon.transform.position;
         
         CameraManager.Instance.UseMoveCamera(afflictedPokemon.transform);
         
@@ -88,6 +88,7 @@ public class MoveSO : ScriptableObject
 
     public IEnumerator ExecuteMove(Pokemon owner, bool value = true)
     {
+        _MoveEffect = SubclassUtility.GetSubclassFromIndex<MoveEffect>(MoveEffect);
         yield return _MoveEffect.Execute(this, owner, owner);
     }
 

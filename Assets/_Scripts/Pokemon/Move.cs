@@ -19,6 +19,11 @@ public class Move
         yield return moveSO.ExecuteMove(owner);
     }
 
+    public IEnumerator ExecuteMove(Pokemon owner, bool value = true)
+    {
+        yield return moveSO.ExecuteMove(owner, value);
+    }
+
     public void SetPP()
     {
         currentPP = moveSO.PP;
