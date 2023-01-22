@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13866fa4c66d4db8aa9d9a0cf0323812, type: 3}
-  m_Name: Move_Growl
+  m_Name: Move_BulkUp
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Growl
+  <Name>k__BackingField: Bulk Up
   <moveType>k__BackingField: 2
-  <moveTarget>k__BackingField: 1
-  <Type>k__BackingField: {fileID: 11400000, guid: 921aaec75cfdd844180f4e1b09ab2d51, type: 2}
-  <PP>k__BackingField: 40
+  <moveTarget>k__BackingField: 0
+  <Type>k__BackingField: {fileID: 11400000, guid: 4e2359fa47d74db4cbc6ac1f4304c183, type: 2}
+  <PP>k__BackingField: 10
   <Power>k__BackingField: -1
-  <Accuracy>k__BackingField: 100
-  MoveEffect: 5
-  particlePrefab: {fileID: 7097042553332516103, guid: 7cab15c94a1e5174a9505b4d9478e998, type: 3}
+  <Accuracy>k__BackingField: -1
+  MoveEffect: 1
+  particlePrefab: {fileID: 8176062737183758382, guid: 3c97cf4523294e4428ff9fccf7790250, type: 3}

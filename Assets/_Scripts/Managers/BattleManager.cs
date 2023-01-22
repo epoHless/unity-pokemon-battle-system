@@ -60,6 +60,7 @@ public class BattleManager : Singleton<BattleManager>
 
         foreach (var pokemon in ActivePokemons)
         {
+            pokemon.gameObject.SetActive(true);
             pokemon.SetOpponent();
             CameraManager.Instance.UseMoveCamera(pokemon.transform);
             yield return NotificationManager.Instance.ShowNotificationCOR($"Trainer sent out {pokemon.PokemonData.Name}!", 1f);
@@ -80,6 +81,8 @@ public class BattleManager : Singleton<BattleManager>
         yield return new WaitUntil((() => IsDone));
 
         ActivePokemons.Remove(calledOutPokemon);
+        calledOutPokemon.gameObject.SetActive(false);
+        pokemon.gameObject.SetActive(true);
         ActivePokemons.Add(pokemon);
         
         foreach (var activePokemon in ActivePokemons)
@@ -168,7 +171,6 @@ public class BattleManager : Singleton<BattleManager>
         if (currentState.GetType() == new PokemonFaintedBS().GetType())
         {
             ChangeState(new ExecuteMovesBS());
-            return;
         }
         else
         {

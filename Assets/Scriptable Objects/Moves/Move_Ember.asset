@@ -19,5 +19,5 @@ MonoBehaviour:
   <PP>k__BackingField: 25
   <Power>k__BackingField: 40
   <Accuracy>k__BackingField: 100
-  MoveEffect: 2
+  MoveEffect: 3
   particlePrefab: {fileID: 7800116219300003014, guid: 5dddf67e2a3aaa44ca36b5f1548398d8, type: 3}

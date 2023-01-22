@@ -1500,7 +1500,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PokemonData>k__BackingField: {fileID: 11400000, guid: 211f706461c6ab8439ea12fadbfd54f8, type: 2}
   <Moves>k__BackingField:
-  - moveSO: {fileID: 11400000, guid: a2767e8e5b7761f4b86ab81a86fac016, type: 2}
+  - moveSO: {fileID: 11400000, guid: f7329d72379205c41b1c82e2377f6740, type: 2}
     currentPP: 0
   - moveSO: {fileID: 11400000, guid: dee31322f3ae2764bbdec7d15dfa72d0, type: 2}
     currentPP: 0

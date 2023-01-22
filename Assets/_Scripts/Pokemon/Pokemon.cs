@@ -29,6 +29,8 @@ public class Pokemon : MonoBehaviour
         {
             move.SetPP();
         }
+        
+        gameObject.SetActive(false);
     }
 
     public void SetOpponent()

@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13866fa4c66d4db8aa9d9a0cf0323812, type: 3}
-  m_Name: Move_ShadowBall
+  m_Name: Move_IcePunch
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Shadow Ball
-  <moveType>k__BackingField: 1
+  <Name>k__BackingField: Ice Punch
+  <moveType>k__BackingField: 0
   <moveTarget>k__BackingField: 1
-  <Type>k__BackingField: {fileID: 11400000, guid: 016b661148f57a045aec6a47f035d485, type: 2}
+  <Type>k__BackingField: {fileID: 11400000, guid: 80bfa88eafefbce4da5f431b9275f883, type: 2}
   <PP>k__BackingField: 15
-  <Power>k__BackingField: 80
+  <Power>k__BackingField: 75
   <Accuracy>k__BackingField: 100
-  MoveEffect: 9
-  particlePrefab: {fileID: 135247428567287415, guid: 8c74b60883975d34a9f49a2ce926b190, type: 3}
+  MoveEffect: 6
+  particlePrefab: {fileID: 5634180972406088507, guid: d8ac4035c123b2543bf6b10fcd638dfd, type: 3}

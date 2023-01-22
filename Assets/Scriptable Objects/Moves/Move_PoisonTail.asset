@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13866fa4c66d4db8aa9d9a0cf0323812, type: 3}
-  m_Name: Move_ShadowBall
+  m_Name: Move_PoisonTail
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Shadow Ball
-  <moveType>k__BackingField: 1
+  <Name>k__BackingField: Poison Tail
+  <moveType>k__BackingField: 0
   <moveTarget>k__BackingField: 1
-  <Type>k__BackingField: {fileID: 11400000, guid: 016b661148f57a045aec6a47f035d485, type: 2}
-  <PP>k__BackingField: 15
-  <Power>k__BackingField: 80
+  <Type>k__BackingField: {fileID: 11400000, guid: 06138f28cd28741449285e1ff62eb283, type: 2}
+  <PP>k__BackingField: 25
+  <Power>k__BackingField: 50
   <Accuracy>k__BackingField: 100
-  MoveEffect: 9
-  particlePrefab: {fileID: 135247428567287415, guid: 8c74b60883975d34a9f49a2ce926b190, type: 3}
+  MoveEffect: 8
+  particlePrefab: {fileID: 4792616683301362705, guid: 97febe9c3b78f13468864676ab6e5b70, type: 3}

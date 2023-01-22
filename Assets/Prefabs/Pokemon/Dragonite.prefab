@@ -48,11 +48,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PokemonData>k__BackingField: {fileID: 11400000, guid: 9184786620f5f6e49a95142327e1e6a8, type: 2}
   <Moves>k__BackingField:
-  - moveSO: {fileID: 11400000, guid: 8c0e9cd0957da30449f18efac8e49adb, type: 2}
+  - moveSO: {fileID: 11400000, guid: f7329d72379205c41b1c82e2377f6740, type: 2}
     currentPP: 0
-  - moveSO: {fileID: 11400000, guid: 8c0e9cd0957da30449f18efac8e49adb, type: 2}
+  - moveSO: {fileID: 11400000, guid: 9ef02489421aca34daf468197f2b1fd1, type: 2}
     currentPP: 0
-  - moveSO: {fileID: 11400000, guid: 8c0e9cd0957da30449f18efac8e49adb, type: 2}
+  - moveSO: {fileID: 11400000, guid: 1fffb1551cae616479dc247c75ab0101, type: 2}
     currentPP: 0
   - moveSO: {fileID: 11400000, guid: 8c0e9cd0957da30449f18efac8e49adb, type: 2}
     currentPP: 0

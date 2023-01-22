@@ -1764,13 +1764,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <PokemonData>k__BackingField: {fileID: 11400000, guid: acd36329c8e2bc245b484993c0fd041b, type: 2}
   <Moves>k__BackingField:
-  - moveSO: {fileID: 11400000, guid: 8c0e9cd0957da30449f18efac8e49adb, type: 2}
+  - moveSO: {fileID: 11400000, guid: b46718d9943a28242bc5d64c2bcf6671, type: 2}
     currentPP: 0
-  - moveSO: {fileID: 11400000, guid: 8c0e9cd0957da30449f18efac8e49adb, type: 2}
+  - moveSO: {fileID: 11400000, guid: 1fffb1551cae616479dc247c75ab0101, type: 2}
     currentPP: 0
-  - moveSO: {fileID: 11400000, guid: 8c0e9cd0957da30449f18efac8e49adb, type: 2}
+  - moveSO: {fileID: 11400000, guid: dee31322f3ae2764bbdec7d15dfa72d0, type: 2}
     currentPP: 0
-  - moveSO: {fileID: 11400000, guid: 8c0e9cd0957da30449f18efac8e49adb, type: 2}
+  - moveSO: {fileID: 11400000, guid: 2893725ef3807544d99ca15965957787, type: 2}
     currentPP: 0
   <PermanentStatistic>k__BackingField: {fileID: 11400000, guid: 958227515b07a674ea7cbca8c8dde3ca, type: 2}
   battleStats:

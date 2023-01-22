@@ -9,8 +9,8 @@ public class Team : MonoBehaviour
 
     private void Awake()
     {
-        activePokemon = pokemons[0];
         DisableTeam();
+        activePokemon = pokemons[0];
     }
 
     private void DisableTeam()

@@ -1,11 +1,10 @@
 ﻿using System;
-using MobileFramework.Subclass;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class PokemonSelectionUI : MonoBehaviour, ISelectHandler
+public class PokemonSelectionUI : MonoBehaviour, IPointerEnterHandler
 {
     [SerializeField] private TMP_Text name;
     [SerializeField] private TMP_Text level;
@@ -15,9 +14,7 @@ public class PokemonSelectionUI : MonoBehaviour, ISelectHandler
     [SerializeField] private Image health;
 
     private Button button;
-
     private Pokemon pokemon;
-
     public TurnMove turnMove;
 
     public static event Action<SelectionData> OnSelection; 
@@ -38,6 +35,7 @@ public class PokemonSelectionUI : MonoBehaviour, ISelectHandler
     {
         if (pokemon == BattleManager.Instance.GetActivePlayerPokemon()) return;
         
+        pokemon.gameObject.SetActive(true);
         BattleManager.Instance.OnSelectionMade?.Invoke(turnMove);
         UIManager.Instance.TogglePanel(false, UIManager.Instance.PokemonsPanel);
     }
@@ -67,11 +65,6 @@ public class PokemonSelectionUI : MonoBehaviour, ISelectHandler
     {
         gameObject.SetActive(false);
     }
-
-    public void OnSelect(BaseEventData eventData)
-    {
-        if (OnSelection != null) OnSelection(new SelectionData(pokemon));
-    }
     
     public struct SelectionData
     {
@@ -81,5 +74,10 @@ public class PokemonSelectionUI : MonoBehaviour, ISelectHandler
         {
             this.pokemon = pokemon;
         }
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if (OnSelection != null) OnSelection(new SelectionData(pokemon));
     }
 }
