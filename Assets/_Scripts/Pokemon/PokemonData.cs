@@ -8,7 +8,8 @@ using UnityEngine;
         public enum Gender
         {
             MALE,
-            FEMALE
+            FEMALE,
+            NULL
         }
         
         [field: SerializeField] public string Name { get; private set; }

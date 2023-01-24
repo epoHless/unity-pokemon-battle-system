@@ -7,7 +7,7 @@ public class BattleStartBS : BattleState
         
         CameraManager.Instance.UseSelectionCamera();
         
-        LeanTween.delayedCall(2f, () =>
+        LeanTween.delayedCall(4f, () =>
         {
             BattleUI.Instance.SetUI();
             UIManager.Instance.ToggleHUD(true);

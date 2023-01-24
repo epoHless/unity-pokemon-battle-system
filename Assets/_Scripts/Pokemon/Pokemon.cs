@@ -30,6 +30,7 @@ public class Pokemon : MonoBehaviour
             move.SetPP();
         }
         
+        gameObject.transform.localScale = Vector3.zero;
         gameObject.SetActive(false);
     }
 

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Move_ThunderWave
   m_EditorClassIdentifier: 
   <Name>k__BackingField: ThunderWave
-  <moveType>k__BackingField: 1
+  <moveType>k__BackingField: 2
   <moveTarget>k__BackingField: 1
   <Type>k__BackingField: {fileID: 11400000, guid: abf0b60229887334ba6536156ba2a017, type: 2}
   <PP>k__BackingField: 20

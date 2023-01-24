@@ -36,10 +36,11 @@ public class BattleManager : Singleton<BattleManager>
 
     private IEnumerator Start()
     {
-        yield return InitialisePokemons();
-        
         currentState = SubclassUtility.GetSubclassFromIndex<BattleState>(battleState);
         currentState.OnEnter(this);
+        
+        yield return InitialisePokemons();
+        CameraManager.Instance.UseSelectionCamera();
     }
 
     private void Update()
@@ -53,6 +54,8 @@ public class BattleManager : Singleton<BattleManager>
 
     private IEnumerator InitialisePokemons()
     {
+        yield return new WaitUntil((() => currentState.GetType() == new BattleStartBS().GetType()));
+        
         bool IsDone = false;
         
         ActivePokemons.Add(PlayerTeam.activePokemon);
