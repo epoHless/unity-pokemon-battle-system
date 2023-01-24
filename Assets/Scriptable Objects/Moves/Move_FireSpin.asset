@@ -21,20 +21,22 @@ MonoBehaviour:
   <Accuracy>k__BackingField: 85
   moveBlocks:
   - rid: 1751686409286582289
-  - rid: 1751686409286582290
+  - rid: -2
   - rid: 1751686409286582291
   references:
     version: 2
     RefIds:
+    - rid: -2
+      type: {class: , ns: , asm: }
     - rid: 1751686409286582289
       type: {class: ParticleBlock, ns: , asm: Assembly-CSharp}
       data:
+        name: GetType
         Particle: {fileID: 7800116219300003014, guid: 5dddf67e2a3aaa44ca36b5f1548398d8, type: 3}
         offset: {x: 0, y: 0, z: 0}
-    - rid: 1751686409286582290
-      type: {class: DamageBlock, ns: , asm: Assembly-CSharp}
     - rid: 1751686409286582291
       type: {class: ApplyVolatileStatus, ns: , asm: Assembly-CSharp}
       data:
+        name: GetType
         Probability: 100
         statusInfo: {fileID: 11400000, guid: c37cd0fe473391846b72ea1caf26ee26, type: 2}
