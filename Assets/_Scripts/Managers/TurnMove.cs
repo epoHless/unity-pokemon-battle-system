@@ -9,7 +9,7 @@ public class TurnMove
     public TurnMove(Pokemon pokemon, Move move)
     {
         this.pokemon = pokemon;
-        this.Move = move;
+        Move = move;
     }
 }
 

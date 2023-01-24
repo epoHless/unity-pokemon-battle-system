@@ -7,6 +7,6 @@ public class Seeded : PostTurnVolatileStatus
     {
         yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.PokemonData.Name} was hurt by the leeching!",1.5f);
         yield return Particle.PlayParticle(pokemon.transform.position);
-        yield return BattleTween.DamageSeededPokemon(pokemon, 12.5f);
+        yield return BattleTween.DamageAndHealPokemon(pokemon, 12.5f);
     }
 }

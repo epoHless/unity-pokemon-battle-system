@@ -98,7 +98,7 @@ public static class BattleTween
         }
     }
     
-    public static IEnumerator DamageSeededPokemon(Pokemon pokemon, float percentage)
+    public static IEnumerator DamageAndHealPokemon(Pokemon pokemon, float percentage)
     {
         bool IsDone = false;
         

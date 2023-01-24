@@ -25,6 +25,7 @@ public class NotificationManager : Singleton<NotificationManager>
     {
         IsDone = false;
         this.message.text = message;
+        
         notificationPanel.ToggleCanvas(true).setOnComplete(() =>
         {
             LeanTween.delayedCall(duration, () =>

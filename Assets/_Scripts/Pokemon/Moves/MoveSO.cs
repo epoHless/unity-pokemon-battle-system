@@ -29,14 +29,11 @@ public class MoveSO : ScriptableObject
     [field: SerializeField] public float Power { get; private set; }
     [field: SerializeField] public int Accuracy { get; private set; }
     
-    [SubclassOf(typeof(MoveEffect))] [SerializeField]
-    private int MoveEffect;
-    private MoveEffect _MoveEffect;
+    // [SubclassOf(typeof(MoveEffect))] [SerializeField]
+    // private int MoveEffect;
+    // private MoveEffect _MoveEffect;
 
     [SerializeReference] public List<MoveBlock> moveBlocks;
-
-    // [SerializeField] public MoveParticle particlePrefab;
-    public MoveParticle spawnedParticle { get; private set; }
     
     public IEnumerator ExecuteMove(Pokemon owner)
     {
@@ -86,8 +83,10 @@ public class MoveSO : ScriptableObject
 
     public IEnumerator ExecuteMove(Pokemon owner, bool value = true)
     {
-        _MoveEffect = SubclassUtility.GetSubclassFromIndex<MoveEffect>(MoveEffect);
-        yield return _MoveEffect.Execute(this, owner, owner);
+        foreach (var block in moveBlocks)
+        {
+            yield return block.Execute(this, owner, owner);
+        }
     }
 
     public void MultiplyPower(float multiplier)
@@ -113,9 +112,21 @@ public class MoveSO : ScriptableObject
         moveBlocks.Add(new ChangeStatBlock());
     }
     
-    [ContextMenu("Add Status")]
-    public void AddStatus()
+    [ContextMenu("Status/Add Non Volatile Status")]
+    public void AddNVStatus()
     {
-        moveBlocks.Add(new ApplyStatus());
+        moveBlocks.Add(new ApplyNonVolatileStatus());
+    }
+    
+    [ContextMenu("Status/Add Volatile Status")]
+    public void AddVStatus()
+    {
+        moveBlocks.Add(new ApplyNonVolatileStatus());
+    }
+    
+    [ContextMenu("Add Pokemon Change")]
+    public void AddPKMNChange()
+    {
+        moveBlocks.Add(new PokemonSwapBlock());
     }
 }

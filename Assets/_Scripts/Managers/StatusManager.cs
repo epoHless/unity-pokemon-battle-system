@@ -39,9 +39,18 @@ public class StatusManager : Singleton<StatusManager>
 
     #region NON VOLATILE STATUSES
 
-    public IEnumerator ApplyStatus(Pokemon pokemon, StatusInfo status, MoveParticle particle)
+    public IEnumerator ApplyNonVolatileStatus(Pokemon pokemon, StatusInfo status, MoveParticle particle)
     {
         if (AddNonVolatileStatus(pokemon, status))
+        {
+            yield return particle.PlayParticle(pokemon.transform.position);
+            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.PokemonData.Name} {status.Message}", 1.5f);
+        }
+    }
+    
+    public IEnumerator ApplyVolatileStatus(Pokemon pokemon, StatusInfo status, MoveParticle particle)
+    {
+        if (AddVolatileStatus(pokemon, status))
         {
             yield return particle.PlayParticle(pokemon.transform.position);
             yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.PokemonData.Name} {status.Message}", 1.5f);
