@@ -23,6 +23,7 @@ public class BattleManager : Singleton<BattleManager>
     
     public UnityEvent<TurnMove> OnSelectionMade;
     public UnityEvent<Pokemon> OnPokemonFaint; 
+    public UnityEvent OnBattleEnd; 
     
     #region UNITY FUNCTIONS
     
@@ -158,6 +159,7 @@ public class BattleManager : Singleton<BattleManager>
         }
         else
         {
+            OnBattleEnd?.Invoke();
             ChangeState(new BattleEndBS());
         }
     }
@@ -254,26 +256,24 @@ public class BattleManager : Singleton<BattleManager>
     
     private IEnumerator ApplyPostTurnStatusesCOR()
     {
-        // yield return CheckForCameraBlending.Instance.WaitForBlend();
-        
-        foreach (var pokemon in ActivePokemons)
+        for (int i = 0; i < ActivePokemons.Count; i++)
         {
-            foreach (var status in pokemon.statuses)
+            for (int j = 0; j < ActivePokemons[i].statuses.Count; j++)
             {
-                if (status is PostTurnNonVolatileStatus)
+                if (ActivePokemons[i].statuses[j] is PostTurnNonVolatileStatus)
                 {
-                    yield return status.Execute(StatusManager.Instance, pokemon);
+                    yield return ActivePokemons[i].statuses[j].Execute(StatusManager.Instance, ActivePokemons[i]);
                 }
             }
         }
-        
-        foreach (var pokemon in ActivePokemons)
+
+        for (int i = 0; i < ActivePokemons.Count; i++)
         {
-            foreach (var status in pokemon.statuses)
+            for (int j = 0; j < ActivePokemons[i].statuses.Count; j++)
             {
-                if (status is PostTurnVolatileStatus)
+                if (ActivePokemons[i].statuses[j] is PostTurnVolatileStatus)
                 {
-                    yield return status.Execute(StatusManager.Instance, pokemon);
+                    yield return ActivePokemons[i].statuses[j].Execute(StatusManager.Instance, ActivePokemons[i]);
                 }
             }
         }

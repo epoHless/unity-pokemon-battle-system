@@ -10,6 +10,7 @@ public class UIManager : Singleton<UIManager>
     [field: SerializeField] public CanvasHider ActionsPanel { get; private set; }
     [field: SerializeField] public CanvasHider PokemonsPanel { get; private set; }
     [field: SerializeField] public CanvasHider TeamSelectionPanel { get; private set; }
+    [field: SerializeField] public CanvasHider GameOverPanel { get; private set; }
 
     protected override void Awake()
     {
@@ -63,5 +64,10 @@ public class UIManager : Singleton<UIManager>
     public void ToggleTeamSelection(bool toggle)
     {
         TogglePanel(toggle, TeamSelectionPanel);
+    }
+    
+    public void ToggleGameOver(bool toggle)
+    {
+        TogglePanel(toggle, GameOverPanel);
     }
 }

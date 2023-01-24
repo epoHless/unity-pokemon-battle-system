@@ -10,7 +10,7 @@ public class Pokemon : MonoBehaviour
 
     public BattleModifier battleStats;
 
-    [HideInInspector] public List<Status> statuses;
+    [SerializeReference] public List<Status> statuses;
 
     public PokemonUI ui { get; private set; }
     
