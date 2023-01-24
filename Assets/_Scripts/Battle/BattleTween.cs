@@ -37,8 +37,8 @@ public static class BattleTween
 
         float ad = 1;
         
-        if (moveSo.moveType == MoveSO.MoveType.SPECIAL) ad = caster.battleStats.SPATK.Value / target.battleStats.SPDEF.Value;
-        else if (moveSo.moveType == MoveSO.MoveType.PHYSICAL) ad = caster.battleStats.ATK.Value / target.battleStats.DEF.Value;
+        if (moveSo.moveType == MoveSO.MoveType.SPECIAL) ad = caster.battleStats.GetSAtk() / target.battleStats.GetSDef();
+        else if (moveSo.moveType == MoveSO.MoveType.PHYSICAL) ad = caster.battleStats.GetAtk() / target.battleStats.GetDef();
         
         float modifier = crit * typeEffectiveness * stab * rng;
 

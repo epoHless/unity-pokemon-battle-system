@@ -20,4 +20,28 @@ MonoBehaviour:
   <Power>k__BackingField: 75
   <Accuracy>k__BackingField: 100
   MoveEffect: 10
+  moveBlocks:
+  - rid: 1751686405734793236
+  - rid: 1751686405734793237
+  - rid: 1751686405734793238
   particlePrefab: {fileID: 5293994420126422562, guid: 39764f27446aee74585c3fe19b18121e, type: 3}
+  references:
+    version: 2
+    RefIds:
+    - rid: 1751686405734793236
+      type: {class: ParticleBlock, ns: , asm: Assembly-CSharp}
+      data:
+        Particle: {fileID: 5293994420126422562, guid: 39764f27446aee74585c3fe19b18121e, type: 3}
+        offset: {x: 0, y: 0, z: 0}
+    - rid: 1751686405734793237
+      type: {class: DamageBlock, ns: , asm: Assembly-CSharp}
+    - rid: 1751686405734793238
+      type: {class: ApplyStatus, ns: , asm: Assembly-CSharp}
+      data:
+        Probability: 100
+        statusInfo:
+          Name: Paralyse
+          Particle: {fileID: 4054789122116831240, guid: 1345e34f8ecc607449e5887eaca37c90, type: 3}
+          Sprite: {fileID: 1063937034, guid: e18ceb52165f6094ca5e2bd8646d12fb, type: 3}
+          Message: was paralysed
+          Status: 2

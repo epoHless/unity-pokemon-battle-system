@@ -20,4 +20,27 @@ MonoBehaviour:
   <Power>k__BackingField: 75
   <Accuracy>k__BackingField: 100
   MoveEffect: 6
-  particlePrefab: {fileID: 5634180972406088507, guid: d8ac4035c123b2543bf6b10fcd638dfd, type: 3}
+  moveBlocks:
+  - rid: 1751686405734793227
+  - rid: 1751686405734793228
+  - rid: 1751686405734793229
+  references:
+    version: 2
+    RefIds:
+    - rid: 1751686405734793227
+      type: {class: ParticleBlock, ns: , asm: Assembly-CSharp}
+      data:
+        Particle: {fileID: 5634180972406088507, guid: d8ac4035c123b2543bf6b10fcd638dfd, type: 3}
+        offset: {x: 0, y: 0, z: 0}
+    - rid: 1751686405734793228
+      type: {class: DamageBlock, ns: , asm: Assembly-CSharp}
+    - rid: 1751686405734793229
+      type: {class: ApplyStatus, ns: , asm: Assembly-CSharp}
+      data:
+        Probability: 10
+        statusInfo:
+          Name: Freeze
+          Particle: {fileID: 7660251562286168539, guid: 3d3df768847a7574a9c11951e17ab03f, type: 3}
+          Sprite: {fileID: 1851384379, guid: e18ceb52165f6094ca5e2bd8646d12fb, type: 3}
+          Message: was freezed
+          Status: 1

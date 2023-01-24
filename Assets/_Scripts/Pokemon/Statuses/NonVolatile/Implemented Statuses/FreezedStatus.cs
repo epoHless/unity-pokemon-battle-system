@@ -10,7 +10,7 @@ public class FreezedStatus : PreTurnNonVolatileStatus
         if (!BreakeFree)
         {
             yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.PokemonData.Name} is frozen solid and unable to move!", 1.5f);
-            yield return manager.GetStatusParticle(manager.FrozenStatus).PlayParticle(pokemon.transform.position);
+            yield return Particle.PlayParticle(pokemon.transform.position);
             pokemon.CanAttack = false;
         }
         else

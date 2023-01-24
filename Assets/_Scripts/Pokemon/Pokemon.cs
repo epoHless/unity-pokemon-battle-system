@@ -5,8 +5,8 @@ using UnityEngine;
 public class Pokemon : MonoBehaviour
 {
     [field: SerializeField] public PokemonData PokemonData { get; private set; }
-    [field: SerializeField] public List<Move> Moves { get; private set; }
     [field: SerializeField] public PermanentStatistic PermanentStatistic { get; private set; }
+    [field: SerializeField] public List<Move> Moves { get; private set; }
 
     public BattleModifier battleStats;
 
@@ -14,9 +14,11 @@ public class Pokemon : MonoBehaviour
 
     public PokemonUI ui { get; private set; }
     
-    [field: SerializeField] public Pokemon opponent { get; private set; }
+    public Pokemon opponent { get; private set; }
 
+    [HideInInspector]
     public bool CanAttack = true;
+    [HideInInspector]
     public bool IsFainted = false;
     
     private void Awake()

@@ -20,4 +20,23 @@ MonoBehaviour:
   <Power>k__BackingField: 80
   <Accuracy>k__BackingField: 100
   MoveEffect: 9
+  moveBlocks:
+  - rid: 1751686405734793233
+  - rid: 1751686405734793234
+  - rid: 1751686405734793235
   particlePrefab: {fileID: 135247428567287415, guid: 8c74b60883975d34a9f49a2ce926b190, type: 3}
+  references:
+    version: 2
+    RefIds:
+    - rid: 1751686405734793233
+      type: {class: ParticleBlock, ns: , asm: Assembly-CSharp}
+      data:
+        Particle: {fileID: 135247428567287415, guid: 8c74b60883975d34a9f49a2ce926b190, type: 3}
+        offset: {x: 0, y: 0, z: 0}
+    - rid: 1751686405734793234
+      type: {class: DamageBlock, ns: , asm: Assembly-CSharp}
+    - rid: 1751686405734793235
+      type: {class: ChangeStatBlock, ns: , asm: Assembly-CSharp}
+      data:
+        Statistic: 3
+        modifierType: 2

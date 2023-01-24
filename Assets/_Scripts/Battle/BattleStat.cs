@@ -5,6 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class BattleStat
 {
+    public string Name;
     public float Value;
     private float _initialValue;
     
@@ -15,10 +16,12 @@ public class BattleStat
     public static event Action<Pokemon> OnBuff;
     public static event Action<Pokemon> OnDeBuff;
 
-    public BattleStat(float value)
+    public BattleStat(string name, float value)
     {
         Value = value;
         _initialValue = value;
+
+        Name = name;
     }
 
     public IEnumerator IncreaseStat(Pokemon pokemon, string stat)

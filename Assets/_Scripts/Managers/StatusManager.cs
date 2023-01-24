@@ -13,8 +13,6 @@ public class StatusManager : Singleton<StatusManager>
 
     public bool AddNonVolatileStatus(Pokemon pokemon, StatusInfo statusInfo)
     {
-        statusInfo.status = SubclassUtility.GetSubclassFromIndex<Status>(statusInfo.Status);
-
         if (statusInfo.status is NonVolatileStatus && !pokemon.statuses.OfType<NonVolatileStatus>().Any())
         {
             pokemon.ui.SetStateIcon(statusInfo.Sprite);
@@ -41,64 +39,78 @@ public class StatusManager : Singleton<StatusManager>
 
     #region NON VOLATILE STATUSES
 
-    public IEnumerator ApplyBurn(Pokemon pokemon)
+    public IEnumerator ApplyStatus(Pokemon pokemon, StatusInfo status, MoveParticle particle)
     {
-        if (AddNonVolatileStatus(pokemon, BurnStatus))
+        if (AddNonVolatileStatus(pokemon, status))
         {
-            yield return GetStatusParticle(BurnStatus).PlayParticle(pokemon.transform.position);
-            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.PokemonData.Name} was burned!", 1.5f);
+            yield return particle.PlayParticle(pokemon.transform.position);
+            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.PokemonData.Name} {status.Message}", 1.5f);
         }
     }
-    
-    public IEnumerator ApplyPoison(Pokemon pokemon)
-    {
-        if (AddNonVolatileStatus(pokemon, PoisonStatus))
-        {
-            yield return GetStatusParticle(PoisonStatus).PlayParticle(pokemon.transform.position);
-            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.PokemonData.Name} was poisoned!",1.5f);
-        }
-    }
-    
-    public IEnumerator ApplyParalyse(Pokemon pokemon)
-    {
-        if (AddNonVolatileStatus(pokemon, ParalyseStatus))
-        {
-            yield return GetStatusParticle(ParalyseStatus).PlayParticle(pokemon.transform.position);
-            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.PokemonData.Name} was paralysed!",1.5f);
-        }
-    }
-    
-    public IEnumerator ApplyFreeze(Pokemon pokemon)
-    {
-        if (AddNonVolatileStatus(pokemon, FrozenStatus))
-        {
-            yield return GetStatusParticle(FrozenStatus).PlayParticle(pokemon.transform.position);
-            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.PokemonData.Name} was frozen solid!",1.5f);
-        }
-    }
+
+    // public IEnumerator ApplyBurn(Pokemon pokemon)
+    // {
+    //     if (AddNonVolatileStatus(pokemon, BurnStatus))
+    //     {
+    //         yield return GetStatusParticle(BurnStatus).PlayParticle(pokemon.transform.position);
+    //         yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.PokemonData.Name} was burned!", 1.5f);
+    //     }
+    // }
+    //
+    // public IEnumerator ApplyPoison(Pokemon pokemon)
+    // {
+    //     if (AddNonVolatileStatus(pokemon, PoisonStatus))
+    //     {
+    //         yield return GetStatusParticle(PoisonStatus).PlayParticle(pokemon.transform.position);
+    //         yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.PokemonData.Name} was poisoned!",1.5f);
+    //     }
+    // }
+    //
+    // public IEnumerator ApplyParalyse(Pokemon pokemon)
+    // {
+    //     if (AddNonVolatileStatus(pokemon, ParalyseStatus))
+    //     {
+    //         yield return GetStatusParticle(ParalyseStatus).PlayParticle(pokemon.transform.position);
+    //         yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.PokemonData.Name} was paralysed!",1.5f);
+    //     }
+    // }
+    //
+    // public IEnumerator ApplyFreeze(Pokemon pokemon)
+    // {
+    //     if (AddNonVolatileStatus(pokemon, FrozenStatus))
+    //     {
+    //         yield return GetStatusParticle(FrozenStatus).PlayParticle(pokemon.transform.position);
+    //         yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.PokemonData.Name} was frozen solid!",1.5f);
+    //     }
+    // }
 
     #endregion
     
     #region NON VOLATILE STATUS CHECK
 
-    public bool IsParalysed(Pokemon pokemon)
+    // public bool IsParalysed(Pokemon pokemon)
+    // {
+    //     return pokemon.statuses.Contains(ParalyseStatus.status);
+    // }
+    //
+    // public bool IsBurned(Pokemon pokemon)
+    // {
+    //     return pokemon.statuses.Contains(BurnStatus.status);
+    // }
+    //
+    // public bool IsFrozen(Pokemon pokemon)
+    // {
+    //     return pokemon.statuses.Contains(FrozenStatus.status);
+    // }
+    //
+    // public bool IsPoisoned(Pokemon pokemon)
+    // {
+    //     return pokemon.statuses.Contains(PoisonStatus.status);
+    // }
+
+    public bool HasStatus(Pokemon pokemon, Status status)
     {
-        return pokemon.statuses.Contains(ParalyseStatus.status);
-    }
-    
-    public bool IsBurned(Pokemon pokemon)
-    {
-        return pokemon.statuses.Contains(BurnStatus.status);
-    }
-    
-    public bool IsFrozen(Pokemon pokemon)
-    {
-        return pokemon.statuses.Contains(FrozenStatus.status);
-    }
-    
-    public bool IsPoisoned(Pokemon pokemon)
-    {
-        return pokemon.statuses.Contains(PoisonStatus.status);
+        return pokemon.statuses.Contains(status);
     }
 
     #endregion

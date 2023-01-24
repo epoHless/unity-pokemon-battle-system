@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using MobileFramework.Subclass;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -32,7 +33,9 @@ public class MoveSO : ScriptableObject
     private int MoveEffect;
     private MoveEffect _MoveEffect;
 
-    [SerializeField] public MoveParticle particlePrefab;
+    [SerializeReference] public List<MoveBlock> moveBlocks;
+
+    // [SerializeField] public MoveParticle particlePrefab;
     public MoveParticle spawnedParticle { get; private set; }
     
     public IEnumerator ExecuteMove(Pokemon owner)
@@ -73,17 +76,12 @@ public class MoveSO : ScriptableObject
                 throw new ArgumentOutOfRangeException();
         }
         
-        if(!spawnedParticle)
-        {
-            if(particlePrefab) spawnedParticle = Instantiate(particlePrefab, afflictedPokemon.transform.position, Quaternion.identity);
-        }
-
-        if(particlePrefab) spawnedParticle.transform.position = afflictedPokemon.transform.position;
-        
         CameraManager.Instance.UseMoveCamera(afflictedPokemon.transform);
-        
-        _MoveEffect = SubclassUtility.GetSubclassFromIndex<MoveEffect>(MoveEffect);
-        yield return _MoveEffect.Execute(this,owner, afflictedPokemon);
+
+        foreach (var block in moveBlocks)
+        {
+            yield return block.Execute(this, owner, afflictedPokemon);
+        }
     }
 
     public IEnumerator ExecuteMove(Pokemon owner, bool value = true)
@@ -95,5 +93,29 @@ public class MoveSO : ScriptableObject
     public void MultiplyPower(float multiplier)
     {
         Power *= multiplier;
+    }
+
+    [ContextMenu("Add Particle")]
+    public void AddParticle()
+    {
+        moveBlocks.Add(new ParticleBlock());
+    }
+    
+    [ContextMenu("Add Damage")]
+    public void AddDamage()
+    {
+        moveBlocks.Add(new DamageBlock());
+    }
+    
+    [ContextMenu("Add Stat Modifier")]
+    public void AddModifyStat()
+    {
+        moveBlocks.Add(new ChangeStatBlock());
+    }
+    
+    [ContextMenu("Add Status")]
+    public void AddStatus()
+    {
+        moveBlocks.Add(new ApplyStatus());
     }
 }

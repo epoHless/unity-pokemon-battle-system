@@ -40,12 +40,6 @@ public class MoveParticle : MonoBehaviour
 
         transform.position = position;
         gameObject.SetActive(true);
-
         yield return new WaitUntil((() => IsDone));
-    }
-
-    public void SetAction(Action action)
-    {
-        particleAction = action;
     }
 }

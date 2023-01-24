@@ -194,7 +194,7 @@ public class BattleManager : Singleton<BattleManager>
     
     IEnumerator UseMoves()
     {
-        var order = turnMoves.OrderByDescending(move => move.pokemon.battleStats.SPD.Value).ToList();
+        var order = turnMoves.OrderByDescending(move => move.pokemon.battleStats.GetSpeed()).ToList();
         
         for (int i = 0; i < order.Count; i++)
         {
