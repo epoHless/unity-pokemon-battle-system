@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a059e70cbcd342ada68a265d7866a7fd, type: 3}
+  m_Name: Status_Burn
+  m_EditorClassIdentifier: 
+  Name: Burn
+  Particle: {fileID: 4267191344647598639, guid: 18c3ca7156bd85f44839ee8f7f3fce6d, type: 3}
+  Sprite: {fileID: -92296547, guid: e18ceb52165f6094ca5e2bd8646d12fb, type: 3}
+  Message: was burned!
+  Status: 0
+  status:
+    Particle: {fileID: 0}

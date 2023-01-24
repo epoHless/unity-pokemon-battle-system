@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a059e70cbcd342ada68a265d7866a7fd, type: 3}
+  m_Name: Status_Paralysis
+  m_EditorClassIdentifier: 
+  Name: Paralysis
+  Particle: {fileID: 4054789122116831240, guid: 1345e34f8ecc607449e5887eaca37c90, type: 3}
+  Sprite: {fileID: 1063937034, guid: e18ceb52165f6094ca5e2bd8646d12fb, type: 3}
+  Message: was paralized!
+  Status: 2
+  status:
+    Particle: {fileID: 0}

@@ -17,20 +17,25 @@ MonoBehaviour:
   <moveTarget>k__BackingField: 1
   <Type>k__BackingField: {fileID: 11400000, guid: 921aaec75cfdd844180f4e1b09ab2d51, type: 2}
   <PP>k__BackingField: 20
-  <Power>k__BackingField: 70
+  <Power>k__BackingField: 140
   <Accuracy>k__BackingField: 100
-  MoveEffect: 4
   moveBlocks:
   - rid: 1751686405734793225
-  - rid: 1751686405734793223
-  particlePrefab: {fileID: 7097042553332516103, guid: 7cab15c94a1e5174a9505b4d9478e998, type: 3}
+  - rid: 1751686409286582287
   references:
     version: 2
     RefIds:
-    - rid: 1751686405734793223
-      type: {class: DamageBlock, ns: , asm: Assembly-CSharp}
     - rid: 1751686405734793225
       type: {class: ParticleBlock, ns: , asm: Assembly-CSharp}
       data:
         Particle: {fileID: 7097042553332516103, guid: 7cab15c94a1e5174a9505b4d9478e998, type: 3}
         offset: {x: 0, y: 0, z: 0}
+    - rid: 1751686409286582287
+      type: {class: DamageMultipliedBlock, ns: , asm: Assembly-CSharp}
+      data:
+        IsCasterTargetOfCheck: 1
+        Multiplier: 2
+        StatusesToCheck:
+        - {fileID: 11400000, guid: 126013c68128daa42b580997701e407f, type: 2}
+        - {fileID: 11400000, guid: 1406d037099bd754b86eb8cdea1674ae, type: 2}
+        - {fileID: 11400000, guid: 27e4d61c9c1c2584d8f248f68ec99756, type: 2}

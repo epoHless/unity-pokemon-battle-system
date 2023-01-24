@@ -146,4 +146,53 @@ public static class BattleTween
             BattleManager.Instance.OnPokemonFaint?.Invoke(pokemon);
         }
     }
+    
+    public static IEnumerator DamageAndHurtPokemon(Pokemon pokemon, float percentage)
+    {
+        bool IsDone = false;
+        
+        float startHp = pokemon.battleStats.CurrentPS;
+        float percentageHp = pokemon.battleStats.MaxPS / percentage;
+
+        float newHp = pokemon.battleStats.CurrentPS - percentageHp;
+
+        LeanTween.value(pokemon.gameObject, f =>
+        {
+            pokemon.battleStats.CurrentPS = f;
+        }, startHp, newHp, .35f).setOnComplete(() =>
+        {
+            IsDone = true;
+        });
+
+        yield return new WaitUntil((() => IsDone));
+
+        IsDone = false;
+
+        var hurter = pokemon.opponent;
+
+        var newHurtHP = hurter.battleStats.CurrentPS - percentageHp;
+        
+        LeanTween.value(pokemon.gameObject, f =>
+        {
+            hurter.battleStats.CurrentPS = f;
+        }, hurter.battleStats.CurrentPS, newHurtHP, .35f).setOnComplete(() =>
+        {
+            IsDone = true;
+        });
+        
+        yield return new WaitUntil((() => IsDone));
+        yield return NotificationManager.Instance.ShowNotificationCOR($"{hurter.PokemonData.Name} was hurt by the recoil!", 1.5f);
+
+        if (pokemon.battleStats.CurrentPS <= 0)
+        {
+            yield return NotificationManager.Instance.ShowNotificationCOR($"{pokemon.PokemonData.Name} Fainted!", 2);
+            BattleManager.Instance.OnPokemonFaint?.Invoke(pokemon);
+        }
+        
+        if (hurter.battleStats.CurrentPS <= 0)
+        {
+            yield return NotificationManager.Instance.ShowNotificationCOR($"{hurter.PokemonData.Name} Fainted!", 2);
+            BattleManager.Instance.OnPokemonFaint?.Invoke(hurter);
+        }
+    }
 }

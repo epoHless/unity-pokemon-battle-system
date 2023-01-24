@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a059e70cbcd342ada68a265d7866a7fd, type: 3}
+  m_Name: Status_Poison
+  m_EditorClassIdentifier: 
+  Name: Poison
+  Particle: {fileID: 1863921359724343466, guid: 1ae5be08942ec8d4fa8db210287b53ef, type: 3}
+  Sprite: {fileID: 1448324146, guid: e18ceb52165f6094ca5e2bd8646d12fb, type: 3}
+  Message: was poisoned!
+  Status: 3
+  status:
+    Particle: {fileID: 0}

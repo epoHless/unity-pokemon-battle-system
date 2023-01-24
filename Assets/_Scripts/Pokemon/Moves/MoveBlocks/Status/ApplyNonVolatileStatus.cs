@@ -2,7 +2,7 @@
 using MobileFramework.Subclass;
 using UnityEngine;
 
-public class ApplyVolatileStatus : MoveBlock
+public class ApplyNonVolatileStatus : ApplyStatusBlock
 {
     [Range(0, 100)] public float Probability;
     public StatusInfo statusInfo; 
@@ -13,7 +13,7 @@ public class ApplyVolatileStatus : MoveBlock
     {
         if (afflictedPokemon.IsFainted) yield break;
 
-        bool CanApply = Random.Range(0, Probability) < 100;
+        bool CanApply = Random.Range(1, 101) <= Probability;
 
         if (CanApply)
         {
@@ -28,7 +28,7 @@ public class ApplyVolatileStatus : MoveBlock
                 statusInfo.status = SubclassUtility.GetSubclassFromIndex<Status>(statusInfo.Status);
                 statusInfo.status.Particle = spawnedParticle;
                 
-                yield return StatusManager.Instance.ApplyVolatileStatus(afflictedPokemon, statusInfo, spawnedParticle);
+                yield return StatusManager.Instance.ApplyNonVolatileStatus(afflictedPokemon, statusInfo, spawnedParticle);
             }
         }
     }

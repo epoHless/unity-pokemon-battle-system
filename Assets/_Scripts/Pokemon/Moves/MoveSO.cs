@@ -28,10 +28,6 @@ public class MoveSO : ScriptableObject
     [field: SerializeField] public int PP { get; private set; }
     [field: SerializeField] public float Power { get; private set; }
     [field: SerializeField] public int Accuracy { get; private set; }
-    
-    // [SubclassOf(typeof(MoveEffect))] [SerializeField]
-    // private int MoveEffect;
-    // private MoveEffect _MoveEffect;
 
     [SerializeReference] public List<MoveBlock> moveBlocks;
     
@@ -48,13 +44,16 @@ public class MoveSO : ScriptableObject
                 yield return NotificationManager.Instance.ShowNotificationCOR($"{owner.opponent.PokemonData.Name} dodged the attack!",1.5f);
                 yield break;
             }
-            
-            foreach (var elementType in owner.opponent.PokemonData.Types)
+
+            if (moveType != MoveType.STATUS)
             {
-                if (elementType.GetModifier(Type).Modifier == 0)
+                foreach (var elementType in owner.opponent.PokemonData.Types)
                 {
-                    yield return NotificationManager.Instance.ShowNotificationCOR($"{Name} doesn't affect {owner.opponent.PokemonData.Name}",1);
-                    yield break;
+                    if (elementType.GetModifier(Type).Modifier == 0)
+                    {
+                        yield return NotificationManager.Instance.ShowNotificationCOR($"{Name} doesn't affect {owner.opponent.PokemonData.Name}",1);
+                        yield break;
+                    }
                 }
             }
         }
@@ -69,8 +68,6 @@ public class MoveSO : ScriptableObject
             case MoveTarget.ENEMY:
                 afflictedPokemon = owner.opponent;
                 break;
-            default:
-                throw new ArgumentOutOfRangeException();
         }
         
         CameraManager.Instance.UseMoveCamera(afflictedPokemon.transform);
@@ -94,16 +91,36 @@ public class MoveSO : ScriptableObject
         Power *= multiplier;
     }
 
+    #region BLOCK BUILDERS
+
     [ContextMenu("Add Particle")]
     public void AddParticle()
     {
         moveBlocks.Add(new ParticleBlock());
     }
     
-    [ContextMenu("Add Damage")]
+    [ContextMenu("Damage/Add Damage")]
     public void AddDamage()
     {
         moveBlocks.Add(new DamageBlock());
+    }
+    
+    [ContextMenu("Damage/Add Damage with Heal")]
+    public void AddDamageNHeal()
+    {
+        moveBlocks.Add(new DamageAndHealBlock());
+    }
+    
+    [ContextMenu("Damage/Add Damage with Recoil")]
+    public void AddDamageNRecoil()
+    {
+        moveBlocks.Add(new DamageAndRecoilBlock());
+    }
+    
+    [ContextMenu("Damage/Add Damage with Multiplier")]
+    public void AddDamageMultiplied()
+    {
+        moveBlocks.Add(new DamageMultipliedBlock());
     }
     
     [ContextMenu("Add Stat Modifier")]
@@ -121,7 +138,7 @@ public class MoveSO : ScriptableObject
     [ContextMenu("Status/Add Volatile Status")]
     public void AddVStatus()
     {
-        moveBlocks.Add(new ApplyNonVolatileStatus());
+        moveBlocks.Add(new ApplyVolatileStatus());
     }
     
     [ContextMenu("Add Pokemon Change")]
@@ -129,4 +146,6 @@ public class MoveSO : ScriptableObject
     {
         moveBlocks.Add(new PokemonSwapBlock());
     }
+
+    #endregion
 }

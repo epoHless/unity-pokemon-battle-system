@@ -19,20 +19,19 @@ MonoBehaviour:
   <PP>k__BackingField: 15
   <Power>k__BackingField: -1
   <Accuracy>k__BackingField: 85
-  MoveEffect: 13
   moveBlocks:
-  - rid: 1751686405734793242
-  particlePrefab: {fileID: 7800116219300003014, guid: 5dddf67e2a3aaa44ca36b5f1548398d8, type: 3}
+  - rid: 1751686409286582272
+  - rid: 1751686409286582273
   references:
     version: 2
     RefIds:
-    - rid: 1751686405734793242
-      type: {class: ApplyStatus, ns: , asm: Assembly-CSharp}
+    - rid: 1751686409286582272
+      type: {class: ParticleBlock, ns: , asm: Assembly-CSharp}
+      data:
+        Particle: {fileID: 7800116219300003014, guid: 5dddf67e2a3aaa44ca36b5f1548398d8, type: 3}
+        offset: {x: 0, y: 0, z: 0}
+    - rid: 1751686409286582273
+      type: {class: ApplyNonVolatileStatus, ns: , asm: Assembly-CSharp}
       data:
         Probability: 100
-        statusInfo:
-          Name: Burn
-          Particle: {fileID: 4267191344647598639, guid: 18c3ca7156bd85f44839ee8f7f3fce6d, type: 3}
-          Sprite: {fileID: -92296547, guid: e18ceb52165f6094ca5e2bd8646d12fb, type: 3}
-          Message: was burned!
-          Status: 0
+        statusInfo: {fileID: 11400000, guid: 126013c68128daa42b580997701e407f, type: 2}

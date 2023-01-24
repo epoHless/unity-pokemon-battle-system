@@ -24,7 +24,7 @@ public class PokemonSelectionButton : MonoBehaviour
     private void AddPokemonToList()
     {
         TeamSelection.Instance.OnPokemonSelected?.Invoke(pokemon);
-        button.enabled = false;
+        button.interactable = false;
     }
 
     public void SetData(Pokemon pokemon)

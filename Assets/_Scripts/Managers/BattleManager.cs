@@ -156,6 +156,10 @@ public class BattleManager : Singleton<BattleManager>
         {
             ChangeState(new PokemonFaintedBS());
         }
+        else
+        {
+            ChangeState(new BattleEndBS());
+        }
     }
     
     public Pokemon GetOpponent(Pokemon self)

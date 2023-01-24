@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a059e70cbcd342ada68a265d7866a7fd, type: 3}
+  m_Name: Status_Freeze
+  m_EditorClassIdentifier: 
+  Name: Freeze
+  Particle: {fileID: 7660251562286168539, guid: 3d3df768847a7574a9c11951e17ab03f, type: 3}
+  Sprite: {fileID: 1851384379, guid: e18ceb52165f6094ca5e2bd8646d12fb, type: 3}
+  Message: was frozen solid!
+  Status: 1
+  status:
+    Particle: {fileID: 0}

@@ -19,29 +19,22 @@ MonoBehaviour:
   <PP>k__BackingField: 25
   <Power>k__BackingField: 50
   <Accuracy>k__BackingField: 100
-  MoveEffect: 8
   moveBlocks:
-  - rid: 1751686405734793230
-  - rid: 1751686405734793231
-  - rid: 1751686405734793232
-  particlePrefab: {fileID: 4792616683301362705, guid: 97febe9c3b78f13468864676ab6e5b70, type: 3}
+  - rid: 1751686409286582284
+  - rid: 1751686409286582285
+  - rid: 1751686409286582286
   references:
     version: 2
     RefIds:
-    - rid: 1751686405734793230
+    - rid: 1751686409286582284
       type: {class: ParticleBlock, ns: , asm: Assembly-CSharp}
       data:
         Particle: {fileID: 4792616683301362705, guid: 97febe9c3b78f13468864676ab6e5b70, type: 3}
         offset: {x: 0, y: 0, z: 0}
-    - rid: 1751686405734793231
+    - rid: 1751686409286582285
       type: {class: DamageBlock, ns: , asm: Assembly-CSharp}
-    - rid: 1751686405734793232
-      type: {class: ApplyStatus, ns: , asm: Assembly-CSharp}
+    - rid: 1751686409286582286
+      type: {class: ApplyNonVolatileStatus, ns: , asm: Assembly-CSharp}
       data:
         Probability: 10
-        statusInfo:
-          Name: Poisoned
-          Particle: {fileID: 1863921359724343466, guid: 1ae5be08942ec8d4fa8db210287b53ef, type: 3}
-          Sprite: {fileID: 1448324146, guid: e18ceb52165f6094ca5e2bd8646d12fb, type: 3}
-          Message: was poisoned
-          Status: 3
+        statusInfo: {fileID: 11400000, guid: 27e4d61c9c1c2584d8f248f68ec99756, type: 2}

@@ -25,8 +25,6 @@ public class StatusManager : Singleton<StatusManager>
     
     public bool AddVolatileStatus(Pokemon pokemon, StatusInfo statusInfo)
     {
-        statusInfo.status = SubclassUtility.GetSubclassFromIndex<Status>(statusInfo.Status);
-
         if (statusInfo.status is VolatileStatus && !pokemon.statuses.Contains(statusInfo.status))
         {
             pokemon.statuses.Add(statusInfo.status);
@@ -145,6 +143,17 @@ public class StatusManager : Singleton<StatusManager>
     public MoveParticle GetStatusParticle(StatusInfo statusInfo)
     {
         return statusInfo.Particle;
+    }
+
+    public void RemoveVolatileStatuses(Pokemon pokemon)
+    {
+        for (int i = 0; i < pokemon.statuses.Count; i++)
+        {
+            if (pokemon.statuses[i] is VolatileStatus)
+            {
+                pokemon.statuses.Remove(pokemon.statuses[i]);
+            }
+        }
     }
 }
 
