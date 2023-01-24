@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13866fa4c66d4db8aa9d9a0cf0323812, type: 3}
+  m_Name: Move_DrainingKiss
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Draining Kiss
+  <moveType>k__BackingField: 1
+  <moveTarget>k__BackingField: 1
+  <Type>k__BackingField: {fileID: 11400000, guid: 82e6a2f210c046844b7a2b11e05bad1e, type: 2}
+  <PP>k__BackingField: 10
+  <Power>k__BackingField: 50
+  <Accuracy>k__BackingField: 100
+  moveBlocks:
+  - rid: 1751686409286582299
+  - rid: 1751686409286582300
+  references:
+    version: 2
+    RefIds:
+    - rid: 1751686409286582299
+      type: {class: ParticleBlock, ns: , asm: Assembly-CSharp}
+      data:
+        Particle: {fileID: 2842402030529363316, guid: 9fe6edd9cd9a600499d490be020e2da2, type: 3}
+        offset: {x: 0, y: 0, z: 0}
+    - rid: 1751686409286582300
+      type: {class: DamageAndHealBlock, ns: , asm: Assembly-CSharp}
+      data:
+        PercentageHeal: 75

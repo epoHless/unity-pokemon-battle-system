@@ -29,7 +29,7 @@ MonoBehaviour:
     - rid: 1751686409286582274
       type: {class: ParticleBlock, ns: , asm: Assembly-CSharp}
       data:
-        Particle: {fileID: 5293994420126422562, guid: 39764f27446aee74585c3fe19b18121e, type: 3}
+        Particle: {fileID: 5634180972406088507, guid: d8ac4035c123b2543bf6b10fcd638dfd, type: 3}
         offset: {x: 0, y: 0, z: 0}
     - rid: 1751686409286582275
       type: {class: DamageBlock, ns: , asm: Assembly-CSharp}

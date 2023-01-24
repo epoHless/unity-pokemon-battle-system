@@ -750,44 +750,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <PokemonData>k__BackingField: {fileID: 11400000, guid: b3ec1a24c37df1a49a42d2a2f0813e99, type: 2}
+  <PermanentStatistic>k__BackingField: {fileID: 11400000, guid: 6935573684f969a42993e8441beed084, type: 2}
   <Moves>k__BackingField:
   - moveSO: {fileID: 11400000, guid: fd39dc3ce1c0b55479596c4b9c43fc14, type: 2}
     currentPP: 0
-  - moveSO: {fileID: 11400000, guid: fd39dc3ce1c0b55479596c4b9c43fc14, type: 2}
+  - moveSO: {fileID: 11400000, guid: 3f076aacb396f3a4aa747128b6577f92, type: 2}
     currentPP: 0
   - moveSO: {fileID: 11400000, guid: 2893725ef3807544d99ca15965957787, type: 2}
     currentPP: 0
   - moveSO: {fileID: 11400000, guid: 8c0e9cd0957da30449f18efac8e49adb, type: 2}
     currentPP: 0
-  <PermanentStatistic>k__BackingField: {fileID: 11400000, guid: 6935573684f969a42993e8441beed084, type: 2}
   battleStats:
     MaxPS: 0
     CurrentPS: 0
-    ATK:
-      Value: 0
-      Stage: 0
-    SPATK:
-      Value: 0
-      Stage: 0
-    DEF:
-      Value: 0
-      Stage: 0
-    SPDEF:
-      Value: 0
-      Stage: 0
-    SPD:
-      Value: 0
-      Stage: 0
-    ACC:
-      Value: 0
-      Stage: 0
-    EVS:
-      Value: 0
-      Stage: 0
+    battleStats: []
   statuses: []
-  <opponent>k__BackingField: {fileID: 0}
   CanAttack: 1
   IsFainted: 0
+  references:
+    version: 2
+    RefIds: []
 --- !u!1 &6820961499326759130
 GameObject:
   m_ObjectHideFlags: 0
