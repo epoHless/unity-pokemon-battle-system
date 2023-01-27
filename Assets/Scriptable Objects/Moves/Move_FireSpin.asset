@@ -21,13 +21,11 @@ MonoBehaviour:
   <Accuracy>k__BackingField: 85
   moveBlocks:
   - rid: 1751686409286582289
-  - rid: -2
+  - rid: 1751686424045813761
   - rid: 1751686409286582291
   references:
     version: 2
     RefIds:
-    - rid: -2
-      type: {class: , ns: , asm: }
     - rid: 1751686409286582289
       type: {class: ParticleBlock, ns: , asm: Assembly-CSharp}
       data:
@@ -40,3 +38,7 @@ MonoBehaviour:
         name: GetType
         Probability: 100
         statusInfo: {fileID: 11400000, guid: c37cd0fe473391846b72ea1caf26ee26, type: 2}
+    - rid: 1751686424045813761
+      type: {class: DamageBlock, ns: , asm: Assembly-CSharp}
+      data:
+        name: DamageBlock

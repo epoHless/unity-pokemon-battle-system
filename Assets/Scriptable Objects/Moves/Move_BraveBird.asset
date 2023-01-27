@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13866fa4c66d4db8aa9d9a0cf0323812, type: 3}
+  m_Name: Move_BraveBird
+  m_EditorClassIdentifier: 
+  <Name>k__BackingField: Brave Bird
+  <moveType>k__BackingField: 0
+  <moveTarget>k__BackingField: 1
+  <Type>k__BackingField: {fileID: 11400000, guid: 22d56f1c63079514199b1171d69e07c6, type: 2}
+  <PP>k__BackingField: 10
+  <Power>k__BackingField: 120
+  <Accuracy>k__BackingField: 100
+  moveBlocks:
+  - rid: 1751686471884996608
+  - rid: 1751686471884996609
+  references:
+    version: 2
+    RefIds:
+    - rid: 1751686471884996608
+      type: {class: ParticleBlock, ns: , asm: Assembly-CSharp}
+      data:
+        name: ParticleBlock
+        Particle: {fileID: 7097042553332516103, guid: 7cab15c94a1e5174a9505b4d9478e998, type: 3}
+        offset: {x: 0, y: 0, z: 0}
+    - rid: 1751686471884996609
+      type: {class: DamageAndRecoilBlock, ns: , asm: Assembly-CSharp}
+      data:
+        name: DamageAndRecoilBlock
+        PercentageRecoil: 0.2

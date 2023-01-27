@@ -20,9 +20,11 @@ MonoBehaviour:
   <Power>k__BackingField: 0
   <Accuracy>k__BackingField: 100
   moveBlocks:
-  - rid: 1751686405734793244
+  - rid: 1751686456772919296
   references:
     version: 2
     RefIds:
-    - rid: 1751686405734793244
+    - rid: 1751686456772919296
       type: {class: PokemonSwapBlock, ns: , asm: Assembly-CSharp}
+      data:
+        name: PokemonSwapBlock

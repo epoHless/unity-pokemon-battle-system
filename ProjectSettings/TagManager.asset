@@ -41,3 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ground
+    uniqueID: 278283427
+    locked: 0
+  - name: Grass
+    uniqueID: 2203643205
+    locked: 0
+  - name: Ledge
+    uniqueID: 2084269731
+    locked: 0
+  - name: Collision
+    uniqueID: 1732625025
+    locked: 0
+  - name: Interaction
+    uniqueID: 2284091051
+    locked: 0

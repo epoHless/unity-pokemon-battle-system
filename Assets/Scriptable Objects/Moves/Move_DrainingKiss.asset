@@ -28,9 +28,11 @@ MonoBehaviour:
     - rid: 1751686409286582299
       type: {class: ParticleBlock, ns: , asm: Assembly-CSharp}
       data:
+        name: ParticleBlock
         Particle: {fileID: 2842402030529363316, guid: 9fe6edd9cd9a600499d490be020e2da2, type: 3}
         offset: {x: 0, y: 0, z: 0}
     - rid: 1751686409286582300
       type: {class: DamageAndHealBlock, ns: , asm: Assembly-CSharp}
       data:
-        PercentageHeal: 75
+        name: DamageAndHealBlock
+        PercentageHeal: 0.75
