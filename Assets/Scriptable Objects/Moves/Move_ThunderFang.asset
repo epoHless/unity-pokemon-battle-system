@@ -10,30 +10,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 13866fa4c66d4db8aa9d9a0cf0323812, type: 3}
-  m_Name: Move_ThunderWave
+  m_Name: Move_ThunderFang
   m_EditorClassIdentifier: 
-  <Name>k__BackingField: Thunder Wave
-  <moveType>k__BackingField: 2
+  <Name>k__BackingField: Thunder Fang
+  <moveType>k__BackingField: 0
   <moveTarget>k__BackingField: 1
   <Type>k__BackingField: {fileID: 11400000, guid: abf0b60229887334ba6536156ba2a017, type: 2}
-  <PP>k__BackingField: 20
-  <Power>k__BackingField: -1
+  <PP>k__BackingField: 15
+  <Power>k__BackingField: 80
   <Accuracy>k__BackingField: 90
   moveBlocks:
-  - rid: 1751686409286582280
-  - rid: 1751686409286582281
+  - rid: 1751686539175264256
+  - rid: 1751686539175264257
+  - rid: 1751686539175264258
   references:
     version: 2
     RefIds:
-    - rid: 1751686409286582280
+    - rid: 1751686539175264256
       type: {class: ParticleBlock, ns: , asm: Assembly-CSharp}
       data:
         name: ParticleBlock
         Particle: {fileID: 5293994420126422562, guid: 39764f27446aee74585c3fe19b18121e, type: 3}
         offset: {x: 0, y: 0, z: 0}
-    - rid: 1751686409286582281
+    - rid: 1751686539175264257
+      type: {class: DamageBlock, ns: , asm: Assembly-CSharp}
+      data:
+        name: DamageBlock
+    - rid: 1751686539175264258
       type: {class: ApplyNonVolatileStatus, ns: , asm: Assembly-CSharp}
       data:
         name: ApplyNonVolatileStatus
-        Probability: 100
+        Probability: 10
         statusInfo: {fileID: 11400000, guid: 1406d037099bd754b86eb8cdea1674ae, type: 2}

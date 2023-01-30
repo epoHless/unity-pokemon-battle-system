@@ -15,6 +15,6 @@ MonoBehaviour:
   <Name>k__BackingField: Darkrai
   <Sprite>k__BackingField: {fileID: 21300000, guid: 4e91796eb560eb347a499d12e849533c, type: 3}
   <Level>k__BackingField: 50
-  <gender>k__BackingField: 1
+  <gender>k__BackingField: 2
   <Types>k__BackingField:
   - {fileID: 11400000, guid: f606fa6d7e07dfb4bbab3cd08e96ae31, type: 2}
