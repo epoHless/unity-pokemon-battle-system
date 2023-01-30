@@ -95,26 +95,6 @@ public class StatusManager : Singleton<StatusManager>
     
     #region NON VOLATILE STATUS CHECK
 
-    // public bool IsParalysed(Pokemon pokemon)
-    // {
-    //     return pokemon.statuses.Contains(ParalyseStatus.status);
-    // }
-    //
-    // public bool IsBurned(Pokemon pokemon)
-    // {
-    //     return pokemon.statuses.Contains(BurnStatus.status);
-    // }
-    //
-    // public bool IsFrozen(Pokemon pokemon)
-    // {
-    //     return pokemon.statuses.Contains(FrozenStatus.status);
-    // }
-    //
-    // public bool IsPoisoned(Pokemon pokemon)
-    // {
-    //     return pokemon.statuses.Contains(PoisonStatus.status);
-    // }
-
     public bool HasStatus(Pokemon pokemon, Status status)
     {
         return pokemon.statuses.Contains(status);
