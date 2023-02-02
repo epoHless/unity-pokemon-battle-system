@@ -17,7 +17,7 @@ MonoBehaviour:
   <moveTarget>k__BackingField: 1
   <Type>k__BackingField: {fileID: 11400000, guid: 4e2359fa47d74db4cbc6ac1f4304c183, type: 2}
   <PP>k__BackingField: 15
-  <Power>k__BackingField: 50
+  <Power>k__BackingField: 90
   <Accuracy>k__BackingField: 100
   moveBlocks:
   - rid: 7219497854124687367
@@ -28,8 +28,8 @@ MonoBehaviour:
       type: {class: MultipleDamageBlock, ns: , asm: Assembly-CSharp}
       data:
         name: MultipleDamageBlock
-        min: 2
-        max: 2
+        min: 8
+        max: 10
         moveBlocks:
         - rid: 7219497854124687370
         - rid: 7219497854124687371

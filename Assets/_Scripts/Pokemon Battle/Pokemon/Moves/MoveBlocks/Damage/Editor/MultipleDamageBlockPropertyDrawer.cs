@@ -32,8 +32,6 @@ namespace _Scripts.Pokemon_Battle.Pokemon.Moves.MoveBlocks.Damage.Editor
             var firstRect = new Rect(position.x, position.y, position.width, EditorGUIUtility.singleLineHeight);
             var secondRect = new Rect(position.x, position.y + 20f, position.width, EditorGUIUtility.singleLineHeight);
             var thirdRect = new Rect(position.x, position.y + 40f, position.width, EditorGUIUtility.singleLineHeight);
-            var fourthRect = new Rect(position.x, position.y + 60f, position.width, EditorGUIUtility.singleLineHeight);
-            var fifthRect = new Rect(position.x, position.y + 80f, position.width, EditorGUIUtility.singleLineHeight);
             
             var min = property.FindPropertyRelative("min");
             var max = property.FindPropertyRelative("max");
@@ -48,6 +46,7 @@ namespace _Scripts.Pokemon_Battle.Pokemon.Moves.MoveBlocks.Damage.Editor
             EditorGUILayout.LabelField($"Multiple Damage Settings");
 
             EditorGUILayout.BeginHorizontal();
+            
             index = EditorGUILayout.Popup(index, subclasses.ToArray());
             if (GUILayout.Button($"Add Class"))
             {
@@ -56,7 +55,6 @@ namespace _Scripts.Pokemon_Battle.Pokemon.Moves.MoveBlocks.Damage.Editor
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.LabelField($"------------------------------");
-
 
             EditorGUI.EndProperty();
         }

@@ -14,6 +14,8 @@ public class MultipleDamageBlock : MoveBlock
 
         for (int i = 0; i < rand; i++)
         {
+            if(afflictedPokemon.IsFainted) break;
+            
             foreach (var block in moveBlocks)
             {
                 yield return block.Execute(moveData, caster, afflictedPokemon);
