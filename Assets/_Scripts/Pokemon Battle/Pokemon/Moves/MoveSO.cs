@@ -123,6 +123,12 @@ public class MoveSO : ScriptableObject
         moveBlocks.Add(new DamageMultipliedBlock());
     }
     
+    [ContextMenu("Damage/Add Multiple Damage")]
+    public void AddMultipleDamage()
+    {
+        moveBlocks.Add(new MultipleDamageBlock());
+    }
+    
     [ContextMenu("Add Stat Modifier")]
     public void AddModifyStat()
     {

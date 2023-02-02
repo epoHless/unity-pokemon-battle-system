@@ -29,15 +29,18 @@ MonoBehaviour:
     - rid: 1751686405734793216
       type: {class: ParticleBlock, ns: , asm: Assembly-CSharp}
       data:
+        name: ParticleBlock
         Particle: {fileID: 8176062737183758382, guid: 3c97cf4523294e4428ff9fccf7790250, type: 3}
         offset: {x: 0, y: 0.5, z: 0}
     - rid: 1751686405734793217
       type: {class: ChangeStatBlock, ns: , asm: Assembly-CSharp}
       data:
+        name: ChangeStatBlock
         Statistic: 0
         modifierType: 0
     - rid: 1751686405734793245
       type: {class: ChangeStatBlock, ns: , asm: Assembly-CSharp}
       data:
+        name: ChangeStatBlock
         Statistic: 2
         modifierType: 0

@@ -21,7 +21,6 @@ MonoBehaviour:
   <Accuracy>k__BackingField: 100
   moveBlocks:
   - rid: 1751686405734793222
-  - rid: 1751686424045813760
   - rid: 1751686405734793248
   references:
     version: 2
@@ -38,7 +37,3 @@ MonoBehaviour:
         name: ApplyNonVolatileStatus
         Probability: 10
         statusInfo: {fileID: 11400000, guid: 126013c68128daa42b580997701e407f, type: 2}
-    - rid: 1751686424045813760
-      type: {class: DamageBlock, ns: , asm: Assembly-CSharp}
-      data:
-        name: DamageBlock

@@ -5959,6 +5959,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8174762738556747981, guid: a53561eec426cc540a19c8da9798c641, type: 3}
+      propertyPath: <Moves>k__BackingField.Array.data[1].moveSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 05b9b44a44e8c5247b643be468bc1380, type: 2}
     - target: {fileID: 8807149482303429232, guid: a53561eec426cc540a19c8da9798c641, type: 3}
       propertyPath: m_RootOrder
       value: 10
