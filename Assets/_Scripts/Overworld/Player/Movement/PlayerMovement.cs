@@ -16,8 +16,9 @@ public class PlayerMovement : MonoBehaviour
 
     private float movementDistance = 1;
 
-    private Vector3 _targetPosition;
-    public Vector3 TargetPosition
+    private static Vector3 _targetPosition { get; set; }
+    
+    public static Vector3 TargetPosition
     {
         get => _targetPosition;
 
@@ -64,12 +65,13 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public AnimationController Controller { get; private set; }
-    
+
     #endregion
 
     #region Events
 
-    public static event Action<Vector2> OnMovementStarted; 
+    public static event Action<Vector2> OnMovementStarted;
+    public static event Action<Vector2> OnMovementFinished;
 
     #endregion
 
@@ -121,15 +123,15 @@ public class PlayerMovement : MonoBehaviour
                     if(!HasCollided) TargetPosition += Vector3.down * _distance;
                 }
             }
-            
-            MoveCharacter(speed);
+
+            MoveCharacter(speed, () => OnMovementFinished?.Invoke(TargetPosition));
         }
     }
 
-    public LTDescr MoveCharacter(float _speed)
+    public void MoveCharacter(float _speed, Action _action = null)
     {
         OnMovementStarted?.Invoke((TargetPosition - transform.position).normalized);
-        return LeanTween.move(gameObject, TargetPosition, 1 / _speed);
+        LeanTween.move(gameObject, TargetPosition, 1 / _speed).setOnComplete(_action);
     }
 
     public void SetSpeed(float _newSpeed)
