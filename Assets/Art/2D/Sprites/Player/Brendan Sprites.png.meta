@@ -129,7 +129,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Brendan_Idle
+      name: Brendan_Idle_Down
       rect:
         serializedVersion: 2
         x: 0
@@ -381,7 +381,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brendan Sprites_12
+      name: Brendan_Running_Down_1
       rect:
         serializedVersion: 2
         x: 0
@@ -402,7 +402,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brendan Sprites_13
+      name: Brendan_Running_Up_1
       rect:
         serializedVersion: 2
         x: 16
@@ -423,7 +423,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brendan Sprites_14
+      name: Brendan_Running_Side_1
       rect:
         serializedVersion: 2
         x: 31
@@ -444,7 +444,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brendan Sprites_15
+      name: Brendan_Running_Down_2
       rect:
         serializedVersion: 2
         x: 0
@@ -465,7 +465,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brendan Sprites_16
+      name: Brendan_Running_Up_2
       rect:
         serializedVersion: 2
         x: 16
@@ -486,7 +486,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Brendan Sprites_17
+      name: Brendan_Running_Side_2
       rect:
         serializedVersion: 2
         x: 31
@@ -580,27 +580,27 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Brendan Sprites_14: -1849744849
+      Brendan_Running_Side_1: -1849744849
       Brendan_Walking_Up_1: 1901142497
       Brendan_Walking_Side_1: 1077224257
       Brendan_Walking_Sid_2: 312796808
-      Brendan_Idle: 1980441229
+      Brendan_Idle_Down: 1980441229
+      Brendan_Running_Side_2: -944025557
       Brendan Sprites_10: 1094044791
       Brendan_Walking_Down_1: 36791207
-      Brendan Sprites_17: -944025557
+      Brendan_Running_Down_1: -124292701
       Brendan Sprites_19: 347967414
       Brendan Sprites_9: 340156196
+      Brendan_Running_Up_2: -586184710
       Brendan Sprites_20: -1106216111
       Brendan__Walking_Up_2: 1686861105
       Brendan Sprites_11: 1508183669
-      Brendan Sprites_13: -774292820
-      Brendan Sprites_15: 478781697
+      Brendan_Running_Down_2: 478781697
       Brendan Sprites_18: 809414989
-      Brendan Sprites_12: -124292701
+      Brendan_Running_Up_1: -774292820
       Brendan_Walking_Down_2: -1141635042
       Brendan_Idle_Up: 640061666
       Brendan_Idle_Side: -152776098
-      Brendan Sprites_16: -586184710
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

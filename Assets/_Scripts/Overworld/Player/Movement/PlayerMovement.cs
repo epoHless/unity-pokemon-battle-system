@@ -6,9 +6,11 @@ public class PlayerMovement : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField, Range(1, 10f)] private float speed = 4f;
     [SerializeField] private LayerMask TileCollision;
-    
-    [Header("State Management")]
-    [SerializeField] MovementState currentState;
+
+    [Header("State Management")] 
+    [SerializeField] public MovementState CurrentState;
+    [field: SerializeField] public MovementState WalkingState { get; private set; }
+    [field: SerializeField] public MovementState RunningState { get; private set; }
 
     #region Private Settings
 
@@ -61,21 +63,32 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public AnimationController Controller { get; private set; }
+    
+    #endregion
+
+    #region Events
+
+    public static event Action<Vector2> OnMovementStarted; 
+
     #endregion
 
     private void Awake()
     {
         TargetPosition = transform.position;
+        
+        Controller = GetComponentInChildren<AnimationController>();
+        Controller.SetMovement(this);
     }
 
     private void Start()
     {
-        currentState.OnEnter(this);
+        CurrentState.OnEnter(this);
     }
 
     private void Update()
     {
-        currentState.OnUpdate(this);
+        CurrentState.OnUpdate(this);
     }
 
     public void SetPosition(Vector2 _axisDirection, float _distance)
@@ -113,16 +126,22 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void MoveCharacter(float _speed)
+    public LTDescr MoveCharacter(float _speed)
     {
-        LeanTween.move(gameObject, TargetPosition, 1 / _speed);
+        OnMovementStarted?.Invoke((TargetPosition - transform.position).normalized);
+        return LeanTween.move(gameObject, TargetPosition, 1 / _speed);
     }
 
+    public void SetSpeed(float _newSpeed)
+    {
+        speed = _newSpeed;
+    }
+    
     public void ChangeState(MovementState _newState)
     {
-        currentState.OnExit(this);
-        currentState = _newState;
-        currentState.OnEnter(this);
+        CurrentState.OnExit(this);
+        CurrentState = _newState;
+        CurrentState.OnEnter(this);
     }
 }
 

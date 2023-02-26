@@ -5859,7 +5859,9 @@ MonoBehaviour:
   TileCollision:
     serializedVersion: 2
     m_Bits: 192
-  currentState: {fileID: 11400000, guid: 41e1bf4167ecc794a87b9c7c6353b19e, type: 2}
+  CurrentState: {fileID: 11400000, guid: 41e1bf4167ecc794a87b9c7c6353b19e, type: 2}
+  <WalkingState>k__BackingField: {fileID: 11400000, guid: 41e1bf4167ecc794a87b9c7c6353b19e, type: 2}
+  <RunningState>k__BackingField: {fileID: 11400000, guid: 12d7dd477120eea40bbc9ca2c13c8e70, type: 2}
 --- !u!1 &680883230
 GameObject:
   m_ObjectHideFlags: 0
@@ -6352,6 +6354,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1141399274}
   - component: {fileID: 1141399275}
+  - component: {fileID: 1141399276}
+  - component: {fileID: 1141399277}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -6367,7 +6371,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1141399273}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6415,7 +6419,7 @@ SpriteRenderer:
   m_SortingLayerID: 1459158919
   m_SortingLayer: 6
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 1980441229, guid: ebbbecaa1698f9e4280ad7b1ffae78b1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6426,6 +6430,38 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1141399276
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141399273}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8fc98d25067bf3443a99b6ab93e4cf0a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1141399277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141399273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e78614237e8e4043aceac6d5cbe9a54b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1146088033
 GameObject:
   m_ObjectHideFlags: 0

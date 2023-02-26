@@ -1,10 +1,8 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "Movement_", menuName = "States/Movement/New Ground Movement", order = 0)]
-public class GroundMovement : MovementState
+[CreateAssetMenu(fileName = "Movement_", menuName = "States/Movement/New Running Movement", order = 0)]
+public class RunningMovement : MovementState
 {
-    [SerializeField] private AnimatorOverrideController animator;
-    
     public override void OnEnter(PlayerMovement _movement)
     {
         base.OnEnter(_movement);
@@ -13,6 +11,11 @@ public class GroundMovement : MovementState
     public override void OnUpdate(PlayerMovement _movement)
     {
         base.OnUpdate(_movement);
+        
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            _movement.ChangeState(_movement.WalkingState);
+        }
         
         _movement.SetPosition(PlayerInput.GetAxis(),1);
     }

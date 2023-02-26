@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2afd326cf46f4d5a84ce33e0247794f7, type: 3}
-  m_Name: Movement_Ground
+  m_Script: {fileID: 11500000, guid: 7b57faf8597e455e84b42daeab841f76, type: 3}
+  m_Name: Movement_Running
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  speed: 4
+  animator: {fileID: 22100000, guid: 4b397cbb56787f64cb4a3cd5069b3083, type: 2}
